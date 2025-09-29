@@ -1,0 +1,124 @@
+'use client';
+import React, { useState } from 'react';
+
+export default function Header() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <header className="bg-transparent py-6 px-6 w-full">
+      
+      <div className="max-w-7xl mx-auto">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex justify-between items-center">
+          {/* Left side - Logo */}
+          <div className="flex items-center">
+            {/* Replace this div with your actual logo image */}
+            <img 
+              src="./logo.png" 
+              alt="Brandloomi" 
+              className=" h-12 mr-3"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+          </div>
+          
+          {/* Right side - All Navigation Items */}
+          <div className="flex items-center space-x-8">
+            {/* Navigation Menus */}
+            <nav className="flex items-center space-x-8 mr-4">
+              <a href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+                Company
+              </a>
+              <a href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+                Launchpad
+              </a>
+              <a href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+                Services
+              </a>
+            </nav>
+            
+            {/* Let's Connect Button with Circle Arrow */}
+            <a className=" text-white  font-[200] hover:text-[#00a8c5] transition-all duration-200 flex items-center space-x-3 group">
+              <span>Let's Connect</span>
+              <div className="w-8 h-8 bg-[#00BBDC] rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-200">
+                <svg 
+                  className="w-4 h-4 group-hover:translate-x-0.5 group-hover:text-[#00BBDC] transition-transform duration-200" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden flex justify-between items-center">
+          {/* Left side - Logo */}
+          <div className="flex items-center">
+            <img 
+              src="./logo.png" 
+              alt="Brandloomi" 
+              className="h-8 mr-2"
+            />
+           
+          </div>
+          
+          {/* Right side - Mobile Menu */}
+          <div className="flex items-center space-x-3">
+            {/* Mobile Let's Connect Button */}
+            <button className="bg-[#00BBDC] text-white p-3 rounded-full font-medium hover:bg-[#00a8c5] transition-colors flex items-center justify-center shadow-md">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            
+            {/* Mobile Menu Hamburger */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-md text-gray-100 hover:text-[#00BBDC] hover:bg-gray-500 transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Items */}
+        <div className={`md:hidden mt-4 py-4 border-t border-gray-200 transition-all duration-300 ${
+          isMobileMenuOpen ? 'block' : 'hidden'
+        }`}>
+          <div className="flex flex-col space-y-4">
+            <a 
+              href="#" 
+              className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Company
+            </a>
+            <a 
+              href="#" 
+              className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Launchpad
+            </a>
+            <a 
+              href="#" 
+              className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Services
+            </a>
+           
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

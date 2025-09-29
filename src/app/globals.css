@@ -1,26 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&Dancing+Script:wght@400..700&family=Poppins:wght@100;200;300;400;500;600;700&family=Lobster&family=Gravitas+One&display=swap');
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #00080A;
+  --accent-light: #34BDFE;
+  --accent-dark: #009252;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #00080A;
+    --foreground: #ffffff;
   }
-}
+} */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(135deg,
+      rgba(14, 14, 14, 0.952) 0%,
+      rgba(14, 13, 13, 0.932) 40%,
+      rgb(5, 5, 5) 60%,
+      rgb(0, 0, 0) 100%);
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  color: #f5f5f5;
+}
+
+.primary-bg {
+  background-image: linear-gradient(135deg,
+      rgba(14, 14, 14, 0.9) 0%,
+      rgba(14, 13, 13, 0.85) 40%,
+      rgba(5, 5, 5, 0.85) 60%,
+      rgba(0, 0, 0, 0.9) 100%);
+  color: #fff;
+}
+
+.dancing-font {
+  font-family: 'Dancing Script', cursive !important;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+.bolder-font {
+  font-family: 'Gravitas One', cursive !important;
+}
+
+.lobster-font {
+  font-family: 'Lobster', cursive !important;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(38, 245, 176, 0.055);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+/* Hover glow effect */
+.glass-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 255, 200, 0.158);
+  color: white !important;
+  border-color: rgba(0, 255, 200, 0.089);
+}
+
+/* Neon accent line */
+/* .glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, #34BDFE, #009252, #8a2be2);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+} */
+
+
+
+/* Hero section decorations */
+.hero-top-left {
+  background: #34BDFE;
+  z-index: -1;
+  opacity: 0.44;
+  transform: rotate(45deg);
+  filter: blur(120px) saturate(200%) brightness(150%);
+}
+.hero-bottom-right {
+  background: #009252;
+  z-index: -1;
+  opacity: 0.44;
+  transform: rotate(45deg);
+  filter: blur(120px) saturate(200%) brightness(150%);
 }
