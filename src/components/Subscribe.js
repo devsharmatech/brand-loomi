@@ -103,32 +103,7 @@ export default function Subscribe() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
           >
-            Ready to{" "}
-            <span className="relative inline-block">
-              <motion.span
-                className="bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400 text-transparent bg-clip-text"
-                animate={{ 
-                  backgroundPosition: ["0%", "100%", "0%"]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                style={{ 
-                  backgroundSize: "200% 100%"
-                }}
-              >
-                Launch
-              </motion.span>
-              <motion.div
-                className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.8 }}
-              />
-            </span>{" "}
-            Your Business Online?
+            Ready to Launch Your Business Online?
           </motion.h1>
 
           {/* Subheading */}

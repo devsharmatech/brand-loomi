@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Rocket, Sparkles, Star, Send } from "lucide-react";
 
-export default function SubscribeAbout() {
+export default function SubscribeAbout({heading, btntext}) {
   const [email, setEmail] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
@@ -14,7 +14,7 @@ export default function SubscribeAbout() {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-transparent relative overflow-hidden">
+    <div className="relative flex items-center justify-center min-h-[70vh] bg-transparent relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>
@@ -84,17 +84,7 @@ export default function SubscribeAbout() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
         >
-          Let&apos;s Build Your{" "}
-          <motion.span
-            className="bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent bg-size-200 animate-gradient"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Success Story
-          </motion.span>{" "}
-          <br />
-          Together.
+         {heading}
         </motion.h1>
 
         {/* Subheading */}
@@ -161,7 +151,7 @@ export default function SubscribeAbout() {
                 
                 {/* Button Content */}
                 <div className="relative z-10 flex items-center gap-2">
-                  <span className="font-semibold">Start</span>
+                  <span className="font-semibold">{btntext}</span>
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ 

@@ -14,7 +14,7 @@ export default function Home() {
     <div className="min-h-screen">
       <HeroHome />
       <EmpowerEntrepreneurs />
-      <BrandServicesEnhanced />
+      <BrandServicesEnhanced heading="HOW TO ESTABLISH YOUR BRAND"/>
       <ProcessSectionEnhanced  />
       <Testimonials  />
       <FAQ />

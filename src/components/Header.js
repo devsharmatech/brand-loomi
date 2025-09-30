@@ -33,7 +33,7 @@ export default function Header() {
               <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200"style={{cursor:"pointer"}}>
                 Launchpad
               </Link>
-              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200"style={{cursor:"pointer"}}>
+              <Link href="/services" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200"style={{cursor:"pointer"}}>
                 Services
               </Link>
             </nav>
@@ -108,7 +108,7 @@ export default function Header() {
               Launchpad
             </Link>
             <Link 
-              href="#" 
+              href="/services" 
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             style={{cursor:"pointer"}}>

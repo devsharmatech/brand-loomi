@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
 
-const BrandServicesEnhanced = () => {
+const BrandServicesEnhanced = ({heading}) => {
   const [servicesData, setServicesData] = useState(null);
 
   useEffect(() => {
     const data = {
-      title: "HOW TO ESTABLISH YOUR BRAND",
+      title: heading,
       services: [
         {
           id: 1,
