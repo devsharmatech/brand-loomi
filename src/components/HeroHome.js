@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 
-export default function Hero() {
+export default function HeroHome() {
   return (
     <section className="relative w-full flex flex-col items-center justify-center text-center min-h-[60vh] px-4 bg-transparent overflow-hidden">
       <Header />

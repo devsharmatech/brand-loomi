@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Link from "next/link";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,9 +11,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto">
         {/* Desktop Navigation */}
         <div className="hidden md:flex justify-between items-center">
-          {/* Left side - Logo */}
           <div className="flex items-center">
-            {/* Replace this div with your actual logo image */}
             <img 
               src="./logo.png" 
               alt="Brandloomi" 
@@ -28,19 +27,19 @@ export default function Header() {
           <div className="flex items-center space-x-8">
             {/* Navigation Menus */}
             <nav className="flex items-center space-x-8 mr-4">
-              <a href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
                 Company
-              </a>
-              <a href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+              </Link>
+              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
                 Launchpad
-              </a>
-              <a href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+              </Link>
+              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
                 Services
-              </a>
+              </Link>
             </nav>
             
             {/* Let's Connect Button with Circle Arrow */}
-            <a className=" text-white  font-[200] hover:text-[#00a8c5] transition-all duration-200 flex items-center space-x-3 group">
+            <Link href="#" className=" text-white  font-[200] hover:text-[#00a8c5] transition-all duration-200 flex items-center space-x-3 group">
               <span>Let's Connect</span>
               <div className="w-8 h-8 bg-[#00BBDC] rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-200">
                 <svg 
@@ -52,7 +51,7 @@ export default function Header() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -94,27 +93,27 @@ export default function Header() {
           isMobileMenuOpen ? 'block' : 'hidden'
         }`}>
           <div className="flex flex-col space-y-4">
-            <a 
+            <Link 
               href="#" 
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Company
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="#" 
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Launchpad
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="#" 
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Services
-            </a>
+            </Link>
            
           </div>
         </div>

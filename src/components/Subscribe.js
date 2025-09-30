@@ -84,7 +84,7 @@ export default function Subscribe() {
             initial={{ scale: 0, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2, type: "spring" }}
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
+            className="inline-flex items-center gap-3 px-6 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
           >
             <motion.div
               animate={{ rotate: 360 }}
@@ -92,7 +92,7 @@ export default function Subscribe() {
             >
               <Rocket className="w-5 h-5 text-cyan-400" />
             </motion.div>
-            <span className="text-gray-300 font-semibold tracking-wide">Brandloomi</span>
+             <img src="./logo.png" className="h-10"/>
             <div className="w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
           </motion.div>
 

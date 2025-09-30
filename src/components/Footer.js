@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, Rocket, Sparkles, Send } from "lucide-react";
 import { useState } from "react";
 import { FaTwitter, FaLinkedin, FaGithub, FaDribbble } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -18,6 +19,27 @@ export default function Footer() {
     console.log("Subscribed with:", email);
     setEmail("");
   };
+  const services = [
+    { name: "Software Development", href: "/services/software-development" },
+    { name: "Web App Development", href: "/services/web-app-development" },
+    {
+      name: "Mobile App Development",
+      href: "/services/mobile-app-development",
+    },
+    {
+      name: "Social & Digital Media Marketing",
+      href: "/services/digital-marketing",
+    },
+    { name: "Startup Consulting", href: "/services/startup-consulting" },
+  ];
+
+  const company = [
+    { name: "About Us", href: "/about" },
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "Contact", href: "/contact" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms of Service", href: "/terms" },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -124,53 +146,39 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Services Column */}
           <motion.div variants={itemVariants}>
             <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
               <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full"></div>
               Services
             </h4>
             <ul className="space-y-3">
-              {[
-                "Software Development",
-                "Web App Development",
-                "Mobile App Development",
-                "Social & Digital Media Marketing",
-                "Startup Consulting",
-              ].map((service, idx) => (
+              {services.map((service) => (
                 <motion.li
-                  key={service}
+                  key={service.name}
                   whileHover={{ x: 5 }}
                   className="text-gray-600 hover:text-cyan-600 transition-colors cursor-pointer group flex items-center gap-2"
                 >
                   <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-cyan-500" />
-                  {service}
+                  <Link href={service.href}>{service.name}</Link>
                 </motion.li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Company Column */}
           <motion.div variants={itemVariants}>
             <h4 className="font-bold text-lg mb-6 flex items-center gap-2">
               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>
               Company
             </h4>
             <ul className="space-y-3">
-              {[
-                "About Us",
-                "Portfolio",
-                "Contact",
-                "Privacy Policy",
-                "Terms of Service",
-              ].map((item, idx) => (
+              {company.map((item) => (
                 <motion.li
-                  key={item}
+                  key={item.name}
                   whileHover={{ x: 5 }}
                   className="text-gray-600 hover:text-blue-600 transition-colors cursor-pointer group flex items-center gap-2"
                 >
                   <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-blue-500" />
-                  {item}
+                  <Link href={item.href}>{item.name}</Link>
                 </motion.li>
               ))}
             </ul>

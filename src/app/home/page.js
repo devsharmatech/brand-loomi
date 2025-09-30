@@ -1,5 +1,5 @@
 
-import Hero from '@/components/Hero'
+import HeroHome from '@/components/HeroHome'
 import Services from '@/components/Services'
 import BrandServicesEnhanced from '@/components/BrandServicesEnhanced'
 import ProcessSectionEnhanced  from '@/components/ProcessSectionEnhanced'
@@ -12,7 +12,7 @@ import EmpowerEntrepreneurs from '@/components/EmpowerEntrepreneurs'
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <Hero />
+      <HeroHome />
       <EmpowerEntrepreneurs />
       <BrandServicesEnhanced />
       <ProcessSectionEnhanced  />
