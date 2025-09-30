@@ -76,7 +76,7 @@ button {
 /* Hover glow effect */
 .glass-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 40px rgba(0, 255, 200, 0.158);
+  box-shadow: 0 12px 40px rgba(0, 255, 200, 0.288);
   color: white !important;
   border-color: rgba(0, 255, 200, 0.089);
 }

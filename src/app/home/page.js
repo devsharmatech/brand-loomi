@@ -2,9 +2,10 @@
 import Hero from '@/components/Hero'
 import Services from '@/components/Services'
 import BrandServicesEnhanced from '@/components/BrandServicesEnhanced'
-import Testimonials from '@/components/Testimonials'
+import ProcessSectionEnhanced  from '@/components/ProcessSectionEnhanced'
+import Testimonials  from '@/components/Testimonials'
 import FAQ from '@/components/FAQ'
-import Clients from '@/components/Clients'
+import Subscribe from '@/components/Subscribe'
 import Footer from '@/components/Footer'
 import EmpowerEntrepreneurs from '@/components/EmpowerEntrepreneurs'
 
@@ -14,9 +15,10 @@ export default function Home() {
       <Hero />
       <EmpowerEntrepreneurs />
       <BrandServicesEnhanced />
-      <Testimonials />
+      <ProcessSectionEnhanced  />
+      <Testimonials  />
       <FAQ />
-      <Clients />
+      <Subscribe />
       <Footer />
     </div>
   )
