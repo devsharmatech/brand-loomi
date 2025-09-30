@@ -33,7 +33,7 @@ const socialIcons = [
 ];
 export default function TeamSection() {
   return (
-    <section className="bg-transparent text-white py-20 px-6 lg:px-12 overflow-hidden">
+    <section className="relative bg-transparent text-white py-20 px-6 lg:px-12 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -right-20 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl"></div>

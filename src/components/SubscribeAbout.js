@@ -14,7 +14,7 @@ export default function SubscribeAbout() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-transparent relative overflow-hidden">
+    <div className="relative flex items-center justify-center min-h-screen bg-transparent relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>

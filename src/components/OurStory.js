@@ -5,7 +5,7 @@ import { Heart, Target, Users, Rocket } from "lucide-react";
 
 export default function OurStory() {
   return (
-    <section className="bg-transparent text-white py-20 px-6 md:px-20 overflow-hidden">
+    <section className="relative bg-transparent text-white py-20 px-6 md:px-20 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 w-60 h-60 bg-green-500/10 rounded-full blur-3xl"></div>

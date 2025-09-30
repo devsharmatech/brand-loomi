@@ -7,7 +7,7 @@ import Header from "@/components/Header";
 export default function HeroAbout() {
   return (
     <section className="relative w-full min-h-[100vh] px-6 bg-transparent overflow-hidden">
-      <Header />
+      <Header className="relative z-50"/>
       
       {/* Enhanced Background Gradients */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-cyan-500/40 to-emerald-500/40 blur-3xl translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
@@ -25,7 +25,7 @@ export default function HeroAbout() {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-20 left-10"
+        className="absolute top-20 left-10 -z-10"
       >
         <Sparkles className="w-8 h-8 text-cyan-400/60" />
       </motion.div>
@@ -41,7 +41,7 @@ export default function HeroAbout() {
           ease: "easeInOut",
           delay: 1
         }}
-        className="absolute bottom-20 right-10"
+        className="absolute bottom-20 right-10 -z-10"
       >
         <Target className="w-8 h-8 text-emerald-400/60" />
       </motion.div>
@@ -129,35 +129,6 @@ export default function HeroAbout() {
               </motion.div>
             </motion.button>
           </div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="grid grid-cols-2 gap-6 text-center"
-          >
-            {[
-              { number: "50+", label: "Projects" },
-              { number: "20+", label: "Experts" },
-              { number: "3+", label: "Years" },
-              { number: "98%", label: "Satisfaction" }
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="text-white"
-              >
-                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
         </motion.div>
       </div>
 

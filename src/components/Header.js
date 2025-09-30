@@ -6,7 +6,7 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-transparent py-6 px-6 w-full">
+    <header className="bg-transparent py-6 px-6 w-full z-50">
       
       <div className="max-w-7xl mx-auto">
         {/* Desktop Navigation */}
@@ -27,13 +27,13 @@ export default function Header() {
           <div className="flex items-center space-x-8">
             {/* Navigation Menus */}
             <nav className="flex items-center space-x-8 mr-4">
-              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200"style={{cursor:"pointer"}}>
                 Company
               </Link>
-              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200"style={{cursor:"pointer"}}>
                 Launchpad
               </Link>
-              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200">
+              <Link href="#" className="text-gray-100 hover:text-[#00BBDC] font-[200] transition-colors duration-200"style={{cursor:"pointer"}}>
                 Services
               </Link>
             </nav>
@@ -97,21 +97,21 @@ export default function Header() {
               href="#" 
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
-            >
+            style={{cursor:"pointer"}}>
               Company
             </Link>
             <Link 
               href="#" 
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
-            >
+            style={{cursor:"pointer"}}>
               Launchpad
             </Link>
             <Link 
               href="#" 
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
-            >
+            style={{cursor:"pointer"}}>
               Services
             </Link>
            

@@ -31,7 +31,7 @@ const timeline = [
 
 export default function Timeline() {
   return (
-    <section className="bg-trasparent text-white py-20 px-6 relative overflow-hidden">
+    <section className="relative bg-trasparent text-white py-20 px-6 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 -left-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>
