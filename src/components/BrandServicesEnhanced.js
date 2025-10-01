@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
+import Link from "next/link";
 
 const BrandServicesEnhanced = ({heading}) => {
   const [servicesData, setServicesData] = useState(null);
@@ -17,6 +18,7 @@ const BrandServicesEnhanced = ({heading}) => {
           description:
             "Custom software that solves your business problems and scales with your growth",
           icon: "💻",
+          link: "/software-development",
         },
         {
           id: 2,
@@ -24,6 +26,7 @@ const BrandServicesEnhanced = ({heading}) => {
           description:
             "Grow your brand and reach your target audience with proven strategies.",
           icon: "📱",
+          link: "/digital-media-marketing",
         },
         {
           id: 3,
@@ -31,6 +34,7 @@ const BrandServicesEnhanced = ({heading}) => {
           description:
             "Responsive, high-performance web applications for any device.",
           icon: "🌐",
+          link: "/web-app-development",
         },
         {
           id: 4,
@@ -38,6 +42,7 @@ const BrandServicesEnhanced = ({heading}) => {
           description:
             "Stand out with a memorable brand, crafted by our creative experts.",
           icon: "🎨",
+          link: "/branding-design",
         },
         {
           id: 5,
@@ -45,6 +50,7 @@ const BrandServicesEnhanced = ({heading}) => {
           description:
             "iOS, Android, and cross-platform experiences that engage users.",
           icon: "📲",
+          link: "/mobile-app-development",
         },
         {
           id: 6,
@@ -52,6 +58,7 @@ const BrandServicesEnhanced = ({heading}) => {
           description:
             "From business plans to funding, we guide you every step of the way.",
           icon: "🚀",
+          link: "/startup-consulting",
         },
       ],
     };
@@ -145,12 +152,12 @@ const ServiceCardEnhanced = ({ service }) => {
           {service.description}
         </p>
 
-        <a
-          href="#"
+        <Link
+          href={service.link}
           className="flex items-center justify-center h-10 w-10 bg-gray-50 text-gray-800 md:bg-cyan-500 md:text-white rounded-full pointer font-semibold mt-auto pointer"
         >
           <FiArrowRight className="text-gray-800 md:text-white transition-transform duration-300 rotate-320 group-hover:rotate-360" />
-        </a>
+        </Link>
       </div>
 
       <motion.div

@@ -20,23 +20,25 @@ export default function Footer() {
     setEmail("");
   };
   const services = [
-    { name: "Software Development", href: "/services/software-development" },
-    { name: "Web App Development", href: "/services/web-app-development" },
+    { name: "Software Development", href: "/software-development" },
+    { name: "Web App Development", href: "/web-app-development" },
     {
       name: "Mobile App Development",
-      href: "/services/mobile-app-development",
+      href: "/mobile-app-development",
     },
     {
       name: "Social & Digital Media Marketing",
-      href: "/services/digital-marketing",
+      href: "/digital-media-marketing",
     },
-    { name: "Startup Consulting", href: "/services/startup-consulting" },
+    { name: "Startup Consulting", href: "/startup-consulting" },
+    { name: "Branding & Design", href: "/branding-design" },
   ];
 
   const company = [
     { name: "About Us", href: "/about" },
     { name: "Portfolio", href: "/portfolio" },
     { name: "Contact", href: "/contact" },
+    { name: "Careers", href: "/careers" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms of Service", href: "/terms" },
   ];
@@ -102,7 +104,7 @@ export default function Footer() {
           }}
           className="absolute bottom-10 right-10"
         >
-          <Rocket className="w-5 h-5 text-blue-400/40" />
+          <Rocket className="w-5 h-5 text-emerald-400/40" />
         </motion.div>
       </div>
 
@@ -119,10 +121,10 @@ export default function Footer() {
               whileHover={{ scale: 1.05 }}
               className="inline-flex items-center gap-2 mb-4"
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-lg flex items-center justify-center">
                 <Rocket className="w-4 h-4 text-white" />
               </div>
-              <h3 className="text-xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              <h3 className="text-xl font-bold bg-gradient-to-r from-cyan-600 to-emerald-600 bg-clip-text text-transparent">
                 Brandloomi
               </h3>
             </motion.div>
@@ -175,9 +177,9 @@ export default function Footer() {
                 <motion.li
                   key={item.name}
                   whileHover={{ x: 5 }}
-                  className="text-gray-600 hover:text-blue-600 transition-colors cursor-pointer group flex items-center gap-2"
+                  className="text-gray-600 hover:text-emerald-600 transition-colors cursor-pointer group flex items-center gap-2"
                 >
-                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-blue-500" />
+                  <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity text-emerald-500" />
                   <Link href={item.href}>{item.name}</Link>
                 </motion.li>
               ))}
@@ -202,10 +204,10 @@ export default function Footer() {
               </div>
 
               <div className="flex items-center gap-3 text-gray-600 group">
-                <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                  <MapPin className="w-4 h-4 text-blue-600" />
+                <div className="w-8 h-8 bg-emerald-50 rounded-lg flex items-center justify-center group-hover:bg-emerald-100 transition-colors">
+                  <MapPin className="w-4 h-4 text-emerald-600" />
                 </div>
-                <span className="group-hover:text-blue-600 transition-colors">
+                <span className="group-hover:text-emerald-600 transition-colors">
                   Dublin, Ireland
                 </span>
               </div>

@@ -84,12 +84,12 @@ export default function OurStory() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
               >
-                <Target className="w-4 h-4 text-green-400" />
+                <Target className="w-4 h-4 text-emerald-500" />
                 <span className="text-sm text-gray-300">Our Journey</span>
               </motion.div>
 
               <motion.h2
-                className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent"
+                className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-500 to-emerald-500  bg-clip-text text-transparent"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -106,15 +106,15 @@ export default function OurStory() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <p className="text-gray-300 text-lg leading-relaxed">
-                <span className="text-green-400 font-semibold">Brandloomi</span> began with a simple goal: to make digital branding
+                <span className="text-emerald-500 font-semibold">Brandloomi</span> began with a simple goal: to make digital branding
                 accessible for startups and small businesses often overlooked by
                 traditional agencies. By offering premium services at a fraction of
                 the cost, we help founders build a strong digital presence.
               </p>
 
               <p className="text-gray-300 text-lg leading-relaxed">
-                Driven by social impact, our <span className="text-cyan-400 font-semibold">"Pay What You Can"</span> program supports
-                budget-limited startups, while our <span className="text-green-400 font-semibold">Student Ambassador Program</span>
+                Driven by social impact, our <span className="text-cyan-500 font-semibold">"Pay What You Can"</span> program supports
+                budget-limited startups, while our <span className="text-green-500 font-semibold">Student Ambassador Program</span>
                 empowers international students. Today, we're proud to be a trusted
                 partner for startups across Ireland—delivering fast, affordable, and
                 heartfelt digital solutions.

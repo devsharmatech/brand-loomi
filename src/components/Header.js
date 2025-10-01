@@ -11,7 +11,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto">
         {/* Desktop Navigation */}
         <div className="hidden md:flex justify-between items-center">
-          <div className="flex items-center">
+          <Link href="/home" className="flex items-center">
             <img 
               src="./logo.png" 
               alt="Brandloomi" 
@@ -21,7 +21,7 @@ export default function Header() {
                 e.target.nextSibling.style.display = 'flex';
               }}
             />
-          </div>
+          </Link>
           
           {/* Right side - All Navigation Items */}
           <div className="flex items-center space-x-8">

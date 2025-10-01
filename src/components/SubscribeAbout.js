@@ -14,7 +14,7 @@ export default function SubscribeAbout({heading, btntext}) {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-[70vh] bg-transparent relative overflow-hidden">
+    <div className="relative flex items-center justify-center min-h-[50vh] bg-transparent relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>
@@ -82,22 +82,10 @@ export default function SubscribeAbout({heading, btntext}) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-8 leading-tight"
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 leading-tight uppercase italic"
         >
          {heading}
         </motion.h1>
-
-        {/* Subheading */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-gray-300 text-xl md:text-2xl mb-12 max-w-2xl mx-auto leading-relaxed"
-        >
-          Ready to transform your vision into reality? 
-          Start your journey with us today.
-        </motion.p>
-
         {/* Enhanced Email Input */}
         <motion.form
           onSubmit={handleSubmit}

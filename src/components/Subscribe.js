@@ -17,7 +17,7 @@ export default function Subscribe() {
   };
 
   return (
-    <section className="relative bg-transparent to-slate-950 text-white py-28 px-6 overflow-hidden">
+    <section className="relative bg-transparent  text-white py-28 px-6 overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>
@@ -72,7 +72,7 @@ export default function Subscribe() {
         </motion.div>
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -101,22 +101,10 @@ export default function Subscribe() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 italic uppercase"
           >
             Ready to Launch Your Business Online?
           </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Join thousands of successful businesses that launched with us. 
-            Get exclusive insights and early access to new features.
-          </motion.p>
-
           {/* Enhanced Subscription Form */}
           <motion.form
             initial={{ opacity: 0, scale: 0.9 }}

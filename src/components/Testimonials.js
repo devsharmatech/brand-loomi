@@ -85,12 +85,9 @@ export default function Testimonials() {
               <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full animate-pulse"></div>
               <span className="text-sm text-gray-300">Testimonials</span>
             </motion.div>
-            
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-cyan-100 to-emerald-200 bg-clip-text text-transparent">
-              LOVED BY OUR
-              <span className="block bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                USERS
-              </span>
+
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white italic">
+              LOVED BY OUR USERS
             </h2>
           </div>
 
@@ -102,8 +99,8 @@ export default function Testimonials() {
             className="grid grid-cols-2 gap-8"
           >
             <div className="text-center">
-              <motion.h3 
-                className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-2"
+              <motion.h3
+                className="text-5xl font-bold bg-gradient-to-r from-cyan-500 to-emerald-400 bg-clip-text text-transparent mb-2"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 transition={{ delay: 0.4, type: "spring" }}
@@ -113,8 +110,8 @@ export default function Testimonials() {
               <p className="text-gray-400">Happy Clients</p>
             </div>
             <div className="text-center">
-              <motion.h3 
-                className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2"
+              <motion.h3
+                className="text-5xl font-bold bg-gradient-to-r from-cyan-500 to-emerald-400 bg-clip-text text-transparent mb-2"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 transition={{ delay: 0.5, type: "spring" }}
@@ -131,14 +128,20 @@ export default function Testimonials() {
           {/* Custom Navigation Buttons */}
           <div className="flex justify-end gap-4 mb-8">
             <motion.button
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(6, 182, 212, 0.2)" }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(6, 182, 212, 0.2)",
+              }}
               whileTap={{ scale: 0.9 }}
               className="swiper-button-prev-custom w-12 h-12 rounded-full border border-cyan-500/30 bg-white/5 flex items-center justify-center hover:border-cyan-400 transition-all duration-300 group"
             >
               <ChevronLeft className="w-6 h-6 text-cyan-400 group-hover:text-white" />
             </motion.button>
             <motion.button
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(6, 182, 212, 0.2)" }}
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgba(6, 182, 212, 0.2)",
+              }}
               whileTap={{ scale: 0.9 }}
               className="swiper-button-next-custom w-12 h-12 rounded-full border border-cyan-500/30 bg-white/5 flex items-center justify-center hover:border-cyan-400 transition-all duration-300 group"
             >
@@ -240,9 +243,7 @@ export default function Testimonials() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex justify-center items-center gap-2 mt-8"
           >
-            <span className="text-cyan-400 font-semibold">
-              01
-            </span>
+            <span className="text-cyan-400 font-semibold">01</span>
             <div className="w-20 h-1 bg-slate-700 rounded-full overflow-hidden">
               <motion.div
                 className="h-full bg-gradient-to-r from-cyan-400 to-emerald-400"
@@ -318,25 +319,25 @@ export default function Testimonials() {
         .testimonial-swiper {
           padding: 20px 0;
         }
-        
+
         .testimonial-swiper .swiper-slide {
           opacity: 0.4;
           transition: opacity 0.3s ease;
         }
-        
+
         .testimonial-swiper .swiper-slide-active {
           opacity: 1;
         }
-        
+
         .mini-cards-swiper {
           padding: 10px 0;
         }
-        
+
         .mini-cards-swiper .swiper-slide {
           opacity: 0.6;
           transition: opacity 0.3s ease;
         }
-        
+
         .mini-cards-swiper .swiper-slide:hover {
           opacity: 1;
         }
