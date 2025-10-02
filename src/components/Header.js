@@ -137,7 +137,7 @@ export default function Header() {
         >
           <div className="flex flex-col space-y-4">
             <Link
-              href="#"
+              href="/how-we-work"
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ cursor: "pointer" }}
@@ -145,7 +145,7 @@ export default function Header() {
               Company
             </Link>
             <Link
-              href="#"
+              href="/pay-what-you-can"
               className="text-gray-100 hover:text-[#00BBDC] font-[200] py-2 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
               style={{ cursor: "pointer" }}

@@ -81,6 +81,12 @@ button {
   border-color: rgba(0, 255, 200, 0.089);
 }
 
+header{
+  z-index:10000 !important;
+  position: relative !important;
+}
+
+
 /* Neon accent line */
 /* .glass-card::before {
   content: "";

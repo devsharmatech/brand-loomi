@@ -15,7 +15,7 @@ export default function HeroPayWhat() {
       <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-purple-500/20 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2"></div>
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto  text-left py-24 space-y-8">
+      <div className="relative max-w-7xl mx-auto  text-left py-10 space-y-8">
         {/* Top Label */}
         <p className="uppercase tracking-widest text-sm text-gray-300">
           No Startup Left Behind

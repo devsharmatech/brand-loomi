@@ -1,6 +1,5 @@
 
 import HeroHome from '@/components/HeroHome'
-import Services from '@/components/Services'
 import BrandServicesEnhanced from '@/components/BrandServicesEnhanced'
 import ProcessSectionEnhanced  from '@/components/ProcessSectionEnhanced'
 import Testimonials  from '@/components/Testimonials'
