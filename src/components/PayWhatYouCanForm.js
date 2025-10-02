@@ -461,6 +461,7 @@ export default function PayWhatYouCanForm() {
                   name="hearAbout"
                   value={formData.hearAbout}
                   className={inputClass}
+                  onChange={handleChange}
                 >
                   <option value="">Where Did You Hear About Us ?</option>
                   <option>Social media</option>
@@ -471,7 +472,7 @@ export default function PayWhatYouCanForm() {
                 </select>
               </div>
               <div className="md:col-span-1">
-                <select name="yearsInBusiness" className={`${inputClass} `}>
+                <select name="yearsInBusiness" className={`${inputClass} `} onChange={handleChange}>
                   <option value="">Years In Business ?</option>
                   <option>Less than 1 year</option>
                   <option>1-3 years</option>
@@ -480,7 +481,7 @@ export default function PayWhatYouCanForm() {
                 </select>
               </div>
               <div className="md:col-span-2">
-                <select name="annualRevenue" className={`${inputClass} `}>
+                <select name="annualRevenue" className={`${inputClass} `} onChange={handleChange}>
                   <option value="">Annual Revenue ?</option>
                   <option>Less than $10,000</option>
                   <option>$10,000 - $50,000</option>
@@ -522,6 +523,7 @@ export default function PayWhatYouCanForm() {
                   type="checkbox"
                   name="agreePayModel"
                   className="w-5 h-5 accent-cyan-500"
+                  onChange={handleChange}
                 />
                 <span className="text-sm">
                   I understand and agree to the "Pay What You Can"{" "}
@@ -576,6 +578,7 @@ export default function PayWhatYouCanForm() {
                   type="checkbox"
                   name="subscribe"
                   className="w-5 h-5 accent-cyan-500"
+                  onChange={handleChange}
                 />
                 <span className="text-sm">Subscribing to newsletter</span>
               </label>
