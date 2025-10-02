@@ -3,7 +3,7 @@ import OurProcess from "@/components/OurProcess";
 import WhyChooseUs2 from "@/components/WhyChooseUs2";
 import Testimonials from "@/components/Testimonials";
 
-import SubscribeAbout from "@/components/SubscribeAbout";
+import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
 
@@ -48,10 +48,10 @@ export default function Page() {
       <OurProcess steps={steps}/>
       <WhyChooseUs2 />
       <Testimonials />
-      <SubscribeAbout
-        heading="Ready to build your competitive edge?"
-        btntext="Get Started"
-      />
+       <FooterCTASubscription
+              footerHeading="Ready to build your competitive edge?"
+              footer_btntext="Get Started"
+            />
       <Footer />
     </div>
   );

@@ -5,11 +5,11 @@ import BrandServicesEnhanced from '@/components/BrandServicesEnhanced'
 import ProcessSectionEnhanced  from '@/components/ProcessSectionEnhanced'
 import Testimonials  from '@/components/Testimonials'
 import FAQ from '@/components/FAQ'
-import Subscribe from '@/components/Subscribe'
+import FooterCTASubscription from '@/components/FooterCTASubscription'
 import Footer from '@/components/Footer'
 import EmpowerEntrepreneurs from '@/components/EmpowerEntrepreneurs'
 
-export default function Home() {
+export default function page() {
   return (
     <div className="min-h-screen">
       <HeroHome />
@@ -18,7 +18,7 @@ export default function Home() {
       <ProcessSectionEnhanced  />
       <Testimonials  />
       <FAQ />
-      <Subscribe />
+      <FooterCTASubscription footerHeading="Ready to Launch Your Business Online?" footer_btntext="Get Started" />
       <Footer />
     </div>
   )

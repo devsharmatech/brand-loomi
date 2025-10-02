@@ -3,7 +3,7 @@ import OurProcess from "@/components/OurProcess";
 import WhyChooseUs2 from "@/components/WhyChooseUs2";
 import Testimonials from "@/components/Testimonials";
 
-import SubscribeAbout from "@/components/SubscribeAbout";
+import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
 
@@ -31,11 +31,11 @@ export default function Page() {
     "Social Media: Hootsuite, Buffer, Sprout Social",
     "Email: Mailchimp, SendGrid, HubSpot",
     "Analytics: Google Analytics, Facebook Insights, Data Studio",
-    "Ads: Google Ads, Meta Ads Manager, LinkedIn Campaign Manager"
+    "Ads: Google Ads, Meta Ads Manager, LinkedIn Campaign Manager",
   ];
   const steps = [
     "Audit & Strategy",
-    "Content Planning", 
+    "Content Planning",
     "Campaign Launch",
     "Optimization",
   ];
@@ -52,9 +52,10 @@ export default function Page() {
       <OurProcess steps={steps} />
       <WhyChooseUs2 />
       <Testimonials />
-      <SubscribeAbout
-        heading="Ready to build your competitive edge?"
-        btntext="Get Started"
+      
+      <FooterCTASubscription
+        footerHeading="Ready to build your competitive edge?"
+        footer_btntext="Get Started"
       />
       <Footer />
     </div>
