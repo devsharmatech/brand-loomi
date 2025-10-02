@@ -1,12 +1,10 @@
 import HeroAbout from '@/components/HeroAbout'
-import Services from '@/components/Services'
 import OurStory from '@/components/OurStory'
 import TeamSection  from '@/components/TeamSection'
 import Timeline  from '@/components/Timeline'
-
-import SubscribeAbout from '@/components/SubscribeAbout'
 import Footer from '@/components/Footer'
 import WhoWeAre from '@/components/WhoWeAre'
+import FooterCTASubscription from '@/components/FooterCTASubscription'
 
 
 
@@ -22,9 +20,8 @@ export default function Page() {
       <HeroAbout heading={heading} subheading={subheading} btntext={btntext} btnlink={btnlink}/>
       <WhoWeAre />
       <OurStory />
-      <TeamSection/>
       <Timeline  />
-      <SubscribeAbout heading="Ready to Launch Your Business Online?" btntext="Get Started" />
+      <FooterCTASubscription footerHeading="Ready to Launch Your Business Online?" footer_btntext="Get Started" />
       <Footer />
     </div>
   )

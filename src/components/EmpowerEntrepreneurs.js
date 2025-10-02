@@ -5,7 +5,7 @@ export default function EmpowerEntrepreneurs() {
         
         {/* Left side (Heading) */}
         <div className="text-center px-4 md:px-12 lg:text-left col-span-1 flex items-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center md:text-left w-full leading-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 text-center md:text-left w-full leading-tight">
             EMPOWERING  <br /> <span className='text-gray-700'>THE NEXT </span> <br /><span className='text-gray-600'> GENERATION OF </span>  <br /> <span className='text-gray-500'>ENTREPRENEURS</span>
           </h1>
         </div>

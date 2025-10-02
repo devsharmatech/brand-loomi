@@ -14,7 +14,7 @@ export default function HeroHome() {
         </h1>
 
         {/* Subheading with highlight */}
-        <h2 className="mt-4 text-3xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 bolder-font">
+        <h2 className="mt-4 text-3xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 ">
           Build it together
         </h2>
 

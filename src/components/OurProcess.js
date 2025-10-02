@@ -2,14 +2,8 @@
 
 import { MapPin } from "lucide-react";
 
-export default function OurProcess() {
-  const steps = [
-    "Discovery & Requirements",
-    "Solution Architecture", 
-    "Agile Development",
-    "Testing & QA",
-    "Deployment & Support",
-  ];
+export default function OurProcess({steps}) {
+
 
   return (
     <div className="bg-transparent relative text-white py-16 md:py-24 lg:py-32">

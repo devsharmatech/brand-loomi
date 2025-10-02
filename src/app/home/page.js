@@ -1,15 +1,16 @@
 
 import HeroHome from '@/components/HeroHome'
-import Services from '@/components/Services'
 import BrandServicesEnhanced from '@/components/BrandServicesEnhanced'
 import ProcessSectionEnhanced  from '@/components/ProcessSectionEnhanced'
 import Testimonials  from '@/components/Testimonials'
 import FAQ from '@/components/FAQ'
-import Subscribe from '@/components/Subscribe'
+import FooterCTASubscription from '@/components/FooterCTASubscription'
 import Footer from '@/components/Footer'
 import EmpowerEntrepreneurs from '@/components/EmpowerEntrepreneurs'
 
 export default function Home() {
+  const footerHeading = `Ready to <span class="text-cyan-400"> Launch </span> Your Business Online?`;
+  const footer_btntext = "Get Started";
   return (
     <div className="min-h-screen">
       <HeroHome />
@@ -18,7 +19,7 @@ export default function Home() {
       <ProcessSectionEnhanced  />
       <Testimonials  />
       <FAQ />
-      <Subscribe />
+      <FooterCTASubscription footerHeading={footerHeading} footer_btntext={footer_btntext} />
       <Footer />
     </div>
   )

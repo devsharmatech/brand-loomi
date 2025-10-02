@@ -10,30 +10,30 @@ import DeliverTechStack from "@/components/DeliverTechStack";
 export default function Page() {
   const heading = "Branding & Design";
 
-const subheading = `Your brand is more than just a logo—it’s the story, 
-emotion, and personality that connect you with your audience. 
-We create powerful brand identities and stunning designs that 
-make lasting impressions and position your business ahead of the competition.`;
+const subheading = `Your brand is your story. We help you tell it with clarity, creativity, and consistency—through stunning visuals, compelling messaging, and cohesive design assets. Whether you’re launching or rebranding, we’ll make sure you leave a lasting mark.`;
 
 const btntext = "Build My Brand";
 const btnlink = "#";
 
 const deliverables = [
-  "Brand Identity: Logo design, typography, and brand color palettes.",
-  "Visual Assets: Social media graphics, marketing materials, and print designs.",
-  "UI/UX Design: User-centered web and mobile app interfaces.",
-  "Packaging Design: Creative, functional, and brand-aligned packaging solutions.",
-  "Brand Guidelines: Consistent standards for digital and print usage."
+  "Brand Strategy: Mission, vision, values, and positioning.",
+  "Logo Design: Unique, versatile, and memorable.",
+  "Visual Identity: Color palettes, typography, iconography, imagery.",
+  "Brand Guidelines: Rules for consistent application everywhere.",
+  "Marketing Collateral: Business cards, presentations, social templates."
 ];
 
 const techStack = [
-  "Design Tools: Adobe Photoshop, Illustrator, InDesign, XD",
-  "UI/UX Tools: Figma, Sketch, InVision, Framer",
-  "Prototyping: Marvel, Axure, Principle",
-  "Collaboration: Miro, Notion, Slack integrations",
-  "File Formats: SVG, PNG, PDF, EPS for versatile usage"
+  "Design: Adobe Creative Suite (Photoshop, Illustrator, XD), Figma, Canva",
+  "Prototyping: Figma, InVision",
+  "Collaboration: Miro, Slack, Notion",
 ];
-
+ const steps = [
+    "Brand Audit",
+    "Strategy Development", 
+    "Creative Exploration",
+    "Finalization",
+  ];
 
   return (
     <div className="min-h-screen">
@@ -44,7 +44,7 @@ const techStack = [
         btnlink={btnlink}
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
-      <OurProcess />
+      <OurProcess steps={steps} />
       <WhyChooseUs2 />
       <Testimonials />
       <SubscribeAbout

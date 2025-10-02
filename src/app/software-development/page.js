@@ -34,11 +34,18 @@ export default function Page() {
     "Frontend: React, Next.js, Vue.js, Angular, TypeScript",
     "Cloud & DevOps: AWS, Azure, Google Cloud, Docker, Kubernetes, GitHub Actions"
   ];
+   const steps = [
+    "Discovery & Requirements",
+    "Solution Architecture", 
+    "Agile Development",
+    "Testing & QA",
+    "Deployment & Support"
+  ];
   return (
     <div className="min-h-screen">
       <HeroServiceInner heading={heading} subheading={subheading} btntext={btntext} btnlink={btnlink}/>
       <DeliverTechStack deliverables={deliverables} techStack={techStack}/>
-      <OurProcess />
+      <OurProcess steps={steps}/>
       <WhyChooseUs2/>
       <Testimonials  />
       <SubscribeAbout heading="Ready to build your competitive edge?" btntext="Get Started" />

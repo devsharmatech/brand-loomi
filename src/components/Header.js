@@ -39,7 +39,7 @@ export default function Header() {
             </nav>
             
             {/* Let's Connect Button with Circle Arrow */}
-            <Link href="#" className=" text-white  font-[200] hover:text-[#00a8c5] transition-all duration-200 flex items-center space-x-3 group">
+            <Link href="/contact-us" className=" text-white  font-[200] hover:text-[#00a8c5] transition-all duration-200 flex items-center space-x-3 group">
               <span>Let's Connect</span>
               <div className="w-8 h-8 bg-[#00BBDC] rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-200">
                 <svg 
@@ -58,14 +58,14 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div className="md:hidden flex justify-between items-center">
           {/* Left side - Logo */}
-          <div className="flex items-center">
+          <Link href="/home" className="flex items-center">
             <img 
               src="./logo.png" 
               alt="Brandloomi" 
               className="h-8 mr-2"
             />
            
-          </div>
+          </Link>
           
           {/* Right side - Mobile Menu */}
           <div className="flex items-center space-x-3">

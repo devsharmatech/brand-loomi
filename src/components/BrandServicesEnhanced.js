@@ -154,9 +154,9 @@ const ServiceCardEnhanced = ({ service }) => {
 
         <Link
           href={service.link}
-          className="flex items-center justify-center h-10 w-10 bg-gray-50 text-gray-800 md:bg-cyan-500 md:text-white rounded-full pointer font-semibold mt-auto pointer"
+          className="flex items-center justify-center h-10 w-10 bg-gray-50 text-gray-800 md:bg-gray-50 md:text-gray-400 rounded-full pointer font-semibold mt-auto pointer"
         >
-          <FiArrowRight className="text-gray-800 md:text-white transition-transform duration-300 rotate-320 group-hover:rotate-360" />
+          <FiArrowRight className="text-gray-800 md:text-gray-800 transition-transform duration-300 rotate-320 group-hover:rotate-360" />
         </Link>
       </div>
 

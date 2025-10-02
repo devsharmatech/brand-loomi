@@ -10,28 +10,30 @@ import DeliverTechStack from "@/components/DeliverTechStack";
 export default function Page() {
   const heading = "Startup Consulting";
 
-  const subheading = `Launching a startup is exciting but comes with challenges. 
-We guide entrepreneurs through every stage—from ideation and validation 
-to scaling and securing funding. Our consulting services empower startups 
-to make smarter decisions, reduce risks, and accelerate growth.`;
+  const subheading = `Starting a business is hard. We make it easier. Our startup consulting service guides you from idea to launch and beyond, helping you avoid common pitfalls, secure funding, and build a foundation for sustainable growth.`;
 
-  const btntext = "Get Expert Advice";
+  const btntext = "Let's Discuss";
   const btnlink = "#";
 
   const deliverables = [
-    "Business Strategy: Roadmaps, market entry plans, and competitive analysis.",
-    "Pitch Decks & Fundraising: Investor-ready presentations and financial models.",
-    "MVP Development Guidance: From idea to functional prototype.",
-    "Go-to-Market (GTM) Strategy: Positioning, pricing, and launch plans.",
-    "Growth Hacking: Scalable tactics for traction and customer acquisition.",
+    "Business Model Validation: Test your idea, refine your value proposition.",
+    "Go-to-Market Strategy: Positioning, pricing, and launch planning.",
+    "Grant & Funding Support: Application guidance and pitch deck creation.",
+    "Mentorship: Ongoing advice from experienced founders and operators.",
+    "Resource Library: Templates, checklists, and best practices.",
   ];
 
   const techStack = [
-    "Project Management: Notion, Trello, Asana",
-    "Collaboration: Slack, Microsoft Teams, Zoom",
-    "Analytics: Google Analytics, Mixpanel, Tableau",
-    "Prototyping: Figma, InVision, Balsamiq",
-    "Financial Tools: QuickBooks, Xero, Excel Models",
+    "Workshops: Interactive sessions to clarify vision and strategy.",
+    "Market Research: Data-driven insights into your industry and competitors.",
+    "Financial Planning: Budgeting, forecasting, and investor readiness.",
+    "Network Access: Connect with investors, partners, and talent.",
+  ];
+ const steps = [
+    "Workshops",
+    "Market Research", 
+    "Financial Planning",
+    "Network Access",
   ];
 
   return (
@@ -43,7 +45,7 @@ to make smarter decisions, reduce risks, and accelerate growth.`;
         btnlink={btnlink}
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
-      <OurProcess />
+      <OurProcess steps={steps}/>
       <WhyChooseUs2 />
       <Testimonials />
       <SubscribeAbout

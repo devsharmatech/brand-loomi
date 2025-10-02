@@ -8,32 +8,36 @@ import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
 
 export default function Page() {
-  const heading = "Digital Media Marketing";
+  const heading = "Social and Digital Media Marketing";
 
-  const subheading = `Your brand’s online presence defines how the world sees you. 
-We craft data-driven digital marketing strategies that enhance visibility, 
-engage audiences, and drive measurable results. From social media campaigns 
-to performance marketing, we help businesses grow in the digital landscape.`;
+  const subheading = `Your online presence is your most valuable asset.
+                      Our digital marketing team crafts data-driven campaigns that boost visibility,
+                      generate leads, and turn followers into loyal customers.
+                      From strategy to execution, we help you stand out in a crowded digital world.`;
 
-  const btntext = "Boost My Brand";
+  const btntext = "Let's Discuss";
   const btnlink = "#";
 
   const deliverables = [
-    "Social Media Marketing: Facebook, Instagram, LinkedIn, and Twitter campaigns.",
-    "Search Engine Optimization (SEO): Higher rankings, more traffic, better leads.",
-    "Pay-Per-Click Advertising (PPC): Google Ads, Meta Ads, and retargeting campaigns.",
-    "Content Marketing: Blogs, videos, and creative assets that convert.",
-    "Email Marketing: Automated, personalized campaigns to nurture leads.",
-    "Influencer Marketing: Strategic collaborations to expand brand reach.",
+    "Social Media Management: Content calendars, posting, and community engagement.",
+    "Paid Advertising: Google Ads, Facebook/Instagram Ads, LinkedIn Campaigns.",
+    "SEO & Content Marketing: Blog writing, keyword research, on-page optimization.",
+    "Email Marketing: Campaign design, automation, and list management.",
+    "Influencer & Affiliate Marketing: Partnerships that expand your reach.",
   ];
 
   const techStack = [
-    "Social Media Tools: Meta Business Suite, Buffer, Hootsuite",
-    "SEO Tools: Ahrefs, SEMrush, Moz, Google Search Console",
-    "PPC Platforms: Google Ads, Meta Ads Manager, LinkedIn Ads",
-    "Analytics: Google Analytics, Hotjar, Mixpanel",
-    "Email Tools: Mailchimp, Klaviyo, SendGrid",
-    "Design & Content: Canva, Adobe Creative Suite, Figma",
+    "SEO: SEMrush, Ahrefs, Moz, Google Search Console",
+    "Social Media: Hootsuite, Buffer, Sprout Social",
+    "Email: Mailchimp, SendGrid, HubSpot",
+    "Analytics: Google Analytics, Facebook Insights, Data Studio",
+    "Ads: Google Ads, Meta Ads Manager, LinkedIn Campaign Manager"
+  ];
+  const steps = [
+    "Audit & Strategy",
+    "Content Planning", 
+    "Campaign Launch",
+    "Optimization",
   ];
 
   return (
@@ -45,7 +49,7 @@ to performance marketing, we help businesses grow in the digital landscape.`;
         btnlink={btnlink}
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
-      <OurProcess />
+      <OurProcess steps={steps} />
       <WhyChooseUs2 />
       <Testimonials />
       <SubscribeAbout

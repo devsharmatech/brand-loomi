@@ -165,32 +165,6 @@ export default function DeliverTechStack({deliverables,techStack}) {
             />
           </motion.div>
         </div>
-
-        {/* Bottom Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
-        >
-          {[
-            { icon: Cpu, number: "50+", label: "Technologies" },
-            { icon: Cloud, number: "100+", label: "Projects Delivered" },
-            { icon: Rocket, number: "3+", label: "Years Experience" },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="p-6 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl border border-slate-700/50 backdrop-blur-sm"
-            >
-              <div className="w-12 h-12 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <stat.icon className="w-6 h-6 text-white" />
-              </div>
-              <div className="text-2xl font-bold text-white mb-1">{stat.number}</div>
-              <div className="text-gray-400 text-sm">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
