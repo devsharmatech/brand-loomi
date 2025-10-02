@@ -91,7 +91,7 @@ export default function Header() {
           {/* Right side - Mobile Menu */}
           <div className="flex items-center space-x-3">
            
-            <button className="bg-[#00BBDC] text-white p-3 rounded-full font-medium hover:bg-[#00a8c5] transition-colors flex items-center justify-center shadow-md">
+            <Link href="/contact-us" className="bg-[#00BBDC] text-white p-3 rounded-full font-medium hover:bg-[#00a8c5] transition-colors flex items-center justify-center shadow-md">
               <svg
                 className="w-4 h-4"
                 fill="none"
@@ -105,7 +105,7 @@ export default function Header() {
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-            </button>
+            </Link>
 
             {/* Mobile Menu Hamburger */}
             <button
