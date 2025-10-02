@@ -22,7 +22,7 @@ export default function EmpowerEntrepreneurs() {
             </p>
           </div>
            <a className="block font-semibold text-gray-600 text-lg hover:text-[#00a8c5] transition-all duration-200 flex items-center justify-center md:justify-start space-x-3 group lg:mx-0 mb-8">
-            <span>Let"s Connect</span>
+            <span>Let&apos;s Connect</span>
             <div className="w-8 h-8 bg-[#00BBDC] bg-opacity-20 rounded-full flex items-center justify-center group-hover:bg-opacity-30 transition-all duration-200">
               <svg
                 className="w-4 h-4 group-hover:translate-x-0.5 group-hover:text-gray-100 transition-transform duration-200"
