@@ -416,14 +416,15 @@ export default function PayWhatYouCanForm() {
               ~200MB).
             </p>
 
-            <div className="flex items-center gap-4">
+            <div className=" items-center gap-4">
               <input
                 accept="video/*"
                 onChange={handleFile}
                 type="file"
-                className="bg-[#070707] border border-neutral-700 rounded-lg px-3 py-2 text-neutral-300"
+                className="bg-[#070707] border w-full border-neutral-700 rounded-lg px-3 py-2 text-neutral-300"
               />
-              <div className="text-sm text-neutral-400">
+              <br/>
+              <div className="text-sm mt-2 text-neutral-400">
                 {videoFile ? (
                   <div>
                     <div className="font-medium text-white">

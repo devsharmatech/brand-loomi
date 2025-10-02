@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function FooterCTASubscription({ footerHeading, footer_btntext }) {
   return (
-    <section className="relative w-full py-24 px-2 sm:px-4 md:px-6 bg-transparent text-white">
+    <section className="relative w-full py-8 px-2 sm:px-4 md:px-6 bg-transparent text-white">
       <div className="max-w-7xl mx-auto">
         {/* Card */}
         <div className="relative rounded-[1rem] bg-gradient-to-r from-[#043d63] via-transparent to-[#06456f] p-4 sm:p-8 md:p-12 text-center shadow-[0_0_20px_rgba(0,0,0,0.2)]">

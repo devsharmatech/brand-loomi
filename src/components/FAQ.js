@@ -171,50 +171,6 @@ export default function FAQ() {
           ))}
         </div>
 
-        {/* Bottom CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-slate-800/50 to-slate-900/50 rounded-3xl p-8 border border-slate-700/50 backdrop-blur-sm max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Still have questions?
-            </h3>
-            <p className="text-gray-400 mb-6">
-              Can't find the answer you're looking for? Please chat with our friendly team.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-xl font-semibold text-white shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Get In Touch
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border border-cyan-500/30 bg-white/5 rounded-xl font-semibold text-cyan-400 hover:border-cyan-400 transition-all duration-300"
-              >
-                Schedule a Call
-              </motion.button>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Mobile CTA Button */}
-        <motion.button
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="lg:hidden w-full mt-8 px-6 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-xl font-semibold text-white shadow-lg flex items-center justify-center gap-2"
-        >
-          <MessageCircle className="w-5 h-5" />
-          Contact Support
-        </motion.button>
       </div>
     </section>
   );

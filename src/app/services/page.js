@@ -3,6 +3,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import SubscribeAbout from "@/components/SubscribeAbout";
 import Footer from "@/components/Footer";
 import BrandServicesEnhanced from "@/components/BrandServicesEnhanced";
+import FooterCTASubscription from "@/components/FooterCTASubscription";
 
 export default function Page() {
   const heading = `OUR <br/> SERVICES:<br/> LAUNCHPAD TO <br/> SUCCESS`;
@@ -14,7 +15,7 @@ export default function Page() {
       <HeroAbout heading={heading} subheading={subheading} btntext={btntext} btnlink={btnlink}/>
       <BrandServicesEnhanced heading="SERVICES" />
       <WhyChooseUs />
-      <SubscribeAbout heading="Ready to get started?" btntext="Get Started" />
+      <FooterCTASubscription footerHeading="Found What You Need? Let’s Make It Happen." footer_btntext="Get Started" />
       <Footer />
     </div>
   );
