@@ -216,6 +216,7 @@ export default function Testimonials() {
                         alt={testimonial.name}
                         width={60}
                         height={60}
+                        unoptimized 
                         className="rounded-full object-cover border-2 border-cyan-500/30"
                       />
                       <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full border-2 border-slate-900"></div>
@@ -289,6 +290,7 @@ export default function Testimonials() {
                       alt={testimonial.name}
                       width={40}
                       height={40}
+                      unoptimized
                       className="rounded-full object-cover"
                     />
                     <div className="flex-1 min-w-0">
