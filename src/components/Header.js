@@ -56,12 +56,12 @@ export default function Header() {
               </Link>
             </nav>
 
-            {/* Let's Connect Button with Circle Arrow */}
+            
             <Link
               href="/contact-us"
               className=" text-white  font-[200] hover:text-[#00a8c5] transition-all duration-200 flex items-center space-x-3 group"
             >
-              <span>Let's Connect</span>
+              <span>Let&apos;s Connect</span>
               <div className="w-8 h-8 bg-[#00BBDC] rounded-full flex items-center justify-center group-hover:bg-white transition-all duration-200">
                 <svg
                   className="w-4 h-4 group-hover:translate-x-0.5 group-hover:text-[#00BBDC] transition-transform duration-200"
@@ -90,7 +90,7 @@ export default function Header() {
 
           {/* Right side - Mobile Menu */}
           <div className="flex items-center space-x-3">
-            {/* Mobile Let's Connect Button */}
+           
             <button className="bg-[#00BBDC] text-white p-3 rounded-full font-medium hover:bg-[#00a8c5] transition-colors flex items-center justify-center shadow-md">
               <svg
                 className="w-4 h-4"

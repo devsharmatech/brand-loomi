@@ -82,7 +82,7 @@ export default function FAQ() {
             </h2>
             
             <p className="text-gray-400 text-lg max-w-2xl">
-              Everything you need to know about our services and process. Can't find your answer? Contact us directly.
+              Everything you need to know about our services and process. Cant find your answer? Contact us directly.
             </p>
           </div>
 

@@ -34,11 +34,11 @@ export default function ApplicationForm() {
 
   const values = [
     "People First, Always: We believe great work happens when our team feels heard, valued, and supported.",
-    "Kindness Over Everything: We're all about good vibes, mutual respect, and lifting each other up.",
+    "Kindness Over Everything: We are all about good vibes, mutual respect, and lifting each other up.",
     "Excellence in Execution: We strive for quality in everything we do, delivering beyond expectations.",
     "Innovation & Creativity: We embrace new ideas and encourage thinking outside the box.",
     "Collaboration & Teamwork: We achieve more together by supporting and learning from each other.",
-    "Growth Mindset: We're committed to continuous learning and personal development."
+    "Growth Mindset: We are committed to continuous learning and personal development."
   ];
 
   return (
@@ -93,7 +93,7 @@ export default function ApplicationForm() {
               Join Our Team
             </h3>
             <p className="text-sm text-gray-400">
-              Fill in your details and let's build something amazing together
+              Fill in your details and lets build something amazing together
             </p>
           </div>
 

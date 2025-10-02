@@ -142,7 +142,7 @@ export default function PayWhatYouCanForm() {
               of budget.
             </h1>
             <p className="text-neutral-400 text-xl">
-              Fill out this form. This is our "Pay What You Can" initiative — we
+              Fill out this form. This is our &quot;Pay What You Can&quot; initiative — we
               evaluate applications based on story, vision and fit. Please
               provide as much detail as possible so we can make a thoughtful
               decision.
@@ -161,7 +161,7 @@ export default function PayWhatYouCanForm() {
             </h2>
             <p className="text-sm text-neutral-400">
               Help us get in touch — provide your official business details and
-              contact info. We'll only use this to contact you about the
+              contact info. We&apos;ll only use this to contact you about the
               application.
             </p>
 
@@ -366,7 +366,7 @@ export default function PayWhatYouCanForm() {
               Your Vision for a Website
             </h2>
             <p className="text-sm text-neutral-400">
-              You don't need to be technical — tell us what success looks like
+              You don&apos;t need to be technical — tell us what success looks like
               (lead generation, sales, portfolio, booking, etc.), pages you
               need, and any must-have features.
             </p>
@@ -501,21 +501,21 @@ export default function PayWhatYouCanForm() {
           >
             {/* Title */}
             <h2 className="text-2xl font-bold">
-              "Pay What You Can" Agreement & Terms
+              &quot;Pay What You Can&quot; Agreement & Terms
             </h2>
 
             {/* Model Description */}
             <div className="space-y-2">
               <h3 className="text-lg font-semibold">
-                Understanding the "Pay What You Can" Model:
+                Understanding the &quot;Pay What You Can&quot; Model:
               </h3>
               <p className="text-sm text-neutral-300">
-                "As part of our commitment to supporting small businesses, if
+                &quot;As part of our commitment to supporting small businesses, if
                 you are selected as our monthly winner, we will design and
                 develop a professional website tailored to your needs. In
                 return, we ask you to contribute what you genuinely can afford.
                 This is a voluntary contribution, and your ability to pay will
-                not influence your selection."
+                not influence your selection.&quot;
               </p>
 
               <label className="flex items-center gap-3">
@@ -526,7 +526,7 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                 />
                 <span className="text-sm">
-                  I understand and agree to the "Pay What You Can"{" "}
+                  I understand and agree to the &quot;Pay What You Can&quot;{" "}
                   <a href="#" className="underline">
                     terms and conditions
                   </a>
@@ -539,22 +539,22 @@ export default function PayWhatYouCanForm() {
               <h3 className="text-lg font-semibold">Terms and Conditions:</h3>
               <ul className="list-disc list-inside text-sm text-neutral-300 space-y-1">
                 <li>
-                  "By submitting this application, you agree to our full terms
+                  &quot;By submitting this application, you agree to our full terms
                   and conditions{" "}
                   <a href="#" className="underline">
                     Terms of services
                   </a>
-                  ."
+                  .&quot;
                 </li>
                 <li>
-                  "You acknowledge that only one winner will be selected each
+                  &quot;You acknowledge that only one winner will be selected each
                   month. We reserve the right to verify all information
-                  provided."
+                  provided.&quot;
                 </li>
                 <li>
-                  "Winners will be notified via email and phone. If a winner
+                  &quot;Winners will be notified via email and phone. If a winner
                   cannot be reached or does not respond within [e.g., 5 working
-                  days], another winner may be selected."
+                  days], another winner may be selected.&quot;
                 </li>
               </ul>
 
@@ -565,11 +565,11 @@ export default function PayWhatYouCanForm() {
                   className="w-5 h-5 accent-cyan-500"
                 />
                 <span className="text-sm">
-                  "I have read and agree to the{" "}
+                  &quot;I have read and agree to the{" "}
                   <a href="#" className="underline">
                     Privacy Policy
                   </a>
-                  ."
+                  .&quot;
                 </span>
               </label>
 

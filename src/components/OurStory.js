@@ -113,9 +113,9 @@ export default function OurStory() {
               </p>
 
               <p className="text-gray-300 text-lg leading-relaxed">
-                Driven by social impact, our <span className="text-cyan-500 font-semibold">"Pay What You Can"</span> program supports
+                Driven by social impact, our <span className="text-cyan-500 font-semibold">&quot;Pay What You Can&quot;</span> program supports
                 budget-limited startups, while our <span className="text-green-500 font-semibold">Student Ambassador Program</span>
-                empowers international students. Today, we're proud to be a trusted
+                empowers international students. Today, we&apos;re proud to be a trusted
                 partner for startups across Ireland—delivering fast, affordable, and
                 heartfelt digital solutions.
               </p>

@@ -38,8 +38,8 @@ export default function HeroPayWhat() {
         {/* Footer Small Text */}
         <p className="text-gray-400 text-xs md:text-sm max-w-full leading-relaxed">
           At Brandloom, we understand that many startups and small businesses
-          struggle to afford quality digital services. That’s why we created the
-          "Pay What You Can" program – a unique initiative designed to
+          struggle to afford quality digital services. That&apos;s why we created the
+          &quot;Pay What You Can&quot; program – a unique initiative designed to
           democratize access to professional websites, mobile apps, and digital
           marketing.
         </p>
