@@ -6,11 +6,12 @@ import Header from "@/components/Header";
 
 export default function HeroHWW({
   heading,
-  subheading
+  subheading,
+  logo
 }) {
   return (
     <section className="relative w-full min-h-[30vh] px-6 bg-transparent overflow-hidden">
-      <Header className="relative z-50" />
+      <Header className="relative z-50" logo={logo} />
 
       {/* Background Gradients */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-cyan-500/40 to-emerald-500/40 blur-3xl translate-x-1/2 -translate-y-1/2 animate-pulse"></div>

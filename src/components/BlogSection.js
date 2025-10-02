@@ -36,7 +36,7 @@ export default function BlogSection() {
 
   return (
     <section>
-      <div className="bg-white w-full py-5">
+      <div className="bg-white px-4 w-full py-5">
         <div className=" max-w-7xl mx-auto mb-16">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900">Latest Blogs</h2>
@@ -74,7 +74,7 @@ export default function BlogSection() {
           >
             {latestBlogs.map((blog) => (
               <SwiperSlide key={blog.id} className="py-8">
-                <Link href="#">
+                <Link href={`/blogs/${blog.slug}`}>
                   <div className="bg-gradient-to-br from-emerald-50 to-white rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:scale-[1.02] transition-all duration-300 border border-emerald-100">
                     <div className="relative overflow-hidden">
                       <img
@@ -108,7 +108,7 @@ export default function BlogSection() {
         <h2 className="text-3xl font-bold text-white mb-8">All Blogs</h2>
         <div className="space-y-6">
           {allBlogs.map((blog) => (
-            <Link key={blog.id} href="#">
+            <Link key={blog.id} href={`/blogs/${blog.slug}`}>
               <div className="group mb-5 bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm rounded-2xl p-6 cursor-pointer hover:from-white/10 transition-all duration-300 border border-white/10 hover:border-emerald-500/30">
                 <div className="flex flex-col md:flex-row gap-6 items-start">
                   <div className="relative overflow-hidden rounded-xl md:w-48 md:flex-shrink-0">

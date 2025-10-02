@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-export default function Header() {
+export default function Header({logo}) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ export default function Header() {
         <div className="hidden md:flex justify-between items-center">
           <Link href="/home" className="flex items-center">
             <img
-              src="./logo.png"
+              src={logo || "./logo.png"}
               alt="Brandloomi"
               className=" h-12 mr-3"
               onError={(e) => {
@@ -85,7 +85,7 @@ export default function Header() {
         <div className="md:hidden flex justify-between items-center">
           {/* Left side - Logo */}
           <Link href="/home" className="flex items-center">
-            <img src="./logo.png" alt="Brandloomi" className="h-8 mr-2" />
+            <img src={logo || "./logo.png"} alt="Brandloomi" className="h-8 mr-2" />
           </Link>
 
           {/* Right side - Mobile Menu */}

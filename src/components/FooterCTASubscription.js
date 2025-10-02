@@ -2,7 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react";
 
-export default function FooterCTASubscription({ footerHeading, footer_btntext }) {
+export default function FooterCTASubscription({ footerHeading, footer_btntext,logo }) {
   return (
     <section className="relative w-full py-8 px-2 sm:px-4 md:px-6 bg-transparent text-white">
       <div className="max-w-7xl mx-auto">
@@ -10,7 +10,7 @@ export default function FooterCTASubscription({ footerHeading, footer_btntext })
         <div className="relative rounded-[1rem] bg-gradient-to-r from-[#043d63] via-transparent to-[#06456f] p-4 sm:p-8 md:p-12 text-center shadow-[0_0_20px_rgba(0,0,0,0.2)]">
           {/* Logo / Brand */}
           <div className="flex items-center justify-center mb-6">
-            <img src="./logo.png" alt="Brandloomi Logo" className="h-10" />
+            <img src={logo || "./logo.png"} alt="Brandloomi Logo" className="h-10" />
           </div>
 
           {/* Heading */}
