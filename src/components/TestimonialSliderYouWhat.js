@@ -44,6 +44,7 @@ export default function TestimonialSliderYouWhat() {
                     alt={item.name}
                     width={50}
                     height={50}
+                    unoptimized
                     className="rounded-full object-cover"
                   />
                 </div>
