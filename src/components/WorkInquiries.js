@@ -1,12 +1,12 @@
 "use client";
 
-import { 
-  ArrowRight, 
-  Upload, 
-  FacebookIcon, 
-  InstagramIcon, 
-  LinkedinIcon, 
-  TwitterIcon 
+import {
+  ArrowRight,
+  Upload,
+  FacebookIcon,
+  InstagramIcon,
+  LinkedinIcon,
+  TwitterIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
@@ -96,7 +96,10 @@ export default function WorkInquiries() {
         throw new Error(data.error || data.message || "Submission failed");
       }
 
-      setStatus({ type: "success", message: data.message || "Inquiry submitted successfully!" });
+      setStatus({
+        type: "success",
+        message: data.message || "Inquiry submitted successfully!",
+      });
 
       // Reset
       setForm({
@@ -113,7 +116,10 @@ export default function WorkInquiries() {
       setSelectedFileName("");
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err) {
-      setStatus({ type: "error", message: err.message || "Something went wrong" });
+      setStatus({
+        type: "error",
+        message: err.message || "Something went wrong",
+      });
       console.error(err);
     } finally {
       setIsSubmitting(false);
@@ -122,7 +128,7 @@ export default function WorkInquiries() {
 
   return (
     <section className="w-full bg-transparent text-white py-20 px-6">
-      <motion.div 
+      <motion.div
         className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative"
         initial="hidden"
         whileInView="visible"
@@ -131,12 +137,12 @@ export default function WorkInquiries() {
           hidden: { opacity: 0 },
           visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.1 }
-          }
+            transition: { staggerChildren: 0.1 },
+          },
         }}
       >
         {/* Left Section */}
-        <motion.div 
+        <motion.div
           className="flex flex-col justify-start pr-10 border-r border-gray-700"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -150,7 +156,7 @@ export default function WorkInquiries() {
             <img src="./logo.png" alt="Brandloomi" className="h-10 mb-4" />
           </motion.div>
 
-          <motion.p 
+          <motion.p
             className="mt-4 text-gray-400 leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -160,25 +166,27 @@ export default function WorkInquiries() {
             small businesses launch, grow, and thrive
           </motion.p>
 
-          <motion.div 
+          <motion.div
             className="flex gap-4 mt-6"
             initial="hidden"
             whileInView="visible"
             variants={{
               hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+              visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
             }}
           >
-            {[FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon].map((Icon, i) => (
-              <motion.a
-                key={i}
-                href="#"
-                className="w-10 h-10 border border-gray-500 rounded-lg flex items-center justify-center hover:bg-gray-700/50 transition"
-                whileHover={{ scale: 1.1 }}
-              >
-                <Icon className="w-5 h-5" />
-              </motion.a>
-            ))}
+            {[FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon].map(
+              (Icon, i) => (
+                <motion.a
+                  key={i}
+                  href="#"
+                  className="w-10 h-10 border border-gray-500 rounded-lg flex items-center justify-center hover:bg-gray-700/50 transition"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <Icon className="w-5 h-5" />
+                </motion.a>
+              )
+            )}
           </motion.div>
         </motion.div>
 
@@ -188,25 +196,25 @@ export default function WorkInquiries() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <motion.div 
+          <motion.div
             className="flex items-center mb-10"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h3 
+            <motion.h3
               className="text-lg font-semibold italic"
               whileHover={{ scale: 1.05 }}
             >
               Work Inquiries
             </motion.h3>
-            <motion.div 
+            <motion.div
               className="flex-1 h-[1px] bg-gray-600 mx-3"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             />
-            <motion.span 
+            <motion.span
               className="text-xl"
               animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
@@ -227,14 +235,14 @@ export default function WorkInquiries() {
             </div>
           )}
 
-          <motion.form 
+          <motion.form
             className="space-y-5"
             onSubmit={handleSubmit}
             initial="hidden"
             whileInView="visible"
             variants={{
               hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.06 } }
+              visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
             }}
           >
             <motion.input
@@ -271,16 +279,20 @@ export default function WorkInquiries() {
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-transparent border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-white text-gray-900 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
-              <option>Subject</option>
-              <option>Software Development</option>
-              <option>Digital Media Marketing</option>
-              <option>Web App Development</option>
-              <option>Branding & Design</option>
-              <option>Mobile App Development</option>
-              <option>Startup Consulting</option>
-              <option>Other</option>
+              <option value="">Subject</option>
+              <option value="Software Development">Software Development</option>
+              <option value="Digital Media Marketing">
+                Digital Media Marketing
+              </option>
+              <option value="Web App Development">Web App Development</option>
+              <option value="Branding & Design">Branding & Design</option>
+              <option value="Mobile App Development">
+                Mobile App Development
+              </option>
+              <option value="Startup Consulting">Startup Consulting</option>
+              <option value="Other">Other</option>
             </motion.select>
 
             {/* Source select */}
@@ -288,12 +300,12 @@ export default function WorkInquiries() {
               name="source"
               value={form.source}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-transparent border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-white text-gray-900 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
-              <option>How did you hear about us?</option>
-              <option>Google</option>
-              <option>Social Media</option>
-              <option>Referral</option>
+              <option value="">How did you hear about us?</option>
+              <option value="Google">Google</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Referral">Referral</option>
             </motion.select>
 
             <motion.input
