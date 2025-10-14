@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Sparkles, Target, Rocket } from "lucide-react";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 export default function HeroServiceInner({
   heading,
@@ -27,38 +28,47 @@ export default function HeroServiceInner({
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <h2 className="text-3xl md:text-5xl font-extrabold text-emerald-500" dangerouslySetInnerHTML={{ __html: heading }} />
+          <h2
+            className="text-3xl md:text-5xl font-extrabold text-emerald-500"
+            dangerouslySetInnerHTML={{ __html: heading }}
+          />
 
-          <p className="text-gray-300 text-lg max-w-2xl leading-relaxed" dangerouslySetInnerHTML={{ __html: subheading }} />
+          <p
+            className="text-gray-300 text-lg max-w-2xl leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: subheading }}
+          />
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-6 pt-4">
-            <a
-              href="#"
+            {/* Start Now button */}
+            <Link
+              href="/pay-what-you-can"
+              passHref
               className="font-semibold text-white text-lg hover:text-emerald-500 transition"
             >
               Start Now
-            </a>
+            </Link>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-3 px-6 py-3 rounded-full border border-emerald-400 text-white bg-emerald-400/10 backdrop-blur-sm hover:bg-emerald-400 hover:text-black transition-all duration-300 group"
-            >
-              <span className="font-semibold">
-                {btntext}
-              </span>
+            {/* Animated Contact Us button */}
+            <Link href="/contact-us" passHref>
               <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 px-6 py-3 rounded-full border border-emerald-400 text-white bg-emerald-400/10 backdrop-blur-sm hover:bg-emerald-400 hover:text-black transition-all duration-300 group"
               >
-                <ArrowRight className="w-5 h-5 group-hover:text-black transition-colors" />
+                <span className="font-semibold">{btntext}</span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <ArrowRight className="w-5 h-5 group-hover:text-black transition-colors" />
+                </motion.div>
               </motion.div>
-            </motion.button>
+            </Link>
           </div>
         </motion.div>
 

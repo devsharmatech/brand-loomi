@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronUp, Plus, Minus, MessageCircle } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Plus,
+  Minus,
+  MessageCircle,
+} from "lucide-react";
+import Link from "next/link";
 
 const faqs = [
   {
@@ -73,27 +80,33 @@ export default function FAQ() {
               <MessageCircle className="w-4 h-4 text-cyan-400" />
               <span className="text-sm text-gray-300">Got Questions?</span>
             </motion.div>
-            
+
             <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-cyan-100 to-emerald-200 bg-clip-text text-transparent">
               Frequently Asked
               <span className="block bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
                 Questions
               </span>
             </h2>
-            
+
             <p className="text-gray-400 text-lg max-w-2xl">
-              Everything you need to know about our services and process. Cant find your answer? Contact us directly.
+              Everything you need to know about our services and process. Cant
+              find your answer? Contact us directly.
             </p>
           </div>
 
-          <motion.button
-            whileHover={{ scale: 1.05, backgroundColor: "rgba(6, 182, 212, 0.2)" }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden lg:flex items-center gap-3 px-6 py-4 rounded-xl border border-cyan-500/30 bg-white/5 text-cyan-400 font-semibold hover:border-cyan-400 transition-all duration-300"
-          >
-            Contact Support
-            <ChevronUp className="w-5 h-5 rotate-45" />
-          </motion.button>
+          <Link href="/contact-us" passHref>
+            <motion.a
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: "rgba(6, 182, 212, 0.2)",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden lg:flex items-center gap-3 px-6 py-4 rounded-xl border border-cyan-500/30 bg-white/5 text-cyan-400 font-semibold hover:border-cyan-400 transition-all duration-300"
+            >
+              Contact Support
+              <ChevronUp className="w-5 h-5 rotate-45" />
+            </motion.a>
+          </Link>
         </motion.div>
 
         {/* FAQ Grid */}
@@ -112,13 +125,13 @@ export default function FAQ() {
               <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 border border-slate-700/50 backdrop-blur-sm transition-all duration-300 group-hover:border-cyan-500/50 group-hover:shadow-2xl group-hover:shadow-cyan-500/10">
                 {/* Animated Border Effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Question Header */}
                 <div className="relative z-10 flex justify-between items-start gap-4">
                   <h3 className="text-lg font-semibold text-white pr-8 flex-1">
                     {faq.q}
                   </h3>
-                  
+
                   <motion.div
                     animate={{ rotate: openIndex === idx ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -148,10 +161,8 @@ export default function FAQ() {
                         transition={{ delay: 0.1 }}
                         className="relative z-10 pt-4 mt-4 border-t border-slate-700/50"
                       >
-                        <p className="text-gray-300 leading-relaxed">
-                          {faq.a}
-                        </p>
-                        
+                        <p className="text-gray-300 leading-relaxed">{faq.a}</p>
+
                         {/* Decorative Element */}
                         <div className="absolute -left-2 top-4 w-1 h-8 bg-gradient-to-b from-cyan-400 to-emerald-400 rounded-full"></div>
                       </motion.div>
@@ -162,15 +173,9 @@ export default function FAQ() {
                 {/* Hover Glow Effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/5 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-
-              {/* Number Indicator */}
-              <div className="absolute -left-3 -top-3 w-8 h-8 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg border-2 border-slate-900">
-                {idx + 1}
-              </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

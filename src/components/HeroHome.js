@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import Link from "next/link";
 
 export default function HeroHome() {
   return (
@@ -26,15 +27,15 @@ export default function HeroHome() {
 
         {/* CTA Button */}
         <div className="my-8">
-          <a
-            href="#"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-black font-medium shadow-lg hover:shadow-xl transition"
+          <Link
+            href="/contact-us"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-white font-medium shadow-lg hover:shadow-xl transition"
           >
             Get Started
             <span className="inline-block transition-transform group-hover:translate-x-1">
               ➜
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

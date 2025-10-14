@@ -2,7 +2,7 @@ import HeroServiceInner from "@/components/HeroServiceInner";
 import OurProcess from "@/components/OurProcess";
 import WhyChooseUs2 from "@/components/WhyChooseUs2";
 import Testimonials from "@/components/Testimonials";
-
+import { CheckCircle2 } from "lucide-react";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
@@ -29,13 +29,32 @@ export default function Page() {
     "Financial Planning: Budgeting, forecasting, and investor readiness.",
     "Network Access: Connect with investors, partners, and talent.",
   ];
- const steps = [
+  const steps = [
     "Workshops",
-    "Market Research", 
+    "Market Research",
     "Financial Planning",
     "Network Access",
   ];
-
+  const features = [
+    {
+      title: "Startup Specialists",
+      description: "We’ve launched and scaled businesses ourselves.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
+      title: "Practical, Actionable Advice",
+      description: "No fluff—just what works.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
+      title: "Long-Term Partnership",
+      description: "We’re invested in your journey.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+  ];
   return (
     <div className="min-h-screen">
       <HeroServiceInner
@@ -45,13 +64,13 @@ export default function Page() {
         btnlink={btnlink}
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
-      <OurProcess steps={steps}/>
-      <WhyChooseUs2 />
+      <OurProcess steps={steps} />
+      <WhyChooseUs2 features={features}/>
       <Testimonials />
-       <FooterCTASubscription
-              footerHeading="Ready to build your competitive edge?"
-              footer_btntext="Get Started"
-            />
+      <FooterCTASubscription
+        footerHeading="Ready to build your competitive edge?"
+        footer_btntext="Get Started"
+      />
       <Footer />
     </div>
   );

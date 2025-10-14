@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Sparkles, Target, Rocket } from "lucide-react";
 import Header from "@/components/Header";
+import Link from "next/link";
 
 export default function HeroAbout({ heading, subheading, btntext, btnlink }) {
   return (
@@ -88,27 +89,29 @@ export default function HeroAbout({ heading, subheading, btntext, btnlink }) {
               <div className="w-20 h-px bg-gradient-to-l from-gray-500 to-transparent"></div>
             </div>
 
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "white",
-                color: "black",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-3 px-8 py-4 rounded-full border border-cyan-400 text-white bg-cyan-400/10 backdrop-blur-sm hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300 group"
-            >
-              <span className="font-semibold">{btntext}</span>
+            <Link href="/contact-us" passHref>
               <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "white",
+                  color: "black",
                 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center gap-3 px-8 py-4 rounded-full border border-cyan-400 text-white bg-cyan-400/10 backdrop-blur-sm hover:shadow-2xl hover:shadow-cyan-500/30 transition-all duration-300 group"
               >
-                <ArrowRight className="w-5 h-5 group-hover:text-black transition-colors" />
+                <span className="font-semibold">{btntext}</span>
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <ArrowRight className="w-5 h-5 group-hover:text-black transition-colors" />
+                </motion.div>
               </motion.div>
-            </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

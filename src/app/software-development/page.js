@@ -5,7 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
-
+import { CheckCircle2 } from "lucide-react";
 export default function Page() {
   const heading = "Software Development";
   const subheading = `At 
@@ -38,6 +38,28 @@ export default function Page() {
     "Testing & QA",
     "Deployment & Support",
   ];
+
+   const features = [
+    {
+      title: "Affordable",
+      description: "Startup-friendly pricing, no compromise on quality.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
+      title: "Speed to Market",
+      description: "MVPs delivered in as little as 4 weeks.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
+      title: "Ongoing Partnership",
+      description: "Updates, analytics, and feature enhancements.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <HeroServiceInner
@@ -48,7 +70,7 @@ export default function Page() {
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
       <OurProcess steps={steps} />
-      <WhyChooseUs2 />
+      <WhyChooseUs2 features={features}/>
       <Testimonials />
       <FooterCTASubscription
         footerHeading="Ready to build your competitive edge?"

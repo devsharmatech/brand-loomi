@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
+import contactAnimation from "@/lotties/contact-loti.json";
+import Lottie from "lottie-react";
 
 export default function WorkInquiries() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -165,7 +167,14 @@ export default function WorkInquiries() {
             Affordable, high-quality digital solutions to help startups and
             small businesses launch, grow, and thrive
           </motion.p>
-
+          <div className="flex justify-start my-5 md:justify-start">
+            <Lottie
+              
+              animationData={contactAnimation}
+              loop={true}
+              className="w-full max-w-md"
+            />
+          </div>
           <motion.div
             className="flex gap-4 mt-6"
             initial="hidden"
@@ -279,7 +288,7 @@ export default function WorkInquiries() {
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-white text-gray-900 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
               <option value="">Subject</option>
               <option value="Software Development">Software Development</option>
@@ -300,7 +309,7 @@ export default function WorkInquiries() {
               name="source"
               value={form.source}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-white text-gray-900 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
               <option value="">How did you hear about us?</option>
               <option value="Google">Google</option>

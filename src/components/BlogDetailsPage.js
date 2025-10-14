@@ -13,7 +13,7 @@ import {
   User,
   Tag,
 } from "lucide-react";
-import { supabase } from "@/lib/supabaseClient";
+
 
 export default function BlogDetailsPage() {
   const params = useParams();

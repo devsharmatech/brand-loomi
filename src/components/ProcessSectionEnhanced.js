@@ -1,7 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Target, Zap, Rocket, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  Sparkles,
+  Target,
+  Zap,
+  Rocket,
+  TrendingUp,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function ProcessSectionEnhanced() {
   const steps = [
@@ -9,7 +17,11 @@ export default function ProcessSectionEnhanced() {
     { name: "Define", icon: Target, color: "from-blue-500 to-cyan-500" },
     { name: "Develop", icon: Zap, color: "from-green-500 to-emerald-500" },
     { name: "Deliver", icon: Rocket, color: "from-orange-500 to-red-500" },
-    { name: "Evolve", icon: TrendingUp, color: "from-violet-500 to-indigo-500" },
+    {
+      name: "Evolve",
+      icon: TrendingUp,
+      color: "from-violet-500 to-indigo-500",
+    },
   ];
 
   return (
@@ -81,12 +93,13 @@ export default function ProcessSectionEnhanced() {
             {/* Animated Border */}
             <div className="absolute  rounded-2xl bg-gradient-to-r from-cyan-500 via-transparent to-emerald-500 animate-pulse opacity-20"></div>
             <div className="absolute  rounded-2xl bg-slate-900"></div>
-            
-            <motion.p 
+
+            <motion.p
               className="text-center rotate-[-135deg] text-2xl font-bold bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent z-10 p-8"
               whileHover={{ scale: 1.1 }}
             >
-              Designing the<br />
+              Designing the
+              <br />
               <span className="text-cyan-100">right things</span>
             </motion.p>
           </motion.div>
@@ -102,7 +115,7 @@ export default function ProcessSectionEnhanced() {
               <span>Strategic</span>
               <ArrowRight className="w-5 h-5 text-cyan-400" />
             </motion.div>
-            
+
             <motion.div
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
@@ -111,7 +124,7 @@ export default function ProcessSectionEnhanced() {
             >
               <Zap className="w-6 h-6 text-white" />
             </motion.div>
-            
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -134,12 +147,13 @@ export default function ProcessSectionEnhanced() {
             {/* Animated Border */}
             <div className="absolute  rounded-2xl bg-gradient-to-r from-emerald-500 via-transparent to-cyan-500 animate-pulse opacity-20"></div>
             <div className="absolute  rounded-2xl bg-slate-900"></div>
-            
-            <motion.p 
+
+            <motion.p
               className="text-center rotate-[-135deg] text-2xl font-bold bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent z-10 p-8"
               whileHover={{ scale: 1.1 }}
             >
-              Delivering the<br />
+              Delivering the
+              <br />
               <span className="text-emerald-100">things right</span>
             </motion.p>
           </motion.div>
@@ -160,7 +174,7 @@ export default function ProcessSectionEnhanced() {
         <div className="relative">
           {/* Connection Line */}
           <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gray-700 to-transparent hidden md:block"></div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6 relative z-10">
             {steps.map((step, idx) => {
               const IconComponent = step.icon;
@@ -176,20 +190,24 @@ export default function ProcessSectionEnhanced() {
                   {/* Step Card */}
                   <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700 shadow-2xl transition-all duration-300 group-hover:border-cyan-400/50 group-hover:shadow-cyan-500/20">
                     {/* Step Number */}
-                    <div className={`absolute -top-3 -left-3 w-8 h-8 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
+                    <div
+                      className={`absolute -top-3 -left-3 w-8 h-8 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center text-white font-bold text-sm shadow-lg`}
+                    >
                       {idx + 1}
                     </div>
-                    
+
                     {/* Icon */}
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${step.color} flex items-center justify-center mb-4 mx-auto shadow-lg`}>
+                    <div
+                      className={`w-14 h-14 rounded-xl bg-gradient-to-r ${step.color} flex items-center justify-center mb-4 mx-auto shadow-lg`}
+                    >
                       <IconComponent className="w-7 h-7 text-white" />
                     </div>
-                    
+
                     {/* Step Name */}
                     <h3 className="text-center font-bold text-lg text-white mb-2">
                       {step.name}
                     </h3>
-                    
+
                     {/* Progress Line */}
                     {idx < steps.length - 1 && (
                       <div className="hidden md:block absolute top-1/2 -right-6 w-6 h-0.5 bg-gradient-to-r from-slate-600 to-slate-700 group-hover:from-cyan-400 group-hover:to-emerald-400 transition-all duration-300">
@@ -217,14 +235,16 @@ export default function ProcessSectionEnhanced() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-12"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-xl font-semibold text-white shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 flex items-center gap-2 mx-auto"
-          >
-            Start Your Project
-            <Rocket className="w-5 h-5" />
-          </motion.button>
+          <Link href="/pay-what-you-can" passHref>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-xl font-semibold text-white shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 mx-auto"
+            >
+              Start Your Project
+              <Rocket className="w-5 h-5" />
+            </motion.div>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -1,7 +1,10 @@
+"use client";
+
 import HeroCareers from "@/components/HeroCareers";
 
 import Footer from "@/components/Footer";
 import WorkInquiries from "@/components/WorkInquiries";
+
 
 export default function Page() {
   const heading = "LET’S BUILD SOMETHING GREAT TOGETHER";
@@ -15,7 +18,7 @@ export default function Page() {
         subheading={subheading}
       />
       
-      <WorkInquiries />
+      <WorkInquiries/>
       <Footer />
     </div>
   );

@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
+import { CheckCircle2 } from "lucide-react";
 
 export default function Page() {
   const heading = "Branding & Design";
@@ -34,6 +35,26 @@ const techStack = [
     "Finalization",
   ];
 
+    const features = [
+    {
+      title: "Experienced Designers",
+      description: "Award-winning creative team.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
+      title: "Strategic Approach",
+      description: "Design that supports your business goals.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
+      title: "Full-Service",
+      description: "From concept to launch, we’ve got you covered.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+  ];
   return (
     <div className="min-h-screen">
       <HeroServiceInner
@@ -44,7 +65,7 @@ const techStack = [
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
       <OurProcess steps={steps} />
-      <WhyChooseUs2 />
+      <WhyChooseUs2 features={features}/>
       <Testimonials />
       <FooterCTASubscription
         footerHeading="Ready to build your competitive edge?"

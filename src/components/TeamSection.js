@@ -2,6 +2,7 @@
 
 import { Twitter, Github, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const team = [
   {
@@ -177,13 +178,15 @@ export default function TeamSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-16"
         >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300"
-          >
-            Join Our Team
-          </motion.button>
+          <Link href="/careers" passHref>
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block px-8 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-xl font-semibold shadow-lg hover:shadow-emerald-500/25 transition-all duration-300"
+            >
+              Join Our Team
+            </motion.a>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -1,13 +1,14 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export default function FooterCTA() {
   return (
     <section className="relative w-full py-24 px-6 bg-transparent text-white">
       <div className="max-w-7xl mx-auto">
         {/* Card */}
-        <div className="relative rounded-[1rem] bg-gradient-to-r from-[#02111B] via-transparent to-[#02111B] p-12 text-center shadow-[0_0_20px_rgba(0,0,0,0.2)]">
+        <div className="relative rounded-[1rem] bg-gradient-to-r from-[#043d63] via-transparent to-[#06456f] p-4 sm:p-8 md:p-12 text-center shadow-[0_0_20px_rgba(0,0,0,0.2)]">
           {/* Logo / Brand */}
           <div className="flex items-center justify-center mb-6">
             <img src="./logo.png" alt="Brandloomi Logo" className="h-10" />
@@ -21,15 +22,15 @@ export default function FooterCTA() {
 
           {/* CTA Button */}
           <div className="mt-10 flex justify-center">
-            <a
-              href="#apply"
+            <Link
+              href="/contact-us"
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-full shadow-lg bg-gradient-to-r from-gray-800/70 to-gray-900/70 border border-white/10 hover:from-gray-700/80 hover:to-gray-800/80 transition-all"
             >
               <span className="text-sm font-medium">Apply Now</span>
               <span className="w-6 h-6 rounded-full bg-white text-black flex items-center justify-center group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
                 <ArrowUpRight className="w-4 h-4" />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

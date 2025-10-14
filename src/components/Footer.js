@@ -37,10 +37,11 @@ export default function Footer() {
   const company = [
     { name: "About Us", href: "/about" },
     { name: "Portfolio", href: "/landing" },
+    { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact-us" },
     { name: "Careers", href: "/careers" },
     { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms of Service", href: "/terms" },
+    { name: "Terms of Service", href: "/terms-services" },
   ];
 
   const containerVariants = {

@@ -1,26 +1,7 @@
 import { CheckCircle2 } from "lucide-react";
 
-export default function WhyChooseUs2() {
-  const features = [
-    {
-      title: "Future-Proof",
-      description: "Scalable, modular, and ready for tomorrow's growth.",
-      icon: <CheckCircle2 className="w-6 h-6" />,
-      gradient: "from-cyan-500 to-emerald-400"
-    },
-    {
-      title: "Secure", 
-      description: "Built with best-in-class security practices.",
-      icon: <CheckCircle2 className="w-6 h-6" />,
-      gradient: "from-cyan-500 to-emerald-400"
-    },
-    {
-      title: "Affordable",
-      description: "World-class quality, startup-friendly pricing.",
-      icon: <CheckCircle2 className="w-6 h-6" />,
-      gradient: "from-cyan-500 to-emerald-400"
-    }
-  ];
+export default function WhyChooseUs2({features}) {
+  
 
   return (
     <section className="bg-transparent text-white py-16 px-4 sm:px-6 lg:px-8">
