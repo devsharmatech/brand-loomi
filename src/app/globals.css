@@ -120,3 +120,6 @@ header{
   transform: rotate(45deg);
   filter: blur(120px) saturate(200%) brightness(150%);
 }
+.codex-editor__redactor{
+  padding-bottom: 0 !important;
+}

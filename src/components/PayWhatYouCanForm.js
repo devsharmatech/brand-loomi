@@ -1,7 +1,7 @@
 "use client";
 import Head from "next/head";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function PayWhatYouCanForm() {
   const [formData, setFormData] = useState({
@@ -20,24 +20,21 @@ export default function PayWhatYouCanForm() {
     foundedDate: "",
     employeeCount: "",
     websiteGoal: "",
-    additionalFeatures: "",
-    ecommerce: "No",
-    pagesNeeded: "",
-    preferredCMS: "",
+    admiredWebsites: "",
+    brandingAssets: "",
+    yearsInBusiness: "",
+    annualRevenue: "",
     hearAbout: "",
-    hearOther: "",
-    payAmount: "",
     agreePayModel: false,
     agreePrivacy: false,
-    subscribe: false,
+    subscribe: true,
   });
 
   const [videoFile, setVideoFile] = useState(null);
   const [errors, setErrors] = useState({});
-  const [showJSONModal, setShowJSONModal] = useState(false);
-  const [submissionPayload, setSubmissionPayload] = useState(null);
-  const [copied, setCopied] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -46,12 +43,25 @@ export default function PayWhatYouCanForm() {
     } else {
       setFormData((p) => ({ ...p, [name]: value }));
     }
+    // Clear errors when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
   const handleFile = (e) => {
     const f = e.target.files?.[0];
     if (f) {
+      // Validate file size (200MB max)
+      if (f.size > 200 * 1024 * 1024) {
+        setErrors((prev) => ({ 
+          ...prev, 
+          videoFile: "Video must be less than 200MB" 
+        }));
+        return;
+      }
       setVideoFile(f);
+      setErrors((prev) => ({ ...prev, videoFile: "" }));
     }
   };
 
@@ -59,67 +69,131 @@ export default function PayWhatYouCanForm() {
     const err = {};
     if (!formData.businessName.trim())
       err.businessName = "Business name required";
-    if (!formData.contactName.trim()) err.contactName = "Contact name required";
-    if (!formData.email.trim()) err.email = "Email required";
+    if (!formData.contactName.trim()) 
+      err.contactName = "Contact name required";
+    if (!formData.email.trim()) {
+      err.email = "Email required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      err.email = "Email format invalid";
+    }
     if (!formData.businessDescription.trim())
       err.businessDescription = "Brief description required";
     if (!videoFile)
       err.videoFile = "Please upload a 2-minute video (essential)";
-    // add any other required checks you want
+    if (!formData.agreePayModel)
+      err.agreePayModel = "Must agree to Pay What You Can terms";
+    if (!formData.agreePrivacy)
+      err.agreePrivacy = "Must agree to Privacy Policy";
+
     setErrors(err);
     return Object.keys(err).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setCopied(false);
+    setSubmitError("");
+    
     if (!validate()) {
       return;
     }
 
-    const payload = {
-      ...formData,
-      video: videoFile
-        ? {
-            name: videoFile.name,
-            size: videoFile.size,
-            type: videoFile.type,
-          }
-        : null,
-      submittedAt: new Date().toISOString(),
-    };
+    setIsSubmitting(true);
 
-    setSubmissionPayload(payload);
-    setShowJSONModal(true);
-  };
-
-  const copyJSON = async () => {
-    if (!submissionPayload) return;
     try {
-      await navigator.clipboard.writeText(
-        JSON.stringify(submissionPayload, null, 2)
-      );
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (e) {
-      console.error("copy failed", e);
+      const formDataToSend = new FormData();
+      
+      // Append all form fields
+      Object.keys(formData).forEach(key => {
+        formDataToSend.append(key, formData[key]);
+      });
+      
+      // Append video file
+      if (videoFile) {
+        formDataToSend.append('video', videoFile);
+      }
+
+      const response = await fetch('/api/paywhatyoucan', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Submission failed');
+      }
+
+      setSubmitSuccess(true);
+      setTimeout(() => setSubmitSuccess(false), 5000);
+      
+      // Reset form
+      setFormData({
+        businessName: "",
+        businessLocation: "",
+        contactName: "",
+        websiteURL: "",
+        phone: "",
+        email: "",
+        industry: "",
+        businessType: "",
+        businessDescription: "",
+        marketingChallenges: "",
+        uniqueSelling: "",
+        targetAudience: "",
+        foundedDate: "",
+        employeeCount: "",
+        websiteGoal: "",
+        admiredWebsites: "",
+        brandingAssets: "",
+        yearsInBusiness: "",
+        annualRevenue: "",
+        hearAbout: "",
+        agreePayModel: false,
+        agreePrivacy: false,
+        subscribe: false,
+      });
+      setVideoFile(null);
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitError(error.message || 'Failed to submit application. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  const confirmSubmit = () => {
-    // here you would call your API to save the submission
-    setShowJSONModal(false);
-    setSubmitSuccess(true);
-    setTimeout(() => setSubmitSuccess(false), 3000);
-  };
-
   const inputClass =
-    "w-full bg-transparent border border-neutral-700 placeholder-neutral-400 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-500";
+    "w-full bg-transparent border border-neutral-700 placeholder-neutral-400 text-white rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-colors duration-200";
+
+  // Special class for select elements with dark dropdown styling
+  const selectClass = `
+    ${inputClass}
+    [&>option]:bg-[#1a1a1a]
+    [&>option]:text-white
+    [&>option]:hover:bg-cyan-600
+    [&>option]:hover:text-white
+    appearance-none
+    bg-[#1a1a1a]
+    cursor-pointer
+  `;
 
   return (
     <>
       <Head>
         <title>Application Form — Pay What You Can</title>
+        <style jsx global>{`
+          select option {
+            background: #1a1a1a !important;
+            color: white !important;
+            padding: 12px !important;
+          }
+          select option:hover {
+            background: #0891b2 !important;
+          }
+          select:focus option:checked {
+            background: #0891b2 !important;
+          }
+        `}</style>
       </Head>
 
       <div className="min-h-screen bg-transparent text-white px-6 py-12 flex justify-center">
@@ -254,9 +328,9 @@ export default function PayWhatYouCanForm() {
                   name="businessType"
                   value={formData.businessType}
                   onChange={handleChange}
-                  className={inputClass}
+                  className={selectClass}
                 >
-                  <option value="">Business Type (select)</option>
+                  <option value="" className="text-neutral-400">Business Type (select)</option>
                   <option>Startup</option>
                   <option>Small Business</option>
                   <option>Nonprofit</option>
@@ -324,7 +398,7 @@ export default function PayWhatYouCanForm() {
                   value={formData.targetAudience}
                   onChange={handleChange}
                   placeholder="Target audience (who are your customers?)"
-                  className={inputClass + " h-28 resize-none"}
+                  className={inputClass}
                 />
               </div>
 
@@ -343,9 +417,9 @@ export default function PayWhatYouCanForm() {
                   name="employeeCount"
                   value={formData.employeeCount}
                   onChange={handleChange}
-                  className={inputClass}
+                  className={selectClass}
                 >
-                  <option value="">Employee count</option>
+                  <option value="" className="text-neutral-400">Employee count</option>
                   <option>1 (solo)</option>
                   <option>2-10</option>
                   <option>11-50</option>
@@ -375,6 +449,7 @@ export default function PayWhatYouCanForm() {
               <div>
                 <input
                   name="websiteGoal"
+                  value={formData.websiteGoal}
                   onChange={handleChange}
                   placeholder="Website Goals"
                   className={inputClass}
@@ -383,6 +458,7 @@ export default function PayWhatYouCanForm() {
               <div>
                 <input
                   name="admiredWebsites"
+                  value={formData.admiredWebsites}
                   onChange={handleChange}
                   placeholder="Admired Websites"
                   className={inputClass}
@@ -392,8 +468,9 @@ export default function PayWhatYouCanForm() {
               <div className="md:col-span-2">
                 <input
                   name="brandingAssets"
+                  value={formData.brandingAssets}
                   onChange={handleChange}
-                  placeholder="Do You Have Branding Assets ?"
+                  placeholder="Do You Have Branding Assets?"
                   className={inputClass}
                 />
               </div>
@@ -416,7 +493,7 @@ export default function PayWhatYouCanForm() {
               ~200MB).
             </p>
 
-            <div className=" items-center gap-4">
+            <div className="items-center gap-4">
               <input
                 accept="video/*"
                 onChange={handleFile}
@@ -460,10 +537,10 @@ export default function PayWhatYouCanForm() {
                 <select
                   name="hearAbout"
                   value={formData.hearAbout}
-                  className={inputClass}
+                  className={selectClass}
                   onChange={handleChange}
                 >
-                  <option value="">Where Did You Hear About Us ?</option>
+                  <option value="" className="text-neutral-400">Where Did You Hear About Us?</option>
                   <option>Social media</option>
                   <option>Search engine</option>
                   <option>Friend / referral</option>
@@ -472,8 +549,13 @@ export default function PayWhatYouCanForm() {
                 </select>
               </div>
               <div className="md:col-span-1">
-                <select name="yearsInBusiness" className={`${inputClass} `} onChange={handleChange}>
-                  <option value="">Years In Business ?</option>
+                <select 
+                  name="yearsInBusiness" 
+                  value={formData.yearsInBusiness}
+                  className={selectClass} 
+                  onChange={handleChange}
+                >
+                  <option value="" className="text-neutral-400">Years In Business?</option>
                   <option>Less than 1 year</option>
                   <option>1-3 years</option>
                   <option>3-5 years</option>
@@ -481,8 +563,13 @@ export default function PayWhatYouCanForm() {
                 </select>
               </div>
               <div className="md:col-span-2">
-                <select name="annualRevenue" className={`${inputClass} `} onChange={handleChange}>
-                  <option value="">Annual Revenue ?</option>
+                <select 
+                  name="annualRevenue" 
+                  value={formData.annualRevenue}
+                  className={selectClass} 
+                  onChange={handleChange}
+                >
+                  <option value="" className="text-neutral-400">Annual Revenue?</option>
                   <option>Less than $10,000</option>
                   <option>$10,000 - $50,000</option>
                   <option>$50,000 - $100,000</option>
@@ -497,7 +584,7 @@ export default function PayWhatYouCanForm() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.38 }}
-            className="space-y-6 max-w-full mx-auto "
+            className="space-y-6 max-w-full mx-auto"
           >
             {/* Title */}
             <h2 className="text-2xl font-bold">
@@ -522,16 +609,17 @@ export default function PayWhatYouCanForm() {
                 <input
                   type="checkbox"
                   name="agreePayModel"
+                  checked={formData.agreePayModel}
                   className="w-5 h-5 accent-cyan-500"
                   onChange={handleChange}
                 />
                 <span className="text-sm">
-                  I understand and agree to the &quot;Pay What You Can&quot;{" "}
-                  <a href="#" className="underline">
-                    terms and conditions
-                  </a>
+                  I understand and agree to the &quot;Pay What You Can&quot; terms and conditions
                 </span>
               </label>
+              {errors.agreePayModel && (
+                <p className="text-xs text-rose-400">{errors.agreePayModel}</p>
+              )}
             </div>
 
             {/* Terms and Conditions */}
@@ -540,11 +628,7 @@ export default function PayWhatYouCanForm() {
               <ul className="list-disc list-inside text-sm text-neutral-300 space-y-1">
                 <li>
                   &quot;By submitting this application, you agree to our full terms
-                  and conditions{" "}
-                  <a href="#" className="underline">
-                    Terms of services
-                  </a>
-                  .&quot;
+                  and conditions.&quot;
                 </li>
                 <li>
                   &quot;You acknowledge that only one winner will be selected each
@@ -553,8 +637,8 @@ export default function PayWhatYouCanForm() {
                 </li>
                 <li>
                   &quot;Winners will be notified via email and phone. If a winner
-                  cannot be reached or does not respond within [e.g., 5 working
-                  days], another winner may be selected.&quot;
+                  cannot be reached or does not respond within 5 working days,
+                  another winner may be selected.&quot;
                 </li>
               </ul>
 
@@ -562,131 +646,68 @@ export default function PayWhatYouCanForm() {
                 <input
                   type="checkbox"
                   name="agreePrivacy"
+                  checked={formData.agreePrivacy}
                   className="w-5 h-5 accent-cyan-500"
+                  onChange={handleChange}
                 />
                 <span className="text-sm">
-                  &quot;I have read and agree to the{" "}
-                  <a href="#" className="underline">
-                    Privacy Policy
-                  </a>
-                  .&quot;
+                  &quot;I have read and agree to the Privacy Policy.&quot;
                 </span>
               </label>
+              {errors.agreePrivacy && (
+                <p className="text-xs text-rose-400">{errors.agreePrivacy}</p>
+              )}
 
               <label className="flex items-center gap-3">
                 <input
                   type="checkbox"
                   name="subscribe"
+                  checked={formData.subscribe }
                   className="w-5 h-5 accent-cyan-500"
                   onChange={handleChange}
                 />
-                <span className="text-sm">Subscribing to newsletter</span>
+                <span className="text-sm">Subscribe to newsletter</span>
               </label>
             </div>
 
-            {/* Submit */}
-            <div className="flex items-center justify-between gap-4 ">
+            {/* Submit Button & Status */}
+            <div className="flex items-center justify-between gap-4">
               <motion.button
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                onClick={handleSubmit}
-                className="px-6 py-3 bg-white text-black font-semibold rounded-lg shadow-sm hover:opacity-95"
+                disabled={isSubmitting}
+                className={`px-6 py-3 font-semibold rounded-lg shadow-sm transition-all duration-200 ${
+                  isSubmitting 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-white text-black hover:opacity-95'
+                }`}
               >
-                APPLY NOW
+                {isSubmitting ? 'SUBMITTING...' : 'APPLY NOW'}
               </motion.button>
 
               <div className="text-sm text-neutral-400">
-                {submitSuccess ? (
+                {submitSuccess && (
                   <motion.span
                     initial={{ opacity: 0, x: -6 }}
                     animate={{ opacity: 1, x: 0 }}
                     className="text-emerald-400"
                   >
-                    Application submitted (simulated)!
+                    Application submitted successfully!
                   </motion.span>
-                ) : (
-                  <span></span>
+                )}
+                {submitError && (
+                  <motion.span
+                    initial={{ opacity: 0, x: -6 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="text-rose-400"
+                  >
+                    {submitError}
+                  </motion.span>
                 )}
               </div>
             </div>
           </motion.section>
         </motion.form>
-
-        {/* JSON Modal */}
-        <AnimatePresence>
-          {showJSONModal && (
-            <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-black/60"
-                onClick={() => setShowJSONModal(false)}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              />
-
-              <motion.div
-                className="relative w-full max-w-3xl mx-4 bg-[#0b0b0b] rounded-2xl p-6 border border-neutral-700 shadow-2xl"
-                initial={{ y: 20, opacity: 0, scale: 0.98 }}
-                animate={{ y: 0, opacity: 1, scale: 1 }}
-                exit={{ y: 6, opacity: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-lg font-semibold">
-                      Preview submission (JSON)
-                    </h3>
-                    <p className="text-sm text-neutral-400">
-                      Review the collected data below. You can copy the JSON or
-                      confirm to submit (simulated).
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={copyJSON}
-                      className="px-3 py-1 rounded-md border border-neutral-700 text-sm"
-                    >
-                      {copied ? "Copied!" : "Copy JSON"}
-                    </button>
-                    <button
-                      onClick={() => setShowJSONModal(false)}
-                      className="px-3 py-1 rounded-md border border-neutral-700 text-sm"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-
-                <pre className="mt-4 p-4 bg-[#060606] rounded-md text-sm overflow-auto max-h-[55vh] border border-neutral-800">
-                  {JSON.stringify(submissionPayload, null, 2)}
-                </pre>
-
-                <div className="mt-4 flex items-center justify-end gap-3">
-                  <button
-                    onClick={() => setShowJSONModal(false)}
-                    className="px-4 py-2 rounded-md border border-neutral-700 text-sm"
-                  >
-                    Edit
-                  </button>
-
-                  <motion.button
-                    whileTap={{ scale: 0.98 }}
-                    onClick={confirmSubmit}
-                    className="px-4 py-2 bg-indigo-600 rounded-md text-sm font-semibold"
-                  >
-                    Confirm & Submit
-                  </motion.button>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </>
   );
