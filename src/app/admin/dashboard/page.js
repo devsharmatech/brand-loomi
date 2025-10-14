@@ -165,7 +165,7 @@ export default function AdminDashboard() {
                     {blog.title || "Untitled Blog"}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    {new Date(blog.posted_at).toLocaleDateString()}
+                    {new Date(blog.created_at).toLocaleDateString()}
                   </p>
                 </div>
               ))
