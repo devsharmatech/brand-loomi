@@ -169,6 +169,7 @@ export default function WorkInquiries() {
           </motion.p>
           <div className="flex justify-start my-5 md:justify-start">
             <Lottie
+              
               animationData={contactAnimation}
               loop={true}
               className="w-full max-w-md"
@@ -283,73 +284,38 @@ export default function WorkInquiries() {
             />
 
             {/* Service select */}
-            <motion.select
+            <select
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-[#111] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition appearance-none"
+              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
-              <option value="" className="text-gray-400 bg-[#111]">
-                Subject
-              </option>
-              <option
-                value="Software Development"
-                className="text-black bg-white"
-              >
-                Software Development
-              </option>
-              <option
-                value="Digital Media Marketing"
-                className="text-black bg-white"
-              >
+              <option value="">Subject</option>
+              <option value="Software Development">Software Development</option>
+              <option value="Digital Media Marketing">
                 Digital Media Marketing
               </option>
-              <option
-                value="Web App Development"
-                className="text-black bg-white"
-              >
-                Web App Development
-              </option>
-              <option value="Branding & Design" className="text-black bg-white">
-                Branding & Design
-              </option>
-              <option
-                value="Mobile App Development"
-                className="text-black bg-white"
-              >
+              <option value="Web App Development">Web App Development</option>
+              <option value="Branding & Design">Branding & Design</option>
+              <option value="Mobile App Development">
                 Mobile App Development
               </option>
-              <option
-                value="Startup Consulting"
-                className="text-black bg-white"
-              >
-                Startup Consulting
-              </option>
-              <option value="Other" className="text-black bg-white">
-                Other
-              </option>
-            </motion.select>
+              <option value="Startup Consulting">Startup Consulting</option>
+              <option value="Other">Other</option>
+            </select>
 
             {/* Source select */}
-            <motion.select
+            <select
               name="source"
               value={form.source}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-[#111] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition appearance-none"
+              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
-              <option value="" className="text-gray-400 bg-[#111]">
-                How did you hear about us?
-              </option>
-              <option value="Google" className="text-black bg-white">
-                Google
-              </option>
-              <option value="Social Media" className="text-black bg-white">
-                Social Media
-              </option>
-              <option value="Referral" className="text-black bg-white">
-                Referral
-              </option>
-            </motion.select>
+              <option value="">How did you hear about us?</option>
+              <option value="Google">Google</option>
+              <option value="Social Media">Social Media</option>
+              <option value="Referral">Referral</option>
+            </select>
 
             <motion.input
               name="company_name"
