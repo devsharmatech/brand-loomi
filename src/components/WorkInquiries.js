@@ -169,7 +169,6 @@ export default function WorkInquiries() {
           </motion.p>
           <div className="flex justify-start my-5 md:justify-start">
             <Lottie
-              
               animationData={contactAnimation}
               loop={true}
               className="w-full max-w-md"
@@ -288,20 +287,47 @@ export default function WorkInquiries() {
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-[#111] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition appearance-none"
             >
-              <option value="" className="bg-transparent text-white">Subject</option>
-              <option value="Software Development" className="bg-transparent text-white">Software Development</option>
-              <option value="Digital Media Marketing" className="bg-transparent text-white">
+              <option value="" className="text-gray-400 bg-[#111]">
+                Subject
+              </option>
+              <option
+                value="Software Development"
+                className="text-black bg-white"
+              >
+                Software Development
+              </option>
+              <option
+                value="Digital Media Marketing"
+                className="text-black bg-white"
+              >
                 Digital Media Marketing
               </option>
-              <option value="Web App Development" className="bg-transparent text-white">Web App Development</option>
-              <option value="Branding & Design" className="bg-transparent text-white">Branding & Design</option>
-              <option value="Mobile App Development" className="bg-transparent text-white">
+              <option
+                value="Web App Development"
+                className="text-black bg-white"
+              >
+                Web App Development
+              </option>
+              <option value="Branding & Design" className="text-black bg-white">
+                Branding & Design
+              </option>
+              <option
+                value="Mobile App Development"
+                className="text-black bg-white"
+              >
                 Mobile App Development
               </option>
-              <option value="Startup Consulting" className="bg-transparent text-white">Startup Consulting</option>
-              <option value="Other" className="bg-transparent text-white">Other</option>
+              <option
+                value="Startup Consulting"
+                className="text-black bg-white"
+              >
+                Startup Consulting
+              </option>
+              <option value="Other" className="text-black bg-white">
+                Other
+              </option>
             </motion.select>
 
             {/* Source select */}
@@ -309,12 +335,20 @@ export default function WorkInquiries() {
               name="source"
               value={form.source}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-[#111] text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition appearance-none"
             >
-              <option value="" className="bg-transparent text-white">How did you hear about us?</option>
-              <option value="Google" className="bg-transparent text-white">Google</option>
-              <option value="Social Media" className="bg-transparent text-white">Social Media</option>
-              <option value="Referral" className="bg-transparent text-white">Referral</option>
+              <option value="" className="text-gray-400 bg-[#111]">
+                How did you hear about us?
+              </option>
+              <option value="Google" className="text-black bg-white">
+                Google
+              </option>
+              <option value="Social Media" className="text-black bg-white">
+                Social Media
+              </option>
+              <option value="Referral" className="text-black bg-white">
+                Referral
+              </option>
             </motion.select>
 
             <motion.input
