@@ -288,7 +288,7 @@ export default function WorkInquiries() {
               name="service"
               value={form.service}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-transparent text-black border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
               <option value="">Subject</option>
               <option value="Software Development">Software Development</option>
@@ -309,7 +309,7 @@ export default function WorkInquiries() {
               name="source"
               value={form.source}
               onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
+              className="w-full p-4 rounded-xl bg-transparent text-black border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
               <option value="">How did you hear about us?</option>
               <option value="Google">Google</option>
