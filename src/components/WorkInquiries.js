@@ -290,18 +290,18 @@ export default function WorkInquiries() {
               onChange={handleChange}
               className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
-              <option value="">Subject</option>
-              <option value="Software Development">Software Development</option>
-              <option value="Digital Media Marketing">
+              <option value="" className="bg-transparent text-white">Subject</option>
+              <option value="Software Development" className="bg-transparent text-white">Software Development</option>
+              <option value="Digital Media Marketing" className="bg-transparent text-white">
                 Digital Media Marketing
               </option>
-              <option value="Web App Development">Web App Development</option>
-              <option value="Branding & Design">Branding & Design</option>
-              <option value="Mobile App Development">
+              <option value="Web App Development" className="bg-transparent text-white">Web App Development</option>
+              <option value="Branding & Design" className="bg-transparent text-white">Branding & Design</option>
+              <option value="Mobile App Development" className="bg-transparent text-white">
                 Mobile App Development
               </option>
-              <option value="Startup Consulting">Startup Consulting</option>
-              <option value="Other">Other</option>
+              <option value="Startup Consulting" className="bg-transparent text-white">Startup Consulting</option>
+              <option value="Other" className="bg-transparent text-white">Other</option>
             </motion.select>
 
             {/* Source select */}
@@ -311,10 +311,10 @@ export default function WorkInquiries() {
               onChange={handleChange}
               className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition"
             >
-              <option value="">How did you hear about us?</option>
-              <option value="Google">Google</option>
-              <option value="Social Media">Social Media</option>
-              <option value="Referral">Referral</option>
+              <option value="" className="bg-transparent text-white">How did you hear about us?</option>
+              <option value="Google" className="bg-transparent text-white">Google</option>
+              <option value="Social Media" className="bg-transparent text-white">Social Media</option>
+              <option value="Referral" className="bg-transparent text-white">Referral</option>
             </motion.select>
 
             <motion.input
