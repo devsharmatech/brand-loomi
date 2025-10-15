@@ -54,34 +54,24 @@ export default function JobListings() {
   );
 
   return (
-    <div className="min-h-[70vh] bg-transparent text-white px-4 sm:px-6 py-8 sm:py-12">
-      {/* Header */}
-      <div className="text-center mb-8 sm:mb-12">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-          Career Opportunities
-        </h1>
-        <p className="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
-          Join our innovative team and build the future with cutting-edge
-          technology and creative solutions.
-        </p>
-      </div>
-
-      {/* Search */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-3 mb-8 sm:mb-12 max-w-4xl mx-auto">
-        <div className="relative w-full sm:max-w-lg">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-          <input
-            type="text"
-            placeholder="Search jobs, companies, or locations..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 sm:py-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
-          />
+    <div className="min-h-[70vh] bg-transparent text-white px-4 sm:px-6 py-8 sm:py-12 ">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col sm:flex-row justify-start items-center gap-3 mb-8 sm:mb-12 max-w-4xl ">
+          <div className="relative w-full sm:max-w-lg">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Seek and you shall find"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 sm:py-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300"
+            />
+          </div>
+          <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95">
+            <span className="text-sm sm:text-base">Discover</span>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+          </button>
         </div>
-        <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95">
-          <Search className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="text-sm sm:text-base">Search</span>
-        </button>
       </div>
 
       {/* Jobs Grid */}
@@ -145,14 +135,14 @@ export default function JobListings() {
       <Dialog
         open={!!selectedJob}
         onClose={() => setSelectedJob(null)}
-        className="relative z-50"
+        className="relative z-[10002]"
       >
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 md:p-8 overflow-y-auto">
-          <Dialog.Panel className="w-full max-w-full sm:max-w-4xl md:max-w-5xl lg:max-w-6xl rounded-2xl bg-gray-900 border border-white/10 p-6 sm:p-8 overflow-y-auto max-h-[90vh]">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <Dialog.Panel className="w-full max-w-2xl rounded-2xl bg-gray-900 border border-white/10 overflow-hidden max-h-[90vh] flex flex-col">
             {/* Modal Header */}
-            <div className="flex justify-between items-start mb-6 flex-wrap gap-3">
-              <div className="flex-1 min-w-0">
-                <Dialog.Title className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent truncate">
+            <div className="flex justify-between items-start p-6 border-b border-white/10 bg-gray-800/50">
+              <div className="flex-1 min-w-0 pr-4">
+                <Dialog.Title className="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent truncate">
                   {selectedJob?.title}
                 </Dialog.Title>
                 <div className="flex flex-wrap items-center gap-3 mt-2 text-gray-300 text-sm">
@@ -178,96 +168,117 @@ export default function JobListings() {
               </button>
             </div>
 
-            {/* Modal Content */}
-            <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
-              {/* Left Column */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>{" "}
-                    Job Description
-                  </h3>
-                  <p className="text-gray-300 leading-relaxed">
-                    {selectedJob?.description}
-                  </p>
+            {/* Modal Content - Single Column with Scroll */}
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 space-y-6">
+              {/* Job Info Cards */}
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10">
+                  <div className="text-sm text-gray-400">Employment Type</div>
+                  <div className="text-emerald-400 font-semibold capitalize mt-1">
+                    {selectedJob?.employment_type}
+                  </div>
                 </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>{" "}
-                    Responsibilities
-                  </h3>
-                  <ul className="space-y-2 max-h-60 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-emerald-500 scrollbar-thumb-rounded hover:scrollbar-thumb-emerald-400 scrollbar-track-gray-800">
-                    {selectedJob?.responsibilities.map((item, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-3 text-gray-300"
-                      >
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="text-center p-4 bg-white/5 rounded-xl border border-white/10">
+                  <div className="text-sm text-gray-400">Experience Level</div>
+                  <div className="text-amber-400 font-semibold capitalize mt-1">
+                    {selectedJob?.experience_level}
+                  </div>
                 </div>
               </div>
 
-              {/* Right Column */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                    <div className="w-2 h-2 bg-amber-400 rounded-full"></div>{" "}
-                    Requirements
-                  </h3>
-                  <ul className="space-y-2 max-h-60 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-amber-400 scrollbar-thumb-rounded hover:scrollbar-thumb-amber-300 scrollbar-track-gray-800">
-                    {selectedJob?.requirements.map((item, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-3 text-gray-300"
-                      >
-                        <div className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Job Description */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                  Job Description
+                </h3>
+                <p className="text-gray-300 leading-relaxed text-sm">
+                  {selectedJob?.description}
+                </p>
+              </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                    <Award className="w-5 h-5 text-emerald-400" /> Benefits &
-                    Perks
-                  </h3>
-                  <ul className="space-y-2 max-h-60 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-emerald-500 scrollbar-thumb-rounded hover:scrollbar-thumb-emerald-400 scrollbar-track-gray-800">
-                    {selectedJob?.benefits.map((item, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-start gap-3 text-gray-300"
-                      >
-                        <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Responsibilities */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  Responsibilities
+                </h3>
+                <ul className="space-y-2">
+                  {selectedJob?.responsibilities.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 text-gray-300 text-sm"
+                    >
+                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                <div className="grid grid-cols-2 gap-4 p-4 bg-white/5 rounded-xl">
-                  <div className="text-center">
-                    <div className="text-sm text-gray-400">Type</div>
-                    <div className="text-emerald-400 font-semibold capitalize">
-                      {selectedJob?.employment_type}
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-sm text-gray-400">Experience</div>
-                    <div className="text-amber-400 font-semibold capitalize">
-                      {selectedJob?.experience_level}
-                    </div>
-                  </div>
-                </div>
+              {/* Requirements */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                  Requirements
+                </h3>
+                <ul className="space-y-2">
+                  {selectedJob?.requirements.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 text-gray-300 text-sm"
+                    >
+                      <div className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Benefits & Perks */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <Award className="w-5 h-5 text-emerald-400" />
+                  Benefits & Perks
+                </h3>
+                <ul className="space-y-2">
+                  {selectedJob?.benefits.map((item, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 text-gray-300 text-sm"
+                    >
+                      <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </Dialog.Panel>
         </div>
       </Dialog>
+
+      {/* Custom Scrollbar Styles */}
+      <style jsx>{`
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(74, 222, 128, 0.3) rgba(30, 41, 59, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(30, 41, 59, 0.1);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(74, 222, 128, 0.3);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(74, 222, 128, 0.5);
+        }
+      `}</style>
     </div>
   );
 }

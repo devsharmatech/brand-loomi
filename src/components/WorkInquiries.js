@@ -289,7 +289,7 @@ export default function WorkInquiries() {
               onChange={handleChange}
               className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition appearance-none"
               style={{
-                backgroundColor: "rgba(0,0,0,0.6)",
+                backgroundColor: "rgba(0,0,0,0.4)",
                 color: "white",
                 WebkitAppearance: "none",
                 MozAppearance: "none",
@@ -345,7 +345,7 @@ export default function WorkInquiries() {
               onChange={handleChange}
               className="w-full p-4 rounded-xl bg-transparent text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition appearance-none"
               style={{
-                backgroundColor: "rgba(0,0,0,0.6)",
+                backgroundColor: "rgba(0,0,0,0.4)",
                 color: "white",
                 WebkitAppearance: "none",
                 MozAppearance: "none",

@@ -123,3 +123,12 @@ header{
 .codex-editor__redactor{
   padding-bottom: 0 !important;
 }
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradientFlow {
+  background-size: 200% 200%;
+  animation: gradientFlow 8s ease infinite;
+}

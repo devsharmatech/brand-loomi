@@ -15,7 +15,7 @@ export default function Header({ logo }) {
             <img
               src={logo || "./logo.png"}
               alt="Brandloomi"
-              className="h-12 mr-3"
+              className={`mr-3 h-${logo === "/logo-career.png" ? "6" : "12"}`}
             />
           </Link>
 
@@ -62,7 +62,7 @@ export default function Header({ logo }) {
             >
               Services
             </Link>
-            
+
             <Link
               href="/contact-us"
               className="text-white font-[200] hover:text-[#00a8c5] transition-all duration-200 flex items-center space-x-3 group"

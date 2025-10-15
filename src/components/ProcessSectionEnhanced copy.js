@@ -27,7 +27,7 @@ export default function ProcessSectionEnhanced() {
   return (
     <section className="relative bg-transparent text-white px-6 py-20 overflow-hidden">
       {/* Animated Background Elements */}
-      <div className="absolute overflow-hidden">
+      <div className="absolute  overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
@@ -87,15 +87,15 @@ export default function ProcessSectionEnhanced() {
             initial={{ scale: 0.8, opacity: 0, rotate: -45 }}
             whileInView={{ scale: 1, opacity: 1, rotate: 45 }}
             transition={{ duration: 0.8, type: "spring" }}
-            whileHover={{ scale: 1.05 }}
-            className="relative w-48 h-48 md:w-80 md:h-80 bg-gradient-to-br from-cyan-900/30 via-emerald-900/30 to-slate-900 border border-cyan-300 rounded-2xl flex items-center justify-center rotate-90 shadow-2xl"
+            whileHover={{ scale: 1.05, rotate: 50 }}
+            className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-cyan-900/30 via-emerald-900/30 to-slate-900 border border-cyan-500/30 rounded-2xl flex items-center justify-center rotate-90 shadow-2xl"
           >
             {/* Animated Border */}
-            <div className="absolute rounded-2xl bg-gradient-to-r from-cyan-500 via-transparent to-emerald-500 animate-pulse opacity-20"></div>
-            <div className="absolute rounded-2xl bg-slate-900"></div>
+            <div className="absolute  rounded-2xl bg-gradient-to-r from-cyan-500 via-transparent to-emerald-500 animate-pulse opacity-20"></div>
+            <div className="absolute  rounded-2xl bg-slate-900"></div>
 
             <motion.p
-              className="text-center rotate-[223deg] text-xl md:text-2xl font-bold bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent z-10 p-8"
+              className="text-center rotate-[-135deg] text-2xl font-bold bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent z-10 p-8"
               whileHover={{ scale: 1.1 }}
             >
               Designing the
@@ -141,20 +141,15 @@ export default function ProcessSectionEnhanced() {
             initial={{ scale: 0.8, opacity: 0, rotate: -45 }}
             whileInView={{ scale: 1, opacity: 1, rotate: 45 }}
             transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
-            whileHover={{ scale: 1.05}}
-            className="relative w-48 h-48 md:w-80 md:h-80 bg-gradient-to-br from-emerald-900/30 via-cyan-900/30 to-slate-900 border border-cyan-300 rounded-xl flex items-center justify-center rotate-90 shadow-2xl"
+            whileHover={{ scale: 1.05, rotate: 40 }}
+            className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-emerald-900/30 via-cyan-900/30 to-slate-900 border border-emerald-500/30 rounded-2xl flex items-center justify-center rotate-90 shadow-2xl"
           >
             {/* Animated Border */}
-            <div className="absolute rounded-2xl bg-gradient-to-r from-emerald-500 via-transparent to-cyan-500 animate-pulse opacity-20"></div>
-            <div className="absolute rounded-2xl bg-slate-900"></div>
-
-            {/* Flow Lines from Right Side - Arrow Formation */}
-            <div className="absolute -left-36 -top-34 transform -translate-y-1 rotate-[225deg] flex flex-col gap-1 z-0">
-               <img src="/flow-line.png" className="h-44 w-44" alt=""/>
-            </div>
+            <div className="absolute  rounded-2xl bg-gradient-to-r from-emerald-500 via-transparent to-cyan-500 animate-pulse opacity-20"></div>
+            <div className="absolute  rounded-2xl bg-slate-900"></div>
 
             <motion.p
-              className="text-center rotate-[228deg] text-xl md:text-2xl font-bold bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent z-10 p-8"
+              className="text-center rotate-[-135deg] text-2xl font-bold bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent z-10 p-8"
               whileHover={{ scale: 1.1 }}
             >
               Delivering the
