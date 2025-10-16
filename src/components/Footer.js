@@ -40,7 +40,7 @@ export default function Footer() {
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact-us" },
     { name: "Careers", href: "/careers" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Refund Policy", href: "/refund-policy" },
     { name: "Terms of Service", href: "/terms-services" },
   ];
 
@@ -229,21 +229,21 @@ export default function Footer() {
 
           <div className="flex gap-6 text-sm text-gray-600">
             <motion.a
-              href="#"
+              href="/privacy-policy"
               whileHover={{ color: "#0891b2" }}
               className="hover:text-cyan-600 transition-colors"
             >
               Privacy
             </motion.a>
             <motion.a
-              href="#"
+              href="/terms-services"
               whileHover={{ color: "#2563eb" }}
               className="hover:text-blue-600 transition-colors"
             >
               Terms
             </motion.a>
             <motion.a
-              href="#"
+              href="/cookie-policy"
               whileHover={{ color: "#059669" }}
               className="hover:text-emerald-600 transition-colors"
             >

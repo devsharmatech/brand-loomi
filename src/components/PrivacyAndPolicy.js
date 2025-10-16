@@ -1,263 +1,247 @@
+"use client";
+
 export default function PrivacyAndPolicy() {
   return (
-    <div className="bg-transparent min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-transparent min-h-screen py-12 pt-0 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-cyan-400 mb-4">Privacy Policy</h1>
+          <h1 className="text-4xl font-bold text-cyan-400 mb-4">
+            Privacy Policy
+          </h1>
           <p className="text-lg text-emerald-400">
-            Last updated: {new Date().toLocaleDateString()}
+            Effective Date: {new Date().toLocaleDateString()}
           </p>
         </div>
 
         {/* Introduction */}
         <div className="mb-12">
-          <p className="text-gray-300 mb-6 leading-relaxed">
-            At Brandloomi, we are committed to protecting your privacy and ensuring the security 
-            of your personal information. This Privacy Policy explains how we collect, use, disclose, 
-            and safeguard your information when you use our services.
-          </p>
           <p className="text-gray-300 leading-relaxed">
-            Brandloomi ("we," "our," or "us") provides web development, software solutions, 
-            digital marketing, and branding services. By using our services, you agree to the 
-            collection and use of information in accordance with this policy.
+            Welcome to Brandloomi ("Brandloomi" "we," "us," or "our"). This
+            Privacy Policy is designed to inform you about how we collect, use,
+            disclose, and safeguard your personal information. By using our
+            website, products, and services, you agree to the terms outlined in
+            this Privacy Policy.
           </p>
         </div>
 
         {/* Information We Collect */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">Information We Collect</h2>
-          
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">
+            Information We Collect
+          </h2>
+
           <div className="space-y-6">
             <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-cyan-500">
-              <h3 className="text-xl font-semibold text-emerald-400 mb-3">Personal Information</h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
-                <li>Name and contact information (email, phone number, address)</li>
-                <li>Company information and job title</li>
-                <li>Payment and billing information</li>
-                <li>Communication preferences</li>
-              </ul>
+              <h3 className="text-xl font-semibold text-emerald-400 mb-3">
+                Personal Information
+              </h3>
+              <p className="text-gray-300">
+                We may collect personal information directly from you, including
+                but not limited to names, email addresses, phone numbers,
+                addresses, and other information you voluntarily provide when
+                using our website or services.
+              </p>
             </div>
 
             <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-emerald-500">
-              <h3 className="text-xl font-semibold text-emerald-400 mb-3">Technical Information</h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
-                <li>IP address and browser type</li>
-                <li>Device information and operating system</li>
-                <li>Website usage data and analytics</li>
-                <li>Cookies and tracking technologies</li>
-              </ul>
+              <h3 className="text-xl font-semibold text-emerald-400 mb-3">
+                Automatically Collected Information
+              </h3>
+              <p className="text-gray-300">
+                When you access our website or use our services, we may
+                automatically collect certain information, including IP
+                addresses, browser type, device details, and usage patterns.
+                This information helps us analyze trends, improve our services,
+                and enhance your user experience.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* How We Use Information */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">
+            How We Use Information
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-800 p-6 rounded-lg border border-cyan-500/30 hover:border-cyan-500 transition-colors">
+              <h3 className="text-lg font-semibold text-emerald-400 mb-3">
+                Service Delivery
+              </h3>
+              <p className="text-gray-300">
+                We use the information we collect to provide, improve, and
+                personalize our services. This includes responding to inquiries,
+                processing transactions, and customizing user experiences.
+              </p>
             </div>
 
+            <div className="bg-gray-800 p-6 rounded-lg border border-emerald-500/30 hover:border-emerald-500 transition-colors">
+              <h3 className="text-lg font-semibold text-emerald-400 mb-3">
+                Communication
+              </h3>
+              <p className="text-gray-300">
+                We may use your contact information to send you relevant
+                updates, newsletters, and promotional materials. You can opt-out
+                of these communications at any time.
+              </p>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-lg border border-cyan-500/30 hover:border-cyan-500 transition-colors">
+              <h3 className="text-lg font-semibold text-emerald-400 mb-3">
+                Analytics
+              </h3>
+              <p className="text-gray-300">
+                We use analytics tools to analyze website usage patterns, track
+                performance, and gather insights to enhance our services.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Information Sharing */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">
+            Information Sharing
+          </h2>
+
+          <div className="space-y-6">
             <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-cyan-500">
-              <h3 className="text-xl font-semibold text-emerald-400 mb-3">Service-Related Information</h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
-                <li>Project requirements and specifications</li>
-                <li>Business goals and objectives</li>
-                <li>Marketing campaign data</li>
-                <li>Customer support interactions</li>
-              </ul>
+              <h3 className="text-xl font-semibold text-emerald-400 mb-3">
+                Third-Party Service Providers
+              </h3>
+              <p className="text-gray-300">
+                We may share your information with trusted third-party service
+                providers to assist us in delivering our services. These
+                providers are contractually obligated to protect your
+                information and may only use it for the purposes specified by
+                Brandloomi.
+              </p>
+            </div>
+
+            <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-emerald-500">
+              <h3 className="text-xl font-semibold text-emerald-400 mb-3">
+                Legal Requirements
+              </h3>
+              <p className="text-gray-300">
+                We may disclose your information if required by law, court
+                order, or other legal processes.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* How We Use Your Information */}
+        {/* User Rights */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">How We Use Your Information</h2>
-          
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">User Rights</h2>
+
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-gray-800 p-6 rounded-lg border border-cyan-500/30 hover:border-cyan-500 transition-colors">
-              <h3 className="text-lg font-semibold text-emerald-400 mb-3">Service Delivery</h3>
+              <h3 className="text-lg font-semibold text-emerald-400 mb-3">
+                Access and Correction
+              </h3>
               <p className="text-gray-300">
-                To provide and maintain our web development, software, and marketing services, 
-                process payments, and communicate with you about your projects.
+                You have the right to access, correct, or delete your personal
+                information. To exercise these rights, please contact us at
+                hello@brandloomi.com.
               </p>
             </div>
 
             <div className="bg-gray-800 p-6 rounded-lg border border-emerald-500/30 hover:border-emerald-500 transition-colors">
-              <h3 className="text-lg font-semibold text-emerald-400 mb-3">Business Operations</h3>
+              <h3 className="text-lg font-semibold text-emerald-400 mb-3">
+                Opt-Out
+              </h3>
               <p className="text-gray-300">
-                To improve our services, develop new features, and conduct research and analysis 
-                to enhance customer experience.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 p-6 rounded-lg border border-cyan-500/30 hover:border-cyan-500 transition-colors">
-              <h3 className="text-lg font-semibold text-emerald-400 mb-3">Marketing & Communication</h3>
-              <p className="text-gray-300">
-                To send updates, promotional materials, and important notices about our services. 
-                You can opt-out of marketing communications at any time.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 p-6 rounded-lg border border-emerald-500/30 hover:border-emerald-500 transition-colors">
-              <h3 className="text-lg font-semibold text-emerald-400 mb-3">Legal Compliance</h3>
-              <p className="text-gray-300">
-                To comply with legal obligations, enforce our terms and conditions, and protect 
-                the rights and safety of our company and users.
+                You can opt-out of receiving promotional communications by
+                following the instructions in our communications or contacting
+                us directly.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Data Sharing and Disclosure */}
+        {/* Security Measures */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">Data Sharing and Disclosure</h2>
-          
-          <div className="space-y-4">
-            <div className="border-l-4 border-cyan-500 pl-4 bg-gray-800/50 p-4 rounded-r-lg">
-              <h3 className="text-lg font-semibold text-emerald-400">Service Providers</h3>
-              <p className="text-gray-300 mt-2">
-                We may share information with trusted third-party service providers who assist us 
-                in delivering our services (hosting providers, payment processors, analytics tools).
-              </p>
-            </div>
-
-            <div className="border-l-4 border-emerald-500 pl-4 bg-gray-800/50 p-4 rounded-r-lg">
-              <h3 className="text-lg font-semibold text-emerald-400">Business Transfers</h3>
-              <p className="text-gray-300 mt-2">
-                In the event of a merger, acquisition, or sale of assets, your information may be 
-                transferred as part of the business transaction.
-              </p>
-            </div>
-
-            <div className="border-l-4 border-cyan-500 pl-4 bg-gray-800/50 p-4 rounded-r-lg">
-              <h3 className="text-lg font-semibold text-emerald-400">Legal Requirements</h3>
-              <p className="text-gray-300 mt-2">
-                We may disclose your information when required by law, court order, or governmental 
-                authority to protect our rights and comply with legal processes.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Data Security */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">Data Security</h2>
-          
-          <div className="bg-gray-800 border border-cyan-500 rounded-lg p-6">
-            <p className="text-gray-300 mb-4">
-              Brandloomi implements appropriate technical and organizational security measures 
-              to protect your personal information against unauthorized access, alteration, 
-              disclosure, or destruction.
-            </p>
-            <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
-              <li>Encryption of sensitive data</li>
-              <li>Secure server infrastructure</li>
-              <li>Regular security assessments</li>
-              <li>Access controls and authentication</li>
-              <li>Employee training on data protection</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Your Rights */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">Your Rights</h2>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-gray-800 border border-emerald-500/30 rounded-lg p-4 hover:border-emerald-500 transition-colors">
-              <h3 className="font-semibold text-emerald-400 mb-2">Access & Correction</h3>
-              <p className="text-gray-300 text-sm">
-                You have the right to access and update your personal information.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 border border-cyan-500/30 rounded-lg p-4 hover:border-cyan-500 transition-colors">
-              <h3 className="font-semibold text-emerald-400 mb-2">Data Portability</h3>
-              <p className="text-gray-300 text-sm">
-                You can request a copy of your data in a structured, machine-readable format.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 border border-emerald-500/30 rounded-lg p-4 hover:border-emerald-500 transition-colors">
-              <h3 className="font-semibold text-emerald-400 mb-2">Deletion</h3>
-              <p className="text-gray-300 text-sm">
-                You may request deletion of your personal information under certain circumstances.
-              </p>
-            </div>
-
-            <div className="bg-gray-800 border border-cyan-500/30 rounded-lg p-4 hover:border-cyan-500 transition-colors">
-              <h3 className="font-semibold text-emerald-400 mb-2">Objection</h3>
-              <p className="text-gray-300 text-sm">
-                You can object to the processing of your personal data for specific purposes.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Cookies and Tracking */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">Cookies and Tracking Technologies</h2>
-          
-          <div className="space-y-4">
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">
+            Security Measures
+          </h2>
+          <div className="bg-gray-800 p-6 rounded-lg border border-cyan-500/30">
             <p className="text-gray-300">
-              We use cookies and similar tracking technologies to enhance your experience, 
-              analyze website traffic, and understand user behavior. You can control cookie 
-              preferences through your browser settings.
+              We implement industry-standard security measures to protect your
+              information. However, no method of transmission over the internet
+              or electronic storage is entirely secure. Therefore, we cannot
+              guarantee absolute security.
             </p>
-            
-            <div className="bg-gray-800 p-4 rounded-lg border border-emerald-500/30">
-              <h3 className="font-semibold text-emerald-400 mb-2">Types of Cookies We Use:</h3>
-              <ul className="list-disc list-inside text-gray-300 space-y-1 ml-4">
-                <li>Essential cookies for website functionality</li>
-                <li>Analytics cookies to understand user behavior</li>
-                <li>Preference cookies to remember your settings</li>
-                <li>Marketing cookies for personalized advertising</li>
-              </ul>
-            </div>
           </div>
-        </section>
-
-        {/* International Data Transfers */}
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">International Data Transfers</h2>
-          <p className="text-gray-300">
-            Your information may be transferred to and processed in countries other than your 
-            country of residence. We ensure appropriate safeguards are in place to protect 
-            your data in accordance with this Privacy Policy and applicable laws.
-          </p>
         </section>
 
         {/* Children's Privacy */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">Children's Privacy</h2>
-          <p className="text-gray-300">
-            Our services are not directed to individuals under the age of 16. We do not 
-            knowingly collect personal information from children. If you become aware that 
-            a child has provided us with personal information, please contact us immediately.
-          </p>
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">
+            Children's Privacy
+          </h2>
+          <div className="bg-gray-800 p-6 rounded-lg border border-emerald-500/30">
+            <p className="text-gray-300">
+              Our services are not intended for individuals under the age of 18.
+              We do not knowingly collect or solicit personal information from
+              children. If you believe we have collected information from a
+              child, please contact us immediately.
+            </p>
+          </div>
         </section>
 
-        {/* Changes to This Policy */}
+        {/* Cookies and Tracking Technologies */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-6">Changes to This Policy</h2>
-          <p className="text-gray-300">
-            We may update this Privacy Policy from time to time. We will notify you of any 
-            changes by posting the new policy on this page and updating the "Last updated" date. 
-            We encourage you to review this policy periodically.
-          </p>
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">
+            Cookies and Tracking Technologies
+          </h2>
+          <div className="bg-gray-800 p-6 rounded-lg border border-cyan-500/30">
+            <p className="text-gray-300">
+              We use cookies and similar tracking technologies to enhance your
+              user experience, analyze website usage, and customize content. By
+              using our website, you consent to the use of cookies as described
+              in our Cookie Policy.
+            </p>
+          </div>
+        </section>
+
+        {/* Changes to this Policy */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-cyan-400 mb-6">
+            Changes to this Policy
+          </h2>
+          <div className="bg-gray-800 p-6 rounded-lg border border-emerald-500/30">
+            <p className="text-gray-300">
+              We may update this Privacy Policy periodically to reflect changes
+              in our practices. The date of the last update will be reflected at
+              the beginning of the document.
+            </p>
+          </div>
         </section>
 
         {/* Contact Information */}
         <section className="bg-gray-800 rounded-lg p-8 border border-cyan-500/30">
-          <h2 className="text-2xl font-bold text-cyan-400 mb-4">Contact Us</h2>
+          <h2 className="text-2xl font-bold text-cyan-400 mb-4">
+            Contact Information
+          </h2>
           <p className="text-gray-300 mb-4">
-            If you have any questions, concerns, or requests regarding this Privacy Policy 
-            or our data practices, please contact us:
+            If you have any questions or concerns about this Privacy Policy,
+            please contact us at:
           </p>
           <div className="space-y-2 text-gray-300">
-            <p><strong className="text-emerald-400">Email:</strong> privacy@brandloomi.com</p>
-            <p><strong className="text-emerald-400">Phone:</strong> +1 (555) 123-4567</p>
-            <p><strong className="text-emerald-400">Address:</strong> 123 Business Avenue, Suite 100, City, State 12345</p>
+            <p>
+              <strong className="text-emerald-400">Email:</strong>{" "}
+              hello@brandloomi.com
+            </p>
           </div>
         </section>
 
         {/* Final Note */}
         <div className="mt-12 text-center">
           <p className="text-emerald-400 italic">
-            Thank you for trusting Brandloomi with your business. We are committed to 
-            protecting your privacy and providing exceptional service.
+            By using our website or services, you acknowledge that you have read
+            and understood this Privacy Policy.
           </p>
         </div>
       </div>

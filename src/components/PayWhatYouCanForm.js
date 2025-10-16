@@ -2,6 +2,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function PayWhatYouCanForm() {
   const [formData, setFormData] = useState({
@@ -54,9 +55,9 @@ export default function PayWhatYouCanForm() {
     if (f) {
       // Validate file size (200MB max)
       if (f.size > 200 * 1024 * 1024) {
-        setErrors((prev) => ({ 
-          ...prev, 
-          videoFile: "Video must be less than 200MB" 
+        setErrors((prev) => ({
+          ...prev,
+          videoFile: "Video must be less than 200MB",
         }));
         return;
       }
@@ -69,8 +70,7 @@ export default function PayWhatYouCanForm() {
     const err = {};
     if (!formData.businessName.trim())
       err.businessName = "Business name required";
-    if (!formData.contactName.trim()) 
-      err.contactName = "Contact name required";
+    if (!formData.contactName.trim()) err.contactName = "Contact name required";
     if (!formData.email.trim()) {
       err.email = "Email required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -92,7 +92,7 @@ export default function PayWhatYouCanForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError("");
-    
+
     if (!validate()) {
       return;
     }
@@ -101,31 +101,31 @@ export default function PayWhatYouCanForm() {
 
     try {
       const formDataToSend = new FormData();
-      
+
       // Append all form fields
-      Object.keys(formData).forEach(key => {
+      Object.keys(formData).forEach((key) => {
         formDataToSend.append(key, formData[key]);
       });
-      
+
       // Append video file
       if (videoFile) {
-        formDataToSend.append('video', videoFile);
+        formDataToSend.append("video", videoFile);
       }
 
-      const response = await fetch('/api/paywhatyoucan', {
-        method: 'POST',
+      const response = await fetch("/api/paywhatyoucan", {
+        method: "POST",
         body: formDataToSend,
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.message || 'Submission failed');
+        throw new Error(result.message || "Submission failed");
       }
 
       setSubmitSuccess(true);
       setTimeout(() => setSubmitSuccess(false), 5000);
-      
+
       // Reset form
       setFormData({
         businessName: "",
@@ -153,10 +153,11 @@ export default function PayWhatYouCanForm() {
         subscribe: false,
       });
       setVideoFile(null);
-
     } catch (error) {
-      console.error('Submission error:', error);
-      setSubmitError(error.message || 'Failed to submit application. Please try again.');
+      console.error("Submission error:", error);
+      setSubmitError(
+        error.message || "Failed to submit application. Please try again."
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -216,10 +217,10 @@ export default function PayWhatYouCanForm() {
               of budget.
             </h1>
             <p className="text-neutral-400 text-xl">
-              Fill out this form. This is our &quot;Pay What You Can&quot; initiative — we
-              evaluate applications based on story, vision and fit. Please
-              provide as much detail as possible so we can make a thoughtful
-              decision.
+              Fill out this form. This is our &quot;Pay What You Can&quot;
+              initiative — we evaluate applications based on story, vision and
+              fit. Please provide as much detail as possible so we can make a
+              thoughtful decision.
             </p>
           </motion.div>
 
@@ -330,7 +331,9 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                   className={selectClass}
                 >
-                  <option value="" className="text-neutral-400">Business Type (select)</option>
+                  <option value="" className="text-neutral-400">
+                    Business Type (select)
+                  </option>
                   <option>Startup</option>
                   <option>Small Business</option>
                   <option>Nonprofit</option>
@@ -419,7 +422,9 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                   className={selectClass}
                 >
-                  <option value="" className="text-neutral-400">Employee count</option>
+                  <option value="" className="text-neutral-400">
+                    Employee count
+                  </option>
                   <option>1 (solo)</option>
                   <option>2-10</option>
                   <option>11-50</option>
@@ -440,8 +445,8 @@ export default function PayWhatYouCanForm() {
               Your Vision for a Website
             </h2>
             <p className="text-sm text-neutral-400">
-              You don&apos;t need to be technical — tell us what success looks like
-              (lead generation, sales, portfolio, booking, etc.), pages you
+              You don&apos;t need to be technical — tell us what success looks
+              like (lead generation, sales, portfolio, booking, etc.), pages you
               need, and any must-have features.
             </p>
 
@@ -500,7 +505,7 @@ export default function PayWhatYouCanForm() {
                 type="file"
                 className="bg-[#070707] border w-full border-neutral-700 rounded-lg px-3 py-2 text-neutral-300"
               />
-              <br/>
+              <br />
               <div className="text-sm mt-2 text-neutral-400">
                 {videoFile ? (
                   <div>
@@ -540,7 +545,9 @@ export default function PayWhatYouCanForm() {
                   className={selectClass}
                   onChange={handleChange}
                 >
-                  <option value="" className="text-neutral-400">Where Did You Hear About Us?</option>
+                  <option value="" className="text-neutral-400">
+                    Where Did You Hear About Us?
+                  </option>
                   <option>Social media</option>
                   <option>Search engine</option>
                   <option>Friend / referral</option>
@@ -549,13 +556,15 @@ export default function PayWhatYouCanForm() {
                 </select>
               </div>
               <div className="md:col-span-1">
-                <select 
-                  name="yearsInBusiness" 
+                <select
+                  name="yearsInBusiness"
                   value={formData.yearsInBusiness}
-                  className={selectClass} 
+                  className={selectClass}
                   onChange={handleChange}
                 >
-                  <option value="" className="text-neutral-400">Years In Business?</option>
+                  <option value="" className="text-neutral-400">
+                    Years In Business?
+                  </option>
                   <option>Less than 1 year</option>
                   <option>1-3 years</option>
                   <option>3-5 years</option>
@@ -563,13 +572,15 @@ export default function PayWhatYouCanForm() {
                 </select>
               </div>
               <div className="md:col-span-2">
-                <select 
-                  name="annualRevenue" 
+                <select
+                  name="annualRevenue"
                   value={formData.annualRevenue}
-                  className={selectClass} 
+                  className={selectClass}
                   onChange={handleChange}
                 >
-                  <option value="" className="text-neutral-400">Annual Revenue?</option>
+                  <option value="" className="text-neutral-400">
+                    Annual Revenue?
+                  </option>
                   <option>Less than $10,000</option>
                   <option>$10,000 - $50,000</option>
                   <option>$50,000 - $100,000</option>
@@ -597,8 +608,8 @@ export default function PayWhatYouCanForm() {
                 Understanding the &quot;Pay What You Can&quot; Model:
               </h3>
               <p className="text-sm text-neutral-300">
-                &quot;As part of our commitment to supporting small businesses, if
-                you are selected as our monthly winner, we will design and
+                &quot;As part of our commitment to supporting small businesses,
+                if you are selected as our monthly winner, we will design and
                 develop a professional website tailored to your needs. In
                 return, we ask you to contribute what you genuinely can afford.
                 This is a voluntary contribution, and your ability to pay will
@@ -614,7 +625,8 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                 />
                 <span className="text-sm">
-                  I understand and agree to the &quot;Pay What You Can&quot; terms and conditions
+                  I understand and agree to the &quot;Pay What You Can&quot;
+                  <Link href="/pwyc-scheme-terms-and-conditions" className="text-cyan-400 mx-2">terms and conditions</Link>
                 </span>
               </label>
               {errors.agreePayModel && (
@@ -627,18 +639,19 @@ export default function PayWhatYouCanForm() {
               <h3 className="text-lg font-semibold">Terms and Conditions:</h3>
               <ul className="list-disc list-inside text-sm text-neutral-300 space-y-1">
                 <li>
-                  &quot;By submitting this application, you agree to our full terms
-                  and conditions.&quot;
+                  &quot;By submitting this application, you agree to
+                  <Link href="/pwyc-scheme-terms-and-conditions" className="text-cyan-400 mx-2">our full terms and conditions</Link>
+                  .&quot;
                 </li>
                 <li>
-                  &quot;You acknowledge that only one winner will be selected each
-                  month. We reserve the right to verify all information
+                  &quot;You acknowledge that only one winner will be selected
+                  each month. We reserve the right to verify all information
                   provided.&quot;
                 </li>
                 <li>
-                  &quot;Winners will be notified via email and phone. If a winner
-                  cannot be reached or does not respond within 5 working days,
-                  another winner may be selected.&quot;
+                  &quot;Winners will be notified via email and phone. If a
+                  winner cannot be reached or does not respond within 5 working
+                  days, another winner may be selected.&quot;
                 </li>
               </ul>
 
@@ -651,7 +664,7 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                 />
                 <span className="text-sm">
-                  &quot;I have read and agree to the Privacy Policy.&quot;
+                  &quot;I have read and agree to the <Link href="/privacy-policy" className="text-cyan-400 mx-1">Privacy Policy</Link>.&quot;
                 </span>
               </label>
               {errors.agreePrivacy && (
@@ -662,7 +675,7 @@ export default function PayWhatYouCanForm() {
                 <input
                   type="checkbox"
                   name="subscribe"
-                  checked={formData.subscribe }
+                  checked={formData.subscribe}
                   className="w-5 h-5 accent-cyan-500"
                   onChange={handleChange}
                 />
@@ -677,12 +690,12 @@ export default function PayWhatYouCanForm() {
                 type="submit"
                 disabled={isSubmitting}
                 className={`px-6 py-3 font-semibold rounded-lg shadow-sm transition-all duration-200 ${
-                  isSubmitting 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-white text-black hover:opacity-95'
+                  isSubmitting
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-white text-black hover:opacity-95"
                 }`}
               >
-                {isSubmitting ? 'SUBMITTING...' : 'APPLY NOW'}
+                {isSubmitting ? "SUBMITTING..." : "APPLY NOW"}
               </motion.button>
 
               <div className="text-sm text-neutral-400">
