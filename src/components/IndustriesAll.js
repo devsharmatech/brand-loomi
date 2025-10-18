@@ -87,7 +87,7 @@ const industries = [
 
 export default function Industries() {
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-transparent max-w-7xl mx-auto text-white">
+    <section className="py-16  bg-transparent max-w-7xl mx-auto text-white">
       {/* Section Header */}
       <div className="flex items-center mb-10">
         <h2 className="text-xl sm:text-2xl md:text-4xl font-bold italic">
@@ -103,7 +103,7 @@ export default function Industries() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 + index * 0.15 }}
-            className="rounded-2xl bg-gradient-to-r from-[#046351] via-transparent to-[#066f57] p-4 sm:p-8 md:p-12 shadow-[0_0_20px_rgba(0,0,0,0.2)] mb-4"
+            className="rounded-2xl bg-gradient-to-r from-[#087b6569] via-transparent to-[#087b6569] p-4 sm:p-8 md:p-12 shadow-[0_0_20px_rgba(0,0,0,0.2)] mb-4"
           >
             {/* Title */}
             <h3 className="text-2xl md:text-3xl flex items-center font-bold text-emerald-400">

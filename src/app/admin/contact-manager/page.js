@@ -293,7 +293,7 @@ export default function ContactPage() {
                             {message.subject}
                           </div>
                           <div className="text-sm text-gray-500 dark:text-gray-400 truncate">
-                            {message.message.substring(0, 50)}...
+                            {message.message?.substring(0, 50)}...
                           </div>
                         </div>
                       </td>

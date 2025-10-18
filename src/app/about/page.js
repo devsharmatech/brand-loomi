@@ -15,13 +15,47 @@ export default function Page() {
             to life`;
   const btntext="Let's Discuss";
   const btnlink="#";
+
+  const cards_who_we_are = [
+  {
+    "id": 1,
+    "title": "OUR MISSION",
+    "description": "We empower startups and small businesses with affordable, innovative digital branding solutions that drive growth and amplify impact.",
+    "icon": "Target",
+    "gradient": "from-cyan-500 to-emerald-500",
+    "hoverBorder": "hover:border-cyan-500/30",
+    "hoverBg": "bg-cyan-500/10",
+    "hoverBgHover": "group-hover:bg-cyan-500/20"
+  },
+  {
+    "id": 2,
+    "title": "OUR VISION",
+    "description": "We aim to be the trusted launchpad for digital innovation, where every small business in Ireland and beyond has the tools and support to succeed.",
+    "icon": "Eye",
+    "gradient": "from-emerald-500 to-cyan-500",
+    "hoverBorder": "hover:border-emerald-500/30",
+    "hoverBg": "bg-emerald-500/10",
+    "hoverBgHover": "group-hover:bg-emerald-500/20"
+  },
+  {
+    "id": 3,
+    "title": "OUR VALUES",
+    "description": "We stand for affordability, innovation, partnership, community support, and transparent communication in everything we do.",
+    "icon": "Heart",
+    "gradient": "from-purple-500 to-cyan-500",
+    "hoverBorder": "hover:border-purple-500/30",
+    "hoverBg": "bg-purple-500/10",
+    "hoverBgHover": "group-hover:bg-purple-500/20"
+  }
+];
+
   return (
     <div className="min-h-screen">
       <HeroAbout heading={heading} subheading={subheading} btntext={btntext} btnlink={btnlink}/>
-      <WhoWeAre />
+      <WhoWeAre cards_who_we_are={cards_who_we_are} />
       <OurStory />
       <Timeline  />
-      <FooterCTASubscription footerHeading="Ready to Launch Your Business Online?" footer_btntext="Get Started" />
+      <FooterCTASubscription footerHeading="Know Us? Now Let Us Know You!" footer_btntext="Get Started" />
       <Footer />
     </div>
   )

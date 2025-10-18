@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import { CheckCircle2 } from "lucide-react";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
+import FAQ from "@/components/FAQ";
 import DeliverTechStack from "@/components/DeliverTechStack";
 
 export default function Page() {
@@ -60,6 +61,24 @@ export default function Page() {
       gradient: "from-cyan-500 to-emerald-400",
     },
   ];
+const faqs = [
+  {
+    q: "What digital marketing services do you offer?",
+    a: "We provide a full range of digital marketing services including SEO, social media marketing, Google Ads, email campaigns, and content strategy — all focused on growing your online presence and conversions.",
+  },
+  {
+    q: "Can you help increase my website traffic and leads?",
+    a: "Absolutely! We use a data-driven approach with SEO optimization, targeted advertising, and conversion-focused design to boost your visibility and attract the right audience to your website.",
+  },
+  {
+    q: "What is included in a typical branding package?",
+    a: "Our branding packages usually include logo design, brand guidelines, typography, color palette, and visual identity assets — all crafted to reflect your business personality and connect with your audience.",
+  },
+  {
+    q: "How long does a branding project take?",
+    a: "Branding timelines depend on project scope. On average, a complete branding project takes between 2–4 weeks, including design revisions and strategy sessions.",
+  },
+];
 
   return (
     <div className="min-h-screen">
@@ -73,9 +92,9 @@ export default function Page() {
       <OurProcess steps={steps} />
       <WhyChooseUs2 features={features}/>
       <Testimonials />
-      
+      <FAQ faqs={faqs} />
       <FooterCTASubscription
-        footerHeading="Ready to build your competitive edge?"
+        footerHeading="Let’s stop the scroll — and start conversations."
         footer_btntext="Get Started"
       />
       <Footer />

@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
+import FAQ from "@/components/FAQ";
 import { CheckCircle2 } from "lucide-react";
 export default function Page() {
   const heading = "Software Development";
@@ -59,6 +60,24 @@ export default function Page() {
       gradient: "from-cyan-500 to-emerald-400",
     },
   ];
+const faqs = [
+  {
+    q: "What types of software do you develop?",
+    a: "We build a wide range of digital solutions including web applications, mobile apps, eCommerce platforms, SaaS products, and custom business software — all tailored to your specific needs.",
+  },
+  {
+    q: "Can you integrate with my existing systems or APIs?",
+    a: "Absolutely! We specialize in seamless integration with third-party APIs, CRMs, payment gateways, and other existing systems to ensure smooth data flow and enhanced functionality.",
+  },
+  {
+    q: "What programming languages and frameworks do you use?",
+    a: "We work with modern and scalable technologies such as JavaScript, TypeScript, Next.js, React, Node.js, Laravel, and Python — ensuring high performance and flexibility for every project.",
+  },
+  {
+    q: "How do you ensure software quality and reliability?",
+    a: "We follow rigorous QA processes, automated and manual testing, continuous integration, and code reviews to ensure every product is secure, stable, and reliable before launch.",
+  },
+];
 
   return (
     <div className="min-h-screen">
@@ -72,8 +91,9 @@ export default function Page() {
       <OurProcess steps={steps} />
       <WhyChooseUs2 features={features}/>
       <Testimonials />
+      <FAQ faqs={faqs} />
       <FooterCTASubscription
-        footerHeading="Ready to build your competitive edge?"
+        footerHeading="From scratch to scale — we engineer what you imagine."
         footer_btntext="Get Started"
       />
       <Footer />

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { Check, ArrowRight, Upload } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Check, ArrowRight } from "lucide-react";
 
 export default function WorkInquiriesSection() {
   const steps = [
@@ -15,53 +15,157 @@ export default function WorkInquiriesSection() {
     full_name: "",
     email: "",
     phone: "",
-    subject: "",
+    subject: "Landing Page", // Hidden with fixed value
     service: "Subject",
     company_name: "",
-    message: "",
     source: "How did you hear about us?",
   });
 
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [selectedFileName, setSelectedFileName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState({ type: "", message: "" });
+  const [errors, setErrors] = useState({});
 
-  const fileInputRef = useRef(null);
+  // CAPTCHA state
+  const [captchaCode, setCaptchaCode] = useState("");
+  const [userCaptchaInput, setUserCaptchaInput] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
+  const canvasRef = useRef(null);
+
+  // Required fields configuration
+  const requiredFields = {
+    full_name: "Full Name",
+    email: "Email Address",
+  };
+
+  // Generate CAPTCHA on component mount
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
+
+  // Generate random CAPTCHA code and draw on canvas
+  const generateCaptcha = () => {
+    const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789';
+    let code = '';
+    for (let i = 0; i < 6; i++) {
+      code += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    setCaptchaCode(code);
+    setUserCaptchaInput("");
+    setCaptchaError("");
+
+    // Draw CAPTCHA on canvas
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Background
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Text styling
+      ctx.font = 'bold 24px Arial';
+      ctx.fillStyle = '#ffffff';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      // Add some distortion
+      for (let i = 0; i < code.length; i++) {
+        const x = 25 + i * 25;
+        const y = 25 + Math.random() * 10 - 5;
+        const rotation = Math.random() * 0.4 - 0.2;
+        
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rotation);
+        ctx.fillText(code[i], 0, 0);
+        ctx.restore();
+      }
+      
+      // Add noise
+      ctx.strokeStyle = '#374151';
+      for (let i = 0; i < 50; i++) {
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+        ctx.stroke();
+      }
+      
+      // Add dots
+      ctx.fillStyle = '#4b5563';
+      for (let i = 0; i < 100; i++) {
+        ctx.beginPath();
+        ctx.arc(
+          Math.random() * canvas.width,
+          Math.random() * canvas.height,
+          Math.random() * 2,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+      }
+    }
+  };
+
+  // Validate CAPTCHA
+  const validateCaptcha = () => {
+    if (userCaptchaInput.toLowerCase() !== captchaCode.toLowerCase()) {
+      setCaptchaError("CAPTCHA code does not match");
+      return false;
+    }
+    setCaptchaError("");
+    return true;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((s) => ({ ...s, [name]: value }));
+    // Clear errors when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) {
-      setSelectedFile(null);
-      setSelectedFileName("");
-      return;
+  const handleCaptchaChange = (e) => {
+    setUserCaptchaInput(e.target.value);
+    if (captchaError) {
+      setCaptchaError("");
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Check all required fields
+    Object.entries(requiredFields).forEach(([key, label]) => {
+      if (!form[key]?.toString().trim()) {
+        newErrors[key] = `${label} is required`;
+      }
+    });
+
+    // Email validation
+    if (!form.email.trim()) {
+      newErrors.email = "Email required";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = "Email format invalid";
     }
 
-    const MAX = 5 * 1024 * 1024;
-    if (file.size > MAX) {
-      setStatus({ type: "error", message: "File too large. Max size 5MB." });
-      e.target.value = "";
-      setSelectedFile(null);
-      setSelectedFileName("");
-      return;
+    // CAPTCHA validation
+    if (!validateCaptcha()) {
+      newErrors.captcha = "CAPTCHA validation failed";
     }
 
-    setSelectedFile(file);
-    setSelectedFileName(file.name);
-    setStatus({ type: "", message: "" });
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ type: "", message: "" });
 
-    if (!form.full_name.trim() || !form.email.trim()) {
-      setStatus({ type: "error", message: "Name and email are required." });
+    if (!validateForm()) {
       return;
     }
 
@@ -70,34 +174,51 @@ export default function WorkInquiriesSection() {
     try {
       const fd = new FormData();
       Object.entries(form).forEach(([key, value]) => fd.append(key, value || ""));
-      if (selectedFile) fd.append("file", selectedFile, selectedFile.name);
+      
+      // Append CAPTCHA verification
+      fd.append("captchaCode", captchaCode);
+      fd.append("userCaptchaInput", userCaptchaInput);
 
       const res = await fetch("/api/contact", { method: "POST", body: fd });
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) throw new Error(data.error || data.message || "Submission failed");
 
-      setStatus({ type: "success", message: data.message || "Inquiry submitted successfully!" });
+      setStatus({ type: "success", message: data.message || "Application submitted successfully!" });
 
+      // Reset form
       setForm({
         full_name: "",
         email: "",
         phone: "",
-        subject: "",
+        subject: "Landing Page",
         service: "Subject",
         company_name: "",
-        message: "",
         source: "How did you hear about us?",
       });
-      setSelectedFile(null);
-      setSelectedFileName("");
-      if (fileInputRef.current) fileInputRef.current.value = "";
+      setUserCaptchaInput("");
+      generateCaptcha(); // Generate new CAPTCHA after successful submission
     } catch (err) {
       setStatus({ type: "error", message: err.message || "Something went wrong" });
       console.error(err);
+      // Regenerate CAPTCHA on error
+      generateCaptcha();
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Helper function to render label with red asterisk for required fields
+  const renderLabel = (fieldName, label) => {
+    const isRequired = fieldName in requiredFields;
+    return (
+      <div className="flex items-center gap-2 mb-1">
+        <span className="text-sm text-neutral-300">{label}</span>
+        {isRequired && (
+          <span className="text-xs text-rose-400">*</span>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -149,79 +270,118 @@ export default function WorkInquiriesSection() {
           )}
 
           <form className="space-y-4" onSubmit={handleSubmit}>
+            {/* Hidden Subject Field */}
             <input
-              type="text"
-              name="full_name"
-              placeholder="Enter Your Full Name"
-              value={form.full_name}
-              onChange={handleChange}
-              className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={form.email}
-              onChange={handleChange}
-              className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
-              required
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Mobile Number"
-              value={form.phone}
-              onChange={handleChange}
-              className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
-            />
-            <input
-              type="text"
+              type="hidden"
               name="subject"
-              placeholder="Subject"
               value={form.subject}
               onChange={handleChange}
-              className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
             />
 
-            {/* File input */}
-            <div className="relative">
+            {/* Full Name */}
+            <div>
+              {renderLabel("full_name", "Full Name")}
               <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*,application/pdf,.doc,.docx"
-                onChange={handleFileChange}
-                className="hidden"
-                name="file"
+                type="text"
+                name="full_name"
+                placeholder="Enter Your Full Name"
+                value={form.full_name}
+                onChange={handleChange}
+                className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
               />
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="flex items-center gap-2 px-4 py-3 rounded-xl border border-gray-600 bg-transparent hover:bg-gray-800 transition"
-                >
-                  <Upload className="w-5 h-5" />
-                  <span className="text-sm">Attach file</span>
-                </button>
-                <div className="text-sm text-gray-300 truncate">
-                  {selectedFileName || "No file selected"}
+              {errors.full_name && (
+                <p className="text-xs text-rose-400 mt-1">{errors.full_name}</p>
+              )}
+            </div>
+
+            {/* Email */}
+            <div>
+              {renderLabel("email", "Email Address")}
+              <input
+                type="email"
+                name="email"
+                placeholder="your@email.com"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
+              />
+              {errors.email && (
+                <p className="text-xs text-rose-400 mt-1">{errors.email}</p>
+              )}
+            </div>
+
+            {/* Phone (Optional) */}
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-sm text-neutral-300">Mobile Number</span>
+              </div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="+1 (555) 123-4567"
+                value={form.phone}
+                onChange={handleChange}
+                className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
+              />
+            </div>
+            {/* CAPTCHA Section */}
+            <div className="space-y-3 p-4 border border-neutral-700 rounded-xl bg-transparent">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-sm text-neutral-300">Security Verification</span>
+                <span className="text-xs text-rose-400">*</span>
+              </div>
+              <p className="text-xs text-neutral-400 mb-3">
+                Please enter the characters you see in the image below to verify you're human.
+              </p>
+
+              <div className="grid grid-cols-1 gap-4 items-start">
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4">
+                    <canvas
+                      ref={canvasRef}
+                      width={180}
+                      height={50}
+                      className="border border-neutral-700 rounded-lg bg-[#1a1a1a]"
+                    />
+                    <button
+                      type="button"
+                      onClick={generateCaptcha}
+                      className="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded-lg transition-colors duration-200 text-sm"
+                    >
+                      ↻ Refresh
+                    </button>
+                  </div>
+                  <p className="text-xs text-neutral-500">
+                    Can't read the text? Click refresh for a new code.
+                  </p>
+                </div>
+
+                <div className="space-y-2 mt-4">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-sm text-neutral-300">Enter CAPTCHA Code</span>
+                    <span className="text-xs text-rose-400">*</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={userCaptchaInput}
+                    onChange={handleCaptchaChange}
+                    placeholder="Type the code shown above"
+                    className="w-full p-3 rounded-lg bg-transparent border border-neutral-700 focus:outline-none focus:border-emerald-400 transition text-white text-sm"
+                    maxLength={6}
+                  />
+                  {(captchaError || errors.captcha) && (
+                    <p className="text-xs text-rose-400 mt-1">
+                      {captchaError || errors.captcha}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
 
-            <textarea
-              name="message"
-              placeholder="Message"
-              value={form.message}
-              onChange={handleChange}
-              rows={4}
-              className="w-full p-4 rounded-xl bg-transparent border border-gray-600 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition resize-none"
-            />
-
             <button
               type="submit"
               disabled={isSubmitting}
-              className="flex items-center justify-center gap-2 bg-white text-black font-semibold rounded-lg px-6 py-3 hover:opacity-90 transition disabled:opacity-60"
+              className="flex items-center justify-center gap-2 bg-white text-black font-semibold rounded-lg px-6 py-3 hover:opacity-90 transition disabled:opacity-60 w-full"
             >
               {isSubmitting ? "Submitting..." : <>SUBMIT <ArrowRight className="w-4 h-4" /></>}
             </button>

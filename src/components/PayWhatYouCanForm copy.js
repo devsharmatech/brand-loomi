@@ -1,6 +1,6 @@
 "use client";
 import Head from "next/head";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -37,113 +37,6 @@ export default function PayWhatYouCanForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  // CAPTCHA state
-  const [captchaCode, setCaptchaCode] = useState("");
-  const [userCaptchaInput, setUserCaptchaInput] = useState("");
-  const [captchaError, setCaptchaError] = useState("");
-  const canvasRef = useRef(null);
-
-  // Required fields configuration
-  const requiredFields = {
-    businessName: "Company Name",
-    contactName: "Full Name",
-    email: "Contact Person Email",
-    phone: "Contact Person Phone Number",
-    industry: "Business Industry",
-    businessDescription: "Business Description",
-    marketingChallenges: "Marketing Challenges",
-    targetAudience: "Target Audience",
-    foundedDate: "Founded Date",
-    employeeCount: "Employee Count",
-    websiteGoal: "Website Goal",
-    admiredWebsites: "Admire Websites",
-    brandingAssets: "Do You Have Branding Assets",
-    hearAbout: "Where Did You Hear About Us",
-  };
-
-  // Generate CAPTCHA on component mount
-  useEffect(() => {
-    generateCaptcha();
-  }, []);
-
-  // Generate random CAPTCHA code and draw on canvas
-  const generateCaptcha = () => {
-    const characters =
-      "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
-    let code = "";
-    for (let i = 0; i < 6; i++) {
-      code += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    setCaptchaCode(code);
-    setUserCaptchaInput("");
-    setCaptchaError("");
-
-    // Draw CAPTCHA on canvas
-    const canvas = canvasRef.current;
-    if (canvas) {
-      const ctx = canvas.getContext("2d");
-
-      // Clear canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Background
-      ctx.fillStyle = "#1a1a1a";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Text styling
-      ctx.font = "bold 24px Arial";
-      ctx.fillStyle = "#ffffff";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      // Add some distortion
-      for (let i = 0; i < code.length; i++) {
-        const x = 25 + i * 25;
-        const y = 25 + Math.random() * 10 - 5;
-        const rotation = Math.random() * 0.4 - 0.2;
-
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(rotation);
-        ctx.fillText(code[i], 0, 0);
-        ctx.restore();
-      }
-
-      // Add noise
-      ctx.strokeStyle = "#374151";
-      for (let i = 0; i < 50; i++) {
-        ctx.beginPath();
-        ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-        ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-        ctx.stroke();
-      }
-
-      // Add dots
-      ctx.fillStyle = "#4b5563";
-      for (let i = 0; i < 100; i++) {
-        ctx.beginPath();
-        ctx.arc(
-          Math.random() * canvas.width,
-          Math.random() * canvas.height,
-          Math.random() * 2,
-          0,
-          Math.PI * 2
-        );
-        ctx.fill();
-      }
-    }
-  };
-
-  // Validate CAPTCHA
-  const validateCaptcha = () => {
-    if (userCaptchaInput.toLowerCase() !== captchaCode.toLowerCase()) {
-      setCaptchaError("CAPTCHA code does not match");
-      return false;
-    }
-    setCaptchaError("");
-    return true;
-  };
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
@@ -154,13 +47,6 @@ export default function PayWhatYouCanForm() {
     // Clear errors when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-  };
-
-  const handleCaptchaChange = (e) => {
-    setUserCaptchaInput(e.target.value);
-    if (captchaError) {
-      setCaptchaError("");
     }
   };
 
@@ -182,35 +68,22 @@ export default function PayWhatYouCanForm() {
 
   const validate = () => {
     const err = {};
-
-    // Check all required fields
-    Object.entries(requiredFields).forEach(([key, label]) => {
-      if (!formData[key]?.toString().trim()) {
-        err[key] = `${label} is required`;
-      }
-    });
-
-    // Email validation
+    if (!formData.businessName.trim())
+      err.businessName = "Business name required";
+    if (!formData.contactName.trim()) err.contactName = "Contact name required";
     if (!formData.email.trim()) {
       err.email = "Email required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       err.email = "Email format invalid";
     }
-
-    // Video file validation
+    if (!formData.businessDescription.trim())
+      err.businessDescription = "Brief description required";
     if (!videoFile)
       err.videoFile = "Please upload a 2-minute video (essential)";
-
-    // Agreement validation
     if (!formData.agreePayModel)
       err.agreePayModel = "Must agree to Pay What You Can terms";
     if (!formData.agreePrivacy)
       err.agreePrivacy = "Must agree to Privacy Policy";
-
-    // CAPTCHA validation
-    if (!validateCaptcha()) {
-      err.captcha = "CAPTCHA validation failed";
-    }
 
     setErrors(err);
     return Object.keys(err).length === 0;
@@ -238,10 +111,6 @@ export default function PayWhatYouCanForm() {
       if (videoFile) {
         formDataToSend.append("video", videoFile);
       }
-
-      // Append CAPTCHA verification
-      formDataToSend.append("captchaCode", captchaCode);
-      formDataToSend.append("userCaptchaInput", userCaptchaInput);
 
       const response = await fetch("/api/paywhatyoucan", {
         method: "POST",
@@ -284,15 +153,11 @@ export default function PayWhatYouCanForm() {
         subscribe: false,
       });
       setVideoFile(null);
-      setUserCaptchaInput("");
-      generateCaptcha(); // Generate new CAPTCHA after successful submission
     } catch (error) {
       console.error("Submission error:", error);
       setSubmitError(
         error.message || "Failed to submit application. Please try again."
       );
-      // Regenerate CAPTCHA on error
-      generateCaptcha();
     } finally {
       setIsSubmitting(false);
     }
@@ -312,17 +177,6 @@ export default function PayWhatYouCanForm() {
     bg-[#1a1a1a]
     cursor-pointer
   `;
-
-  // Helper function to render label with asterisk for required fields
-  const renderLabel = (fieldName, label) => {
-    const isRequired = fieldName in requiredFields;
-    return (
-      <div className="flex items-center gap-2 mb-1">
-        <span className="text-sm text-neutral-300">{label}</span>
-        {isRequired && <span className="text-xs text-rose-400">*</span>}
-      </div>
-    );
-  };
 
   return (
     <>
@@ -386,15 +240,13 @@ export default function PayWhatYouCanForm() {
               application.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Business Name */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                {renderLabel("businessName", "Company Name")}
                 <input
                   name="businessName"
                   value={formData.businessName}
                   onChange={handleChange}
-                  placeholder="Your company name"
+                  placeholder="Business Name"
                   className={inputClass}
                 />
                 {errors.businessName && (
@@ -404,26 +256,17 @@ export default function PayWhatYouCanForm() {
                 )}
               </div>
 
-              {/* Business Location */}
               <div>
-                {renderLabel("businessLocation", "Business Location")}
                 <input
                   name="businessLocation"
                   value={formData.businessLocation}
                   onChange={handleChange}
-                  placeholder="City, Country"
+                  placeholder="Business Location (city, country)"
                   className={inputClass}
                 />
-                {errors.businessLocation && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.businessLocation}
-                  </p>
-                )}
               </div>
 
-              {/* Contact Name */}
               <div>
-                {renderLabel("contactName", "Full Name")}
                 <input
                   name="contactName"
                   value={formData.contactName}
@@ -438,43 +281,32 @@ export default function PayWhatYouCanForm() {
                 )}
               </div>
 
-              {/* Website URL */}
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm text-neutral-300">Website URL</span>
-                </div>
                 <input
                   name="websiteURL"
                   value={formData.websiteURL}
                   onChange={handleChange}
-                  placeholder="https://yourwebsite.com"
+                  placeholder="Website URL (if any)"
                   className={inputClass}
                 />
               </div>
 
-              {/* Phone */}
               <div>
-                {renderLabel("phone", "Contact Phone Number")}
                 <input
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="Contact phone"
                   className={inputClass}
                 />
-                {errors.phone && (
-                  <p className="text-xs text-rose-400 mt-1">{errors.phone}</p>
-                )}
               </div>
 
-              {/* Email */}
               <div>
-                {renderLabel("email", "Contact Email")}
                 <input
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="your@email.com"
+                  placeholder="Business / contact email"
                   className={inputClass}
                 />
                 {errors.email && (
@@ -482,30 +314,17 @@ export default function PayWhatYouCanForm() {
                 )}
               </div>
 
-              {/* Industry */}
               <div>
-                {renderLabel("industry", "Business Industry")}
                 <input
                   name="industry"
                   value={formData.industry}
                   onChange={handleChange}
-                  placeholder="e.g., E-commerce, SaaS, Education, Healthcare"
+                  placeholder="Industry (e.g., e-commerce / SaaS / Education)"
                   className={inputClass}
                 />
-                {errors.industry && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.industry}
-                  </p>
-                )}
               </div>
 
-              {/* Business Type */}
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm text-neutral-300">
-                    Business Type
-                  </span>
-                </div>
                 <select
                   name="businessType"
                   value={formData.businessType}
@@ -513,7 +332,7 @@ export default function PayWhatYouCanForm() {
                   className={selectClass}
                 >
                   <option value="" className="text-neutral-400">
-                    Select business type
+                    Business Type (select)
                   </option>
                   <option>Startup</option>
                   <option>Small Business</option>
@@ -540,16 +359,14 @@ export default function PayWhatYouCanForm() {
               full picture.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Business Description */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="md:col-span-1">
-                {renderLabel("businessDescription", "Business Description")}
                 <textarea
                   name="businessDescription"
                   value={formData.businessDescription}
                   onChange={handleChange}
-                  placeholder="What does your business do? What's your mission and vision? Current status (MVP, launched, revenue etc.)"
-                  className={inputClass + " h-32 resize-none"}
+                  placeholder="Short description: what you do, the problem you solve, current status (MVP, launched, revenue etc.)"
+                  className={inputClass + " h-28 resize-none"}
                 />
                 {errors.businessDescription && (
                   <p className="text-xs text-rose-400 mt-1">
@@ -558,77 +375,47 @@ export default function PayWhatYouCanForm() {
                 )}
               </div>
 
-              {/* Marketing Challenges */}
               <div className="md:col-span-1">
-                {renderLabel("marketingChallenges", "Marketing Challenges")}
                 <textarea
                   name="marketingChallenges"
                   value={formData.marketingChallenges}
                   onChange={handleChange}
-                  placeholder="What marketing or growth challenges are you currently facing?"
-                  className={inputClass + " h-32 resize-none"}
+                  placeholder="Marketing / growth challenges you face"
+                  className={inputClass + " h-28 resize-none"}
                 />
-                {errors.marketingChallenges && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.marketingChallenges}
-                  </p>
-                )}
               </div>
 
-              {/* Unique Selling */}
-              <div className="md:col-span-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm text-neutral-300">
-                    Unique Selling Proposition
-                  </span>
-                </div>
+              <div className="md:col-span-2">
                 <textarea
                   name="uniqueSelling"
                   value={formData.uniqueSelling}
                   onChange={handleChange}
-                  placeholder="What makes your business unique? Why should customers choose you?"
-                  className={inputClass + " h-32 resize-none"}
+                  placeholder="What purpose / value do you serve?"
+                  className={inputClass + " h-28 resize-none"}
                 />
               </div>
 
-              {/* Target Audience */}
-              <div className="md:col-span-1">
-                {renderLabel("targetAudience", "Target Audience")}
-                <textarea
+              <div className="md:col-span-2">
+                <input
                   name="targetAudience"
                   value={formData.targetAudience}
                   onChange={handleChange}
-                  placeholder="Who are your ideal customers? (demographics, interests, behaviors)"
-                  className={inputClass + " h-32 resize-none"}
+                  placeholder="Target audience (who are your customers?)"
+                  className={inputClass}
                 />
-                
-                {errors.targetAudience && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.targetAudience}
-                  </p>
-                )}
               </div>
 
-              {/* Founded Date */}
               <div className="md:col-span-1">
-                {renderLabel("foundedDate", "Founded Date")}
                 <input
                   name="foundedDate"
                   value={formData.foundedDate}
                   onChange={handleChange}
-                  placeholder="Year or specific date"
+                  placeholder="Founded (year)"
                   className={inputClass}
                 />
-                {errors.foundedDate && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.foundedDate}
-                  </p>
-                )}
               </div>
 
-              {/* Employee Count */}
               <div className="md:col-span-1">
-                {renderLabel("employeeCount", "Employee Count")}
                 <select
                   name="employeeCount"
                   value={formData.employeeCount}
@@ -636,18 +423,13 @@ export default function PayWhatYouCanForm() {
                   className={selectClass}
                 >
                   <option value="" className="text-neutral-400">
-                    Select employee count
+                    Employee count
                   </option>
                   <option>1 (solo)</option>
                   <option>2-10</option>
                   <option>11-50</option>
                   <option>51-200</option>
                 </select>
-                {errors.employeeCount && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.employeeCount}
-                  </p>
-                )}
               </div>
             </div>
           </motion.section>
@@ -668,63 +450,34 @@ export default function PayWhatYouCanForm() {
               need, and any must-have features.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Website Goal */}
-              <div className="md:col-span-1">
-                {renderLabel("websiteGoal", "Website Goal")}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
                 <input
                   name="websiteGoal"
                   value={formData.websiteGoal}
                   onChange={handleChange}
-                  placeholder="What do you want to achieve with your website?"
+                  placeholder="Website Goals"
                   className={inputClass}
                 />
-                {errors.websiteGoal && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.websiteGoal}
-                  </p>
-                )}
               </div>
-
-              {/* Admired Websites */}
-              <div className="md:col-span-1">
-                {renderLabel("admiredWebsites", "Websites You Admire")}
+              <div>
                 <input
                   name="admiredWebsites"
                   value={formData.admiredWebsites}
                   onChange={handleChange}
-                  placeholder="List 2-3 websites you like and why"
+                  placeholder="Admired Websites"
                   className={inputClass}
                 />
-                {errors.admiredWebsites && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.admiredWebsites}
-                  </p>
-                )}
               </div>
 
-              {/* Branding Assets */}
               <div className="md:col-span-2">
-                {renderLabel("brandingAssets", "Branding Assets")}
-                <select
+                <input
                   name="brandingAssets"
                   value={formData.brandingAssets}
                   onChange={handleChange}
-                  className={selectClass}
-                >
-                  <option value="" className="text-neutral-400">
-                    Do you have branding assets? (logo, colors, fonts, etc.)
-                  </option>
-                  <option>Yes, complete brand kit</option>
-                  <option>Some assets (logo only)</option>
-                  <option>Basic ideas but no assets</option>
-                  <option>No, need help with branding</option>
-                </select>
-                {errors.brandingAssets && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.brandingAssets}
-                  </p>
-                )}
+                  placeholder="Do You Have Branding Assets?"
+                  className={inputClass}
+                />
               </div>
             </div>
           </motion.section>
@@ -734,11 +487,10 @@ export default function PayWhatYouCanForm() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="space-y-4"
+            className="space-y-2"
           >
             <h2 className="text-xl md:text-2xl font-semibold">
-              The 2-Minute Video Submission{" "}
-              <span className="text-rose-400">*</span>
+              The 2-Minute Video Submission (Essential!)
             </h2>
             <p className="text-sm text-neutral-400">
               Upload a short 1–2 minute video introducing you and your business.
@@ -779,16 +531,14 @@ export default function PayWhatYouCanForm() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.34 }}
-            className="space-y-4"
+            className="space-y-2"
           >
             <h2 className="text-xl md:text-2xl font-semibold">
-              Additional Information
+              How You Did You Hear About Us
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* How You Heard */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="md:col-span-1">
-                {renderLabel("hearAbout", "Where Did You Hear About Us?")}
                 <select
                   name="hearAbout"
                   value={formData.hearAbout}
@@ -796,7 +546,7 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                 >
                   <option value="" className="text-neutral-400">
-                    Select option
+                    Where Did You Hear About Us?
                   </option>
                   <option>Social media</option>
                   <option>Search engine</option>
@@ -804,20 +554,8 @@ export default function PayWhatYouCanForm() {
                   <option>Podcast / article</option>
                   <option>Other</option>
                 </select>
-                {errors.hearAbout && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {errors.hearAbout}
-                  </p>
-                )}
               </div>
-
-              {/* Years in Business */}
               <div className="md:col-span-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm text-neutral-300">
-                    Years In Business
-                  </span>
-                </div>
                 <select
                   name="yearsInBusiness"
                   value={formData.yearsInBusiness}
@@ -825,7 +563,7 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                 >
                   <option value="" className="text-neutral-400">
-                    Select years
+                    Years In Business?
                   </option>
                   <option>Less than 1 year</option>
                   <option>1-3 years</option>
@@ -833,14 +571,7 @@ export default function PayWhatYouCanForm() {
                   <option>5+ years</option>
                 </select>
               </div>
-
-              {/* Annual Revenue */}
               <div className="md:col-span-2">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm text-neutral-300">
-                    Annual Revenue
-                  </span>
-                </div>
                 <select
                   name="annualRevenue"
                   value={formData.annualRevenue}
@@ -848,7 +579,7 @@ export default function PayWhatYouCanForm() {
                   onChange={handleChange}
                 >
                   <option value="" className="text-neutral-400">
-                    Select revenue range
+                    Annual Revenue?
                   </option>
                   <option>Less than $10,000</option>
                   <option>$10,000 - $50,000</option>
@@ -856,68 +587,6 @@ export default function PayWhatYouCanForm() {
                   <option>$100,000 - $500,000</option>
                   <option>$500,000+</option>
                 </select>
-              </div>
-            </div>
-          </motion.section>
-
-          {/* CAPTCHA Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.36 }}
-            className="space-y-4"
-          >
-            <h2 className="text-xl md:text-2xl font-semibold">
-              Security Verification <span className="text-rose-400">*</span>
-            </h2>
-            <p className="text-sm text-neutral-400">
-              Please enter the characters you see in the image below to verify
-              you're human.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              <div className="space-y-3">
-                <div className="flex items-center gap-4">
-                  <canvas
-                    ref={canvasRef}
-                    width={180}
-                    height={50}
-                    className="border border-neutral-700 rounded-lg bg-[#1a1a1a]"
-                  />
-                  <button
-                    type="button"
-                    onClick={generateCaptcha}
-                    className="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 text-white rounded-lg transition-colors duration-200 text-sm"
-                  >
-                    ↻ Refresh
-                  </button>
-                </div>
-                <p className="text-xs text-neutral-500">
-                  Can't read the text? Click refresh for a new code.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-sm text-neutral-300">
-                    Enter CAPTCHA Code
-                  </span>
-                  <span className="text-xs text-rose-400">*</span>
-                </div>
-                <input
-                  type="text"
-                  value={userCaptchaInput}
-                  onChange={handleCaptchaChange}
-                  placeholder="Type the code shown above"
-                  className={inputClass}
-                  maxLength={6}
-                />
-                {(captchaError || errors.captcha) && (
-                  <p className="text-xs text-rose-400 mt-1">
-                    {captchaError || errors.captcha}
-                  </p>
-                )}
               </div>
             </div>
           </motion.section>
@@ -934,7 +603,7 @@ export default function PayWhatYouCanForm() {
             </h2>
 
             {/* Model Description */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h3 className="text-lg font-semibold">
                 Understanding the &quot;Pay What You Can&quot; Model:
               </h3>
@@ -947,44 +616,31 @@ export default function PayWhatYouCanForm() {
                 not influence your selection.&quot;
               </p>
 
-              <label className="flex items-start gap-3">
+              <label className="flex items-center gap-3">
                 <input
                   type="checkbox"
                   name="agreePayModel"
                   checked={formData.agreePayModel}
-                  className="w-5 h-5 accent-cyan-500 mt-0.5 flex-shrink-0"
+                  className="w-5 h-5 accent-cyan-500"
                   onChange={handleChange}
                 />
                 <span className="text-sm">
-                  I understand and agree to the &quot;Pay What You Can&quot;{" "}
-                  <Link
-                    href="/pwyc-scheme-terms-and-conditions"
-                    className="text-cyan-400 mx-1 hover:underline"
-                  >
-                    terms and conditions
-                  </Link>
-                  <span className="text-rose-400">*</span>
+                  I understand and agree to the &quot;Pay What You Can&quot;
+                  <Link href="/pwyc-scheme-terms-and-conditions" className="text-cyan-400 mx-2">terms and conditions</Link>
                 </span>
               </label>
               {errors.agreePayModel && (
-                <p className="text-xs text-rose-400 ml-8">
-                  {errors.agreePayModel}
-                </p>
+                <p className="text-xs text-rose-400">{errors.agreePayModel}</p>
               )}
             </div>
 
             {/* Terms and Conditions */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h3 className="text-lg font-semibold">Terms and Conditions:</h3>
-              <ul className="list-disc list-inside text-sm text-neutral-300 space-y-2">
+              <ul className="list-disc list-inside text-sm text-neutral-300 space-y-1">
                 <li>
                   &quot;By submitting this application, you agree to
-                  <Link
-                    href="/pwyc-scheme-terms-and-conditions"
-                    className="text-cyan-400 mx-1 hover:underline"
-                  >
-                    our full terms and conditions
-                  </Link>
+                  <Link href="/pwyc-scheme-terms-and-conditions" className="text-cyan-400 mx-2">our full terms and conditions</Link>
                   .&quot;
                 </li>
                 <li>
@@ -999,29 +655,20 @@ export default function PayWhatYouCanForm() {
                 </li>
               </ul>
 
-              <label className="flex items-start gap-3">
+              <label className="flex items-center gap-3">
                 <input
                   type="checkbox"
                   name="agreePrivacy"
                   checked={formData.agreePrivacy}
-                  className="w-5 h-5 accent-cyan-500 mt-0.5 flex-shrink-0"
+                  className="w-5 h-5 accent-cyan-500"
                   onChange={handleChange}
                 />
                 <span className="text-sm">
-                  I have read and agree to the{" "}
-                  <Link
-                    href="/privacy-policy"
-                    className="text-cyan-400 mx-1 hover:underline"
-                  >
-                    Privacy Policy
-                  </Link>
-                  <span className="text-rose-400">*</span>
+                  &quot;I have read and agree to the <Link href="/privacy-policy" className="text-cyan-400 mx-1">Privacy Policy</Link>.&quot;
                 </span>
               </label>
               {errors.agreePrivacy && (
-                <p className="text-xs text-rose-400 ml-8">
-                  {errors.agreePrivacy}
-                </p>
+                <p className="text-xs text-rose-400">{errors.agreePrivacy}</p>
               )}
 
               <label className="flex items-center gap-3">
@@ -1037,15 +684,15 @@ export default function PayWhatYouCanForm() {
             </div>
 
             {/* Submit Button & Status */}
-            <div className="flex items-center justify-between gap-4 pt-6">
+            <div className="flex items-center justify-between gap-4">
               <motion.button
                 whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className={`px-8 py-4 font-semibold rounded-lg shadow-sm transition-all duration-200 ${
+                className={`px-6 py-3 font-semibold rounded-lg shadow-sm transition-all duration-200 ${
                   isSubmitting
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-white text-black hover:opacity-95 hover:scale-105"
+                    : "bg-white text-black hover:opacity-95"
                 }`}
               >
                 {isSubmitting ? "SUBMITTING..." : "APPLY NOW"}

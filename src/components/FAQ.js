@@ -11,42 +11,9 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const faqs = [
-  {
-    q: "How can you offer such affordable prices?",
-    a: "We optimize processes, leverage automation, and cut unnecessary costs to deliver high-quality work at lower rates without compromising on quality or service.",
-  },
-  {
-    q: "Do I need technical knowledge to work with you?",
-    a: "No technical knowledge required! We handle all the technical details and keep communication simple and clear for you throughout the entire process.",
-  },
-  {
-    q: "How does your process work after I contact you?",
-    a: "We start with a free consultation to understand your needs, create a customized plan, and then move step by step while keeping you updated at every milestone.",
-  },
-  {
-    q: "What platforms or technologies do you use for development?",
-    a: "We work with modern, scalable technologies including Next.js, React, Tailwind CSS, Node.js, and various cloud solutions to ensure optimal performance.",
-  },
-  {
-    q: "Can you customize solutions for my specific needs?",
-    a: "Absolutely! Every project is uniquely tailored to your goals, budget, timeline, and specific business requirements.",
-  },
-  {
-    q: "How long does it take to complete a project?",
-    a: "Timelines vary based on complexity, but we typically deliver small projects in 2-4 weeks and larger solutions within 2-3 months.",
-  },
-  {
-    q: "What if I need support after the project is done?",
-    a: "We provide comprehensive ongoing support and maintenance packages to ensure everything runs smoothly long-term.",
-  },
-  {
-    q: "Do you work with international clients?",
-    a: "Yes! We collaborate with clients worldwide through remote tools and maintain clear communication across all time zones.",
-  },
-];
 
-export default function FAQ() {
+
+export default function FAQ({ faqs }) {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = (index) => {
@@ -95,7 +62,7 @@ export default function FAQ() {
           </div>
 
           <Link href="/contact-us" passHref>
-            <motion.a
+            <motion.div
               whileHover={{
                 scale: 1.05,
                 backgroundColor: "rgba(6, 182, 212, 0.2)",
@@ -105,7 +72,7 @@ export default function FAQ() {
             >
               Contact Support
               <ChevronUp className="w-5 h-5 rotate-45" />
-            </motion.a>
+            </motion.div>
           </Link>
         </motion.div>
 

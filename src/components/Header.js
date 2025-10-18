@@ -23,9 +23,9 @@ export default function Header({ logo }) {
           <div className="flex items-center justify-end space-x-8 mr-4">
             {/* Company Dropdown */}
             <div className="relative group">
-              <span className="text-gray-100 hover:text-[#00BBDC] font-[200] cursor-pointer transition-colors duration-200">
+              <Link href="/landing" className="text-gray-100 hover:text-[#00BBDC] font-[200] cursor-pointer transition-colors duration-200">
                 Company
-              </span>
+              </Link>
 
               {/* Dropdown Menu */}
               <div className="absolute top-full left-0 mt-2 w-48 bg-transparent text-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-white">

@@ -5,6 +5,7 @@ import Testimonials from "@/components/Testimonials";
 import { CheckCircle2 } from "lucide-react";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
+import FAQ from "@/components/FAQ";
 import DeliverTechStack from "@/components/DeliverTechStack";
 
 export default function Page() {
@@ -55,6 +56,25 @@ export default function Page() {
       gradient: "from-cyan-500 to-emerald-400",
     },
   ];
+  const faqs = [
+    {
+      q: "What does your startup consulting cover?",
+      a: "Our startup consulting covers everything from business strategy, product-market fit, and brand positioning to marketing, funding preparation, and growth planning.",
+    },
+    {
+      q: "Who delivers the consulting sessions?",
+      a: "All sessions are led by experienced startup consultants and industry experts who have hands-on experience in building and scaling businesses.",
+    },
+    {
+      q: "How are consulting sessions structured?",
+      a: "Sessions are typically 60–90 minutes long and can be conducted virtually or in person. Each session is customized to your startup’s specific goals and challenges.",
+    },
+    {
+      q: "Can you help me prepare for investor meetings?",
+      a: "Yes! We assist with pitch deck creation, investor communication strategies, and financial projections to help you confidently present your startup to potential investors.",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <HeroServiceInner
@@ -65,10 +85,11 @@ export default function Page() {
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
       <OurProcess steps={steps} />
-      <WhyChooseUs2 features={features}/>
+      <WhyChooseUs2 features={features} />
       <Testimonials />
+      <FAQ faqs={faqs} />
       <FooterCTASubscription
-        footerHeading="Ready to build your competitive edge?"
+        footerHeading="Ideas are fragile — we help yours survive the chaos."
         footer_btntext="Get Started"
       />
       <Footer />

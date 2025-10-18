@@ -6,6 +6,7 @@ import Testimonials from "@/components/Testimonials";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
+import FAQ from "@/components/FAQ";
 import { CheckCircle2 } from "lucide-react";
 
 export default function Page() {
@@ -58,6 +59,25 @@ export default function Page() {
       gradient: "from-cyan-500 to-emerald-400",
     },
   ];
+  const faqs = [
+    {
+      q: "What types of websites do you build?",
+      a: "We design and develop all kinds of websites — from business and portfolio sites to eCommerce platforms, landing pages, and custom web applications — each tailored to your brand and goals.",
+    },
+    {
+      q: "Are your websites mobile-friendly and responsive?",
+      a: "Yes, every website we build is fully responsive and optimized for all devices. We ensure your site looks and functions beautifully on mobile, tablet, and desktop screens.",
+    },
+    {
+      q: "How long does it take to launch a website?",
+      a: "Launch time depends on the project’s size and complexity. A basic website can be ready in 2–3 weeks, while more complex or custom builds typically take 4–8 weeks.",
+    },
+    {
+      q: "Can you redesign or update my existing website?",
+      a: "Absolutely! We can refresh your current design, improve performance, enhance UX/UI, or rebuild your site entirely to meet modern standards and your evolving business needs.",
+    },
+  ];
+
   return (
     <div className="min-h-screen">
       <HeroServiceInner
@@ -68,10 +88,11 @@ export default function Page() {
       />
       <DeliverTechStack deliverables={deliverables} techStack={techStack} />
       <OurProcess steps={steps} />
-      <WhyChooseUs2 features={features}/>
+      <WhyChooseUs2 features={features} />
       <Testimonials />
+      <FAQ faqs={faqs} />
       <FooterCTASubscription
-        footerHeading="Ready to build your competitive edge?"
+        footerHeading="Your browser is about to meet its favorite build."
         footer_btntext="Get Started"
       />
       <Footer />

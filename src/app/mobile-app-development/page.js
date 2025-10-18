@@ -6,6 +6,7 @@ import Testimonials from "@/components/Testimonials";
 import FooterCTASubscription from "@/components/FooterCTASubscription";
 import Footer from "@/components/Footer";
 import DeliverTechStack from "@/components/DeliverTechStack";
+import FAQ from "@/components/FAQ";
 import { CheckCircle2 } from "lucide-react";
 export default function Page() {
   const heading = "Mobile Application Development";
@@ -58,6 +59,24 @@ export default function Page() {
       gradient: "from-cyan-500 to-emerald-400",
     },
   ];
+  const faqs = [
+    {
+      q: "What types of mobile apps do you develop?",
+      a: "We develop a wide range of mobile applications including eCommerce apps, on-demand services, social platforms, business tools, and custom enterprise solutions for both Android and iOS.",
+    },
+    {
+      q: "Can you help me validate my app idea?",
+      a: "Yes, definitely! We offer idea validation sessions where we discuss your concept, target audience, and business goals — helping you refine your idea before development begins.",
+    },
+    {
+      q: "How long does it take to develop a mobile app?",
+      a: "App development timelines vary depending on complexity and features. Simple apps can take around 4–6 weeks, while more advanced or feature-rich apps may take 2–3 months or more.",
+    },
+    {
+      q: "What technologies do you use for app development?",
+      a: "We use modern frameworks like React Native and Flutter for cross-platform apps, as well as native technologies like Swift (iOS) and Kotlin (Android) to ensure top performance and scalability.",
+    },
+  ];
 
   return (
     <div className="min-h-screen">
@@ -71,8 +90,9 @@ export default function Page() {
       <OurProcess steps={steps} />
       <WhyChooseUs2 features={features} />
       <Testimonials />
+      <FAQ faqs={faqs} />
       <FooterCTASubscription
-        footerHeading="Ready to build your competitive edge?"
+        footerHeading="Tap into the market with an app they can’t put down."
         footer_btntext="Get Started"
       />
       <Footer />
