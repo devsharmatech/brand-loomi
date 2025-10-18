@@ -5,8 +5,7 @@ import {
   Upload,
   FacebookIcon,
   InstagramIcon,
-  LinkedinIcon,
-  TwitterIcon,
+  LinkedinIcon
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
@@ -338,18 +337,28 @@ export default function WorkInquiries() {
               visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
             }}
           >
-            {[FacebookIcon, InstagramIcon, TwitterIcon, LinkedinIcon].map(
-              (Icon, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 border border-gray-500 rounded-lg flex items-center justify-center hover:bg-gray-700/50 transition"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <Icon className="w-5 h-5" />
-                </motion.a>
-              )
-            )}
+            {[
+              { Icon: FacebookIcon, link: "https://www.facebook.com/share/14S3e9de1am/" },
+              {
+                Icon: InstagramIcon,
+                link: "https://www.instagram.com/brandloomi?utm_source=qr&igsh=cTR4OHprdW9vMTcy",
+              },
+              {
+                Icon: LinkedinIcon,
+                link: "https://www.linkedin.com/company/brandloomi/",
+              },
+            ].map(({ Icon, link }, i) => (
+              <motion.a
+                key={i}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 border border-gray-500 rounded-lg flex items-center justify-center hover:bg-gray-700/50 transition"
+                whileHover={{ scale: 1.1 }}
+              >
+                <Icon className="w-5 h-5" />
+              </motion.a>
+            ))}
           </motion.div>
         </motion.div>
 
@@ -737,7 +746,7 @@ export default function WorkInquiries() {
                     className="w-5 h-5 accent-emerald-500"
                   />
                   <span className="text-sm text-gray-300">
-                    Subscribing to newsletter 
+                    Subscribing to newsletter
                   </span>
                 </label>
               </div>
