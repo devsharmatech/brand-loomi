@@ -38,42 +38,16 @@ export default function FAQ({ faqs }) {
           className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-16"
         >
           <div className="mb-8 lg:mb-0">
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring" }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6"
-            >
-              <MessageCircle className="w-4 h-4 text-cyan-400" />
-              <span className="text-sm text-gray-300">Got Questions?</span>
-            </motion.div>
+           
 
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-cyan-100 to-emerald-200 bg-clip-text text-transparent">
-              Frequently Asked
-              <span className="block bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                Questions
-              </span>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white italic tracking-tight">
+              FAQs
             </h2>
 
-            <p className="text-gray-400 text-lg max-w-2xl">
-              Everything you need to know about our services and process. Cant
-              find your answer? Contact us directly.
-            </p>
+            
           </div>
 
-          <Link href="/contact-us" passHref>
-            <motion.div
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgba(6, 182, 212, 0.2)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden lg:flex items-center gap-3 px-6 py-4 rounded-xl border border-cyan-500/30 bg-white/5 text-cyan-400 font-semibold hover:border-cyan-400 transition-all duration-300"
-            >
-              Contact Support
-              <ChevronUp className="w-5 h-5 rotate-45" />
-            </motion.div>
-          </Link>
+        
         </motion.div>
 
         {/* FAQ Grid */}

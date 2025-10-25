@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import {
   Rocket,
   Users,
-  Sparkles,
+  Code,
   HeartHandshake,
   FileText,
   Star,
-  Code,
+  CheckCircle,
   DollarSign,
   MessageSquare,
 } from "lucide-react";
@@ -36,26 +36,18 @@ export default function DeliverTechStackPayWhat() {
     {
       text: "Kickstart your online presence without financial strain.",
       icon: Rocket,
-      bg: "bg-emerald-500/20",
-      color: "text-emerald-400",
     },
     {
       text: "Benefit from expert design, development, and marketing.",
-      icon: Sparkles,
-      bg: "bg-emerald-500/20",
-      color: "text-emerald-400",
+      icon: Code,
     },
     {
       text: "Join a community of startups supported by our agency.",
       icon: Users,
-      bg: "bg-emerald-500/20",
-      color: "text-emerald-400",
     },
     {
       text: "Help us build a more inclusive startup ecosystem in Ireland.",
       icon: HeartHandshake,
-      bg: "bg-emerald-500/20",
-      color: "text-emerald-400",
     },
   ];
 
@@ -63,59 +55,49 @@ export default function DeliverTechStackPayWhat() {
   const howItWorks = [
     {
       text: "Apply by telling us your story and business vision.",
-      icon: FileText,
-      bg: "bg-cyan-500/20",
-      color: "text-cyan-400",
+      icon: CheckCircle,
     },
     {
       text: "Each month, we select a deserving startup or small business.",
       icon: Star,
-      bg: "bg-cyan-500/20",
-      color: "text-cyan-400",
     },
     {
       text: "We build your website or app with the same quality and care as our full-price clients.",
-      icon: Code,
-      bg: "bg-cyan-500/20",
-      color: "text-cyan-400",
+      icon: FileText,
     },
     {
       text: "You pay what you can afford – even if that’s less than our usual launch fee.",
       icon: DollarSign,
-      bg: "bg-cyan-500/20",
-      color: "text-cyan-400",
     },
     {
       text: "All we ask in return is your honest testimonial and permission to share your success story.",
       icon: MessageSquare,
-      bg: "bg-cyan-500/20",
-      color: "text-cyan-400",
     },
   ];
 
   return (
-    <section className="relative bg-transparent text-white py-20 px-6 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 -left-20 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl"></div>
-      </div>
+    <section className="relative bg-transparent text-white py-24 pt-12 px-6 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-emerald-600/10 blur-[180px] rounded-full"></div>
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-600/10 blur-[180px] rounded-full"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20">
-          {/* Left Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+          {/* LEFT SECTION */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
+            viewport={{ once: true }}
           >
             <motion.h2
               variants={itemVariants}
-              className="text-xl font-semibold italic border-b border-gray-500/50 pb-2 mb-8"
+              className="text-lg md:text-xl font-semibold italic border-b border-gray-600/50 pb-2 mb-10"
             >
               Why Participate?
             </motion.h2>
-            <motion.ul variants={containerVariants} className="space-y-6">
+
+            <motion.ul variants={containerVariants} className="space-y-8">
               {whyParticipate.map((item, index) => (
                 <motion.li
                   key={index}
@@ -123,31 +105,33 @@ export default function DeliverTechStackPayWhat() {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-4"
                 >
-                  {/* Icon with background */}
-                  <div
-                    className={`w-10 h-10 flex items-center justify-center rounded-full ${item.bg}`}
-                  >
-                    <item.icon className={`w-5 h-5 ${item.color}`} />
+                  {/* FIXED ICON BACKGROUND */}
+                  <div className="flex-shrink-0 w-11 h-11 rounded-full bg-[#00F5A0]/25 flex items-center justify-center shadow-[0_0_20px_rgba(0,245,160,0.15)]">
+                    <item.icon className="w-5 h-5 text-[#00F5A0]" strokeWidth={2.2} />
                   </div>
-                  <span className="text-lg text-gray-200">{item.text}</span>
+                  <span className="text-base md:text-lg text-gray-200 leading-relaxed">
+                    {item.text}
+                  </span>
                 </motion.li>
               ))}
             </motion.ul>
           </motion.div>
 
-          {/* Right Section */}
+          {/* RIGHT SECTION */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
+            viewport={{ once: true }}
           >
             <motion.h2
               variants={itemVariants}
-              className="text-xl font-semibold italic border-b border-gray-500/50 pb-2 mb-8"
+              className="text-lg md:text-xl font-semibold italic border-b border-gray-600/50 pb-2 mb-10"
             >
               How It Works
             </motion.h2>
-            <motion.ul variants={containerVariants} className="space-y-6">
+
+            <motion.ul variants={containerVariants} className="space-y-8">
               {howItWorks.map((item, index) => (
                 <motion.li
                   key={index}
@@ -155,13 +139,13 @@ export default function DeliverTechStackPayWhat() {
                   whileHover={{ x: 5 }}
                   className="flex items-start gap-4"
                 >
-                  {/* Icon with background */}
-                  <div
-                    className={`w-10 h-10 flex items-center justify-center rounded-full ${item.bg}`}
-                  >
-                    <item.icon className={`w-5 h-5 ${item.color}`} />
+                  {/* FIXED ICON BACKGROUND */}
+                  <div className="flex-shrink-0 w-11 h-11 rounded-full bg-[#00F5A0]/25 flex items-center justify-center shadow-[0_0_20px_rgba(0,245,160,0.15)]">
+                    <item.icon className="w-5 h-5 text-[#00F5A0]" strokeWidth={2.2} />
                   </div>
-                  <span className="text-lg text-gray-200">{item.text}</span>
+                  <span className="text-base md:text-lg text-gray-200 leading-relaxed">
+                    {item.text}
+                  </span>
                 </motion.li>
               ))}
             </motion.ul>

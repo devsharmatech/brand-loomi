@@ -28,7 +28,7 @@ export default function WhyChooseUs() {
               <Check className="w-5 h-5" strokeWidth={2.5} />
             </span>
             {/* Text */}
-            <p className="text-sm md:text-base text-neutral-200">{point}</p>
+            <p className="text-sm md:text-base mb-0 mt-1 text-neutral-200">{point}</p>
           </div>
         ))}
       </div>

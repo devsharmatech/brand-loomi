@@ -57,12 +57,6 @@ export default function WhyChooseUs2({features}) {
           ))}
         </div>
 
-        {/* Additional Info */}
-        <div className="text-center mt-12">
-          <p className="text-gray-400 text-sm max-w-2xl mx-auto">
-            Each project is crafted with precision, ensuring your business gets the competitive edge it deserves.
-          </p>
-        </div>
       </div>
     </section>
   );

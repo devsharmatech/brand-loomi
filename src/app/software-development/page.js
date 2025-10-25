@@ -10,7 +10,7 @@ import { CheckCircle2 } from "lucide-react";
 export default function Page() {
   const heading = "Software Development";
   const subheading = `At 
-            <span className="text-white font-medium">[Your Agency Name]</span>,
+            <span className="text-white font-medium">Brandloomi</span>,
             we believe every business challenge deserves a unique solution. Our
             custom software development service is designed for startups and
             SMEs who want to streamline operations, automate workflows, and
@@ -42,20 +42,20 @@ export default function Page() {
 
    const features = [
     {
+      title: "Future-Proof",
+      description: "Scalable, modular, and ready for tomorrow’s growth.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
+      title: "Secure",
+      description: "Built with best-in-class security practices.",
+      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
+      gradient: "from-cyan-500 to-emerald-400",
+    },
+    {
       title: "Affordable",
-      description: "Startup-friendly pricing, no compromise on quality.",
-      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
-      gradient: "from-cyan-500 to-emerald-400",
-    },
-    {
-      title: "Speed to Market",
-      description: "MVPs delivered in as little as 4 weeks.",
-      icon: <CheckCircle2 className="w-6 h-6 text-white" />,
-      gradient: "from-cyan-500 to-emerald-400",
-    },
-    {
-      title: "Ongoing Partnership",
-      description: "Updates, analytics, and feature enhancements.",
+      description: "World-class quality, startup-friendly pricing.",
       icon: <CheckCircle2 className="w-6 h-6 text-white" />,
       gradient: "from-cyan-500 to-emerald-400",
     },

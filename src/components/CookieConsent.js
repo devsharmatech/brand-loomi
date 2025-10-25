@@ -39,15 +39,7 @@ const CookieConsent = () => {
             </p>
           </div>
           <div className="flex mt-4 flex-col sm:flex-row gap-3 w-full lg:w-auto">
-            <button
-              onClick={() => handleConsent("reject")}
-              className="px-6 py-3 bg-gray-800 border border-gray-600 text-gray-200 rounded-lg 
-                         hover:bg-gray-700 hover:border-gray-500 hover:text-white active:bg-gray-600 
-                         transition-all duration-200 shadow-sm hover:shadow-md 
-                         font-medium text-sm whitespace-nowrap"
-            >
-              Reject All
-            </button>
+            
 
             <button
               onClick={() => handleConsent("necessary")}
@@ -56,7 +48,7 @@ const CookieConsent = () => {
                          transition-all duration-200 shadow-sm hover:shadow-md 
                          font-medium text-sm whitespace-nowrap"
             >
-              Necessary Only
+              AcceptNecessary Only
             </button>
 
             <button

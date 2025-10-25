@@ -40,15 +40,7 @@ export default function HeroServiceInner({
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-6 pt-4">
-            {/* Start Now button */}
-            <Link
-              href="/pay-what-you-can"
-              passHref
-              className="font-semibold text-white text-lg hover:text-emerald-500 transition"
-            >
-              Start Now
-            </Link>
-
+           
             {/* Animated Contact Us button */}
             <Link href="/contact-us" passHref>
               <motion.div
@@ -88,8 +80,8 @@ export default function HeroServiceInner({
           </div>
 
           <div className="text-center lg:text-right">
-            <h3 className="text-5xl font-extrabold text-white">50+</h3>
-            <p className="text-gray-400 text-lg">Happy Clients</p>
+            <h3 className="text-5xl font-extrabold text-white">8+</h3>
+            <p className="text-gray-400 text-lg">Clients Helped</p>
           </div>
         </motion.div>
       </div>

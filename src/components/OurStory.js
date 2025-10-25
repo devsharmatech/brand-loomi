@@ -130,7 +130,7 @@ export default function OurStory() {
             >
               {[
                 { icon: Heart, number: "100%", label: "Client Satisfaction" },
-                { icon: Users, number: "50+", label: "Startups Helped" },
+                { icon: Users, number: "8+", label: "Clients Helped" },
               ].map((stat, index) => (
                 <motion.div
                   key={stat.label}

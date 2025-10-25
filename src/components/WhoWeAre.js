@@ -187,7 +187,7 @@ const WhoWeAre = ({cards_who_we_are}) => {
                 transition={{ duration: 0.6, type: "spring" }}
                 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-2"
               >
-                50+
+                8+
               </motion.p>
               <p className="text-gray-400 text-lg">Happy Clients</p>
               <div className="flex justify-center lg:justify-end mt-4">

@@ -27,7 +27,6 @@ export default function Footer() {
 
   const company = [
     { name: "About Us", href: "/about" },
-    { name: "Portfolio", href: "/landing" },
     { name: "Blogs", href: "/blogs" },
     { name: "Contact", href: "/contact-us" },
     { name: "Careers", href: "/careers" },
@@ -192,11 +191,14 @@ export default function Footer() {
               <Link href="/refund-policy" className="hover:text-emerald-600 transition-colors">
                 Refund Policy
               </Link>
+              <Link href="/cookie-policy" className="hover:text-emerald-600 transition-colors">
+                Cookie Policy
+              </Link>
               <Link href="/terms-services" className="hover:text-emerald-600 transition-colors">
                 Terms of Services
               </Link>
               <Link href="/privacy-policy" className="hover:text-cyan-600 transition-colors">
-                Privacy
+                Privacy Policy
               </Link>
              
             </div>

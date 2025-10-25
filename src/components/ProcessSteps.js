@@ -86,7 +86,7 @@ export default function ProcessSteps() {
       {steps.map((step, index) => (
         <div
           key={index}
-          className="rounded-2xl bg-gradient-to-r from-emerald-900/20 via-neutral-900/70 to-black shadow-lg p-8 md:p-12"
+          className="rounded-2xl bg-gradient-to-r from-emerald-900/20 to-emerald-900/70 shadow-lg p-8 md:p-12"
         >
           {/* Header */}
           <div className="flex items-center gap-3 mb-4">
@@ -113,7 +113,7 @@ export default function ProcessSteps() {
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-emerald-400 text-black mt-0.5">
                   <Check className="w-4 h-4" strokeWidth={2.5} />
                 </span>
-                <p className="text-sm text-neutral-200">{point}</p>
+                <p className="text-sm mb-0 mt-2 text-neutral-200">{point}</p>
               </div>
             ))}
           </div>

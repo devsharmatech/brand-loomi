@@ -28,22 +28,22 @@ export default function Header({ logo }) {
               </Link>
 
               {/* Dropdown Menu */}
-              <div className="absolute top-full left-0 mt-2 w-48 bg-transparent text-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-white">
+              <div className="absolute top-full left-0 mt-2 w-48 bg-gray-800 text-white shadow-lg rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-white">
                 <Link
                   href="/about"
-                  className="block px-4 py-2 text-white hover:bg-[#00BBDC] hover:text-white transition border-b border-white last:border-b-0"
+                  className="block px-4 py-2 text-white hover:bg-[#00BBDC]  hover:text-white transition border-b border-white last:border-b-0"
                 >
                   About Us
                 </Link>
                 <Link
                   href="/industries"
-                  className="block px-4 py-2 text-white hover:bg-[#00BBDC] hover:text-white transition border-b border-white last:border-b-0"
+                  className="block px-4 py-2 text-white hover:bg-[#00BBDC]  hover:text-white transition border-b border-white last:border-b-0"
                 >
                   Industries
                 </Link>
                 <Link
                   href="/how-we-work"
-                  className="block px-4 py-2 text-white hover:bg-[#00BBDC] hover:text-white transition"
+                  className="block px-4 py-2 text-white hover:bg-[#00BBDC]  hover:text-white transition"
                 >
                   How We Work
                 </Link>

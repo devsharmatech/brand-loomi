@@ -1,15 +1,21 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, EffectCards } from "swiper/modules";
+import { Navigation, Autoplay, EffectCards, Controller } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-cards";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import Image from "next/image";
+import { useState, useRef } from "react";
 
 export default function Testimonials() {
+  const [mainSwiper, setMainSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const mainSwiperRef = useRef(null);
+  const thumbsSwiperRef = useRef(null);
+
   const testimonials = [
     {
       id: 1,
@@ -58,6 +64,12 @@ export default function Testimonials() {
     },
   ];
 
+  const handleThumbClick = (index) => {
+    if (mainSwiper) {
+      mainSwiper.slideTo(index);
+    }
+  };
+
   return (
     <section className="relative bg-transparent to-slate-950 text-white px-6 py-20 overflow-hidden">
       {/* Animated Background */}
@@ -105,9 +117,9 @@ export default function Testimonials() {
                 whileInView={{ scale: 1 }}
                 transition={{ delay: 0.4, type: "spring" }}
               >
-                50+
+                8+
               </motion.h3>
-              <p className="text-gray-400">Happy Clients</p>
+              <p className="text-gray-400">Clients Helped</p>
             </div>
             <div className="text-center">
               <motion.h3
@@ -150,7 +162,7 @@ export default function Testimonials() {
           </div>
 
           <Swiper
-            modules={[Navigation, Autoplay, EffectCards]}
+            modules={[Navigation, Autoplay, EffectCards, Controller]}
             navigation={{
               nextEl: ".swiper-button-next-custom",
               prevEl: ".swiper-button-prev-custom",
@@ -163,6 +175,13 @@ export default function Testimonials() {
             grabCursor={true}
             spaceBetween={30}
             slidesPerView={1}
+            onSwiper={setMainSwiper}
+            onSlideChange={(swiper) => {
+              // Update thumbs swiper when main swiper changes
+              if (thumbsSwiper && thumbsSwiper.activeIndex !== swiper.activeIndex) {
+                thumbsSwiper.slideTo(swiper.activeIndex);
+              }
+            }}
             className="testimonial-swiper max-w-6xl mx-auto"
           >
             {testimonials.map((testimonial, index) => (
@@ -265,7 +284,7 @@ export default function Testimonials() {
           className="mt-16"
         >
           <Swiper
-            modules={[Autoplay]}
+            modules={[Autoplay, Controller]}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
@@ -276,13 +295,15 @@ export default function Testimonials() {
               640: { slidesPerView: 3 },
               1024: { slidesPerView: 4 },
             }}
+            onSwiper={setThumbsSwiper}
             className="mini-cards-swiper"
           >
-            {testimonials.map((testimonial) => (
+            {testimonials.map((testimonial, index) => (
               <SwiperSlide key={testimonial.id}>
                 <motion.div
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="bg-slate-800/30 rounded-2xl p-4 border border-slate-700/50 backdrop-blur-sm cursor-pointer"
+                  className="bg-slate-800/30 rounded-2xl p-4 border border-slate-700/50 backdrop-blur-sm cursor-pointer transition-all duration-300"
+                  onClick={() => handleThumbClick(index)}
                 >
                   <div className="flex items-center gap-3">
                     <Image
@@ -342,6 +363,12 @@ export default function Testimonials() {
 
         .mini-cards-swiper .swiper-slide:hover {
           opacity: 1;
+        }
+
+        .mini-cards-swiper .swiper-slide-thumb-active {
+          opacity: 1;
+          transform: scale(1.05);
+          border-color: rgba(6, 182, 212, 0.5);
         }
       `}</style>
     </section>
