@@ -15,9 +15,10 @@ export default function WorkInquiriesSection() {
     full_name: "",
     email: "",
     phone: "",
-    subject: "Landing Page", // Hidden with fixed value
+    subject: "Landing Page",
     service: "Subject",
     company_name: "",
+    referral_id: "",
     source: "How did you hear about us?",
   });
 
@@ -193,6 +194,7 @@ export default function WorkInquiriesSection() {
         phone: "",
         subject: "Landing Page",
         service: "Subject",
+        referral_id: "",
         company_name: "",
         source: "How did you hear about us?",
       });
@@ -320,6 +322,19 @@ export default function WorkInquiriesSection() {
                 name="phone"
                 placeholder="+1 (555) 123-4567"
                 value={form.phone}
+                onChange={handleChange}
+                className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
+              />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-sm text-neutral-300">Referral ID</span>
+              </div>
+              <input
+                type="text"
+                name="referral_id"
+                placeholder="Referral ID (if any)"
+                value={form.referral_id}
                 onChange={handleChange}
                 className="w-full bg-transparent border border-neutral-700 rounded-lg px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-emerald-400"
               />

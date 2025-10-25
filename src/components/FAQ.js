@@ -3,13 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ChevronDown,
-  ChevronUp,
   Plus,
   Minus,
-  MessageCircle,
 } from "lucide-react";
-import Link from "next/link";
+
 
 
 
@@ -51,7 +48,7 @@ export default function FAQ({ faqs }) {
         </motion.div>
 
         {/* FAQ Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
           {faqs.map((faq, idx) => (
             <motion.div
               key={idx}
@@ -63,7 +60,7 @@ export default function FAQ({ faqs }) {
               onClick={() => toggleFAQ(idx)}
             >
               {/* Main Card */}
-              <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 border border-slate-700/50 backdrop-blur-sm transition-all duration-300 group-hover:border-cyan-500/50 group-hover:shadow-2xl group-hover:shadow-cyan-500/10">
+              <div className="relative  bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl p-6 border border-slate-700/50 backdrop-blur-sm transition-all duration-300 group-hover:border-cyan-500/50 group-hover:shadow-2xl group-hover:shadow-cyan-500/10">
                 {/* Animated Border Effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 

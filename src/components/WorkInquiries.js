@@ -298,19 +298,15 @@ export default function WorkInquiries() {
     <section className="w-full bg-transparent text-white py-20 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative">
         {/* Left Section */}
-        <motion.div
+        <div
           className="flex flex-col justify-start pr-10 border-r border-gray-700"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          
         >
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div
+           
           >
             <img src="./logo.png" alt="Brandloomi" className="h-10 mb-4" />
-          </motion.div>
+          </div>
 
           <motion.p
             className="mt-4 text-gray-400 leading-relaxed"
@@ -328,14 +324,9 @@ export default function WorkInquiries() {
               className="w-full max-w-md"
             />
           </div>
-          <motion.div
+          <div
             className="flex gap-4 mt-6"
-            initial="hidden"
-            whileInView="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-            }}
+           
           >
             {[
               { Icon: FacebookIcon, link: "https://www.facebook.com/share/14S3e9de1am/" },
@@ -359,20 +350,16 @@ export default function WorkInquiries() {
                 <Icon className="w-5 h-5" />
               </motion.a>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Right Section - Form */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+        <div
+          
         >
-          <motion.div
+          <div
             className="flex items-center mb-10"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            
           >
             <motion.h3
               className="text-lg font-semibold italic"
@@ -380,11 +367,9 @@ export default function WorkInquiries() {
             >
               Work Inquiries
             </motion.h3>
-            <motion.div
+            <div
               className="flex-1 h-[1px] bg-gray-600 mx-3"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+             
             />
             <motion.span
               className="text-xl"
@@ -393,17 +378,12 @@ export default function WorkInquiries() {
             >
               *
             </motion.span>
-          </motion.div>
+          </div>
 
-          <motion.form
+          <form
             className="space-y-5"
             onSubmit={handleSubmit}
-            initial="hidden"
-            whileInView="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
-            }}
+           
           >
             {/* Full Name */}
             <div>
@@ -613,11 +593,9 @@ export default function WorkInquiries() {
             </div>
 
             {/* CAPTCHA Section */}
-            <motion.div
+            <div
               className="space-y-4 p-4 border border-gray-600 rounded-xl bg-transparent"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm text-gray-300">
@@ -674,14 +652,12 @@ export default function WorkInquiries() {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Terms and Conditions Checkboxes */}
-            <motion.div
+            <div
               className="space-y-4 p-4 border border-gray-600 rounded-xl bg-transparent"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              
             >
               <div className="space-y-4">
                 {/* Terms and Conditions */}
@@ -750,7 +726,7 @@ export default function WorkInquiries() {
                   </span>
                 </label>
               </div>
-            </motion.div>
+            </div>
             {status.message && (
               <div
                 className={`mb-4 p-3 rounded-md text-sm ${
@@ -763,12 +739,10 @@ export default function WorkInquiries() {
               </div>
             )}
             {/* Submit Button */}
-            <motion.button
+            <button
               type="submit"
               className="flex items-center gap-2 px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition disabled:opacity-60 w-full justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              
               disabled={isSubmitting}
             >
               {isSubmitting ? (
@@ -783,9 +757,9 @@ export default function WorkInquiries() {
                   SUBMIT <ArrowRight className="w-5 h-5" />
                 </>
               )}
-            </motion.button>
-          </motion.form>
-        </motion.div>
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );

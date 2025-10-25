@@ -11,6 +11,7 @@ import {
   Eye,
   Trash2,
   Loader2,
+  Download,
 } from "lucide-react";
 
 export default function ContactPage() {
@@ -20,7 +21,8 @@ export default function ContactPage() {
   const [selectedMessage, setSelectedMessage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
-  const [deleting, setDeleting] = useState(false); // New state for delete process
+  const [deleting, setDeleting] = useState(false);
+  const [exporting, setExporting] = useState(false);
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,6 +45,8 @@ export default function ContactPage() {
           message: item.message,
           company_name: item.company_name,
           service: item.service,
+          referral_id: item.referral_id,
+          source: item.source || "website", // Added source field
           status: item.status || "new",
           priority: item.priority || "medium",
           file_url: item.file_url,
@@ -60,6 +64,81 @@ export default function ContactPage() {
     fetchMessages();
   }, []);
 
+  // CSV Export Function
+  const handleExportCSV = async () => {
+    setExporting(true);
+    try {
+      // Use filtered messages for export, or all messages if no search
+      const messagesToExport = searchTerm ? filteredMessages : messages;
+      
+      if (messagesToExport.length === 0) {
+        alert("No messages to export");
+        return;
+      }
+
+      // Create CSV headers
+      const headers = [
+        'ID',
+        'Name',
+        'Email',
+        'Phone',
+        'Subject',
+        'Message',
+        'Company',
+        'Service',
+        'Referral ID',
+        'Source',
+        'Status',
+        'Priority',
+        'Created Date'
+      ];
+
+      // Create CSV rows
+      const csvRows = messagesToExport.map(message => [
+        message.id,
+        `"${message.name?.replace(/"/g, '""') || ''}"`,
+        `"${message.email?.replace(/"/g, '""') || ''}"`,
+        `"${message.phone?.replace(/"/g, '""') || ''}"`,
+        `"${message.subject?.replace(/"/g, '""') || ''}"`,
+        `"${message.message?.replace(/"/g, '""') || ''}"`,
+        `"${message.company_name?.replace(/"/g, '""') || ''}"`,
+        `"${message.service?.replace(/"/g, '""') || ''}"`,
+        `"${message.referral_id?.replace(/"/g, '""') || ''}"`,
+        `"${message.source?.replace(/"/g, '""') || ''}"`,
+        `"${message.status?.replace(/"/g, '""') || ''}"`,
+        `"${message.priority?.replace(/"/g, '""') || ''}"`,
+        `"${new Date(message.createdAt).toLocaleDateString()}"`
+      ]);
+
+      // Combine headers and rows
+      const csvContent = [
+        headers.join(','),
+        ...csvRows.map(row => row.join(','))
+      ].join('\n');
+
+      // Create and download file
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      
+      link.setAttribute('href', url);
+      link.setAttribute('download', `contact-messages-${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      console.log("CSV exported successfully");
+    } catch (error) {
+      console.error("Error exporting CSV:", error);
+      alert("Failed to export CSV. Please try again.");
+    } finally {
+      setExporting(false);
+    }
+  };
+
   // Filtering based on search only
   const filteredMessages = messages.filter((message) => {
     const term = searchTerm.toLowerCase();
@@ -68,7 +147,9 @@ export default function ContactPage() {
       message.email?.toLowerCase().includes(term) ||
       message.subject?.toLowerCase().includes(term) ||
       message.company_name?.toLowerCase().includes(term) ||
-      message.message?.toLowerCase().includes(term)
+      message.message?.toLowerCase().includes(term) ||
+      message.referral_id?.toLowerCase().includes(term) ||
+      message.source?.toLowerCase().includes(term) // Include source in search
     );
   });
 
@@ -90,7 +171,7 @@ export default function ContactPage() {
   };
 
   const handleDeleteMessage = async (messageId) => {
-    setDeleting(true); // Start deleting process
+    setDeleting(true);
     
     try {
       const res = await fetch(`/api/contact/${messageId}`, {
@@ -117,7 +198,7 @@ export default function ContactPage() {
       console.error("Error deleting message:", error);
       alert(error.message || "Failed to delete message");
     } finally {
-      setDeleting(false); // End deleting process
+      setDeleting(false);
     }
   };
 
@@ -162,6 +243,17 @@ export default function ContactPage() {
     });
   };
 
+  // Check if subject is Landing Page
+  const isLandingPageSubject = (subject) => {
+    return subject?.toLowerCase().includes("landing page");
+  };
+
+  // Check if message is from landing page based on source or subject
+  const isFromLandingPage = (message) => {
+    return message.source?.toLowerCase() === 'landing page' || 
+           isLandingPageSubject(message.subject);
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -188,9 +280,27 @@ export default function ContactPage() {
               Manage customer inquiries and messages
             </p>
           </div>
-          <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700">
-            <MessageSquare size={16} />
-            <span>{messages.length} total messages</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400 bg-white dark:bg-gray-800 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700">
+              <MessageSquare size={16} />
+              <span>{messages.length} total messages</span>
+            </div>
+            
+            {/* Export CSV Button */}
+            <button
+              onClick={handleExportCSV}
+              disabled={exporting || messages.length === 0}
+              className="flex items-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white rounded-lg transition-colors disabled:cursor-not-allowed text-sm font-medium"
+            >
+              {exporting ? (
+                <Loader2 size={16} className="animate-spin" />
+              ) : (
+                <Download size={16} />
+              )}
+              <span>
+                {exporting ? 'Exporting...' : 'Export CSV'}
+              </span>
+            </button>
           </div>
         </div>
 
@@ -203,11 +313,11 @@ export default function ContactPage() {
             />
             <input
               type="text"
-              placeholder="Search by name, email, subject, company, or message..."
+              placeholder="Search by name, email, subject, company, message, referral ID, or source..."
               value={searchTerm}
               onChange={(e) => {
                 setSearchTerm(e.target.value);
-                setCurrentPage(1); // Reset to first page when searching
+                setCurrentPage(1);
               }}
               className="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
@@ -235,6 +345,9 @@ export default function ContactPage() {
                     Company
                   </th>
                   <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden md:table-cell">
+                    Source
+                  </th>
+                  <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden md:table-cell">
                     Status
                   </th>
                   <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
@@ -248,7 +361,7 @@ export default function ContactPage() {
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {paginatedMessages.length === 0 ? (
                   <tr>
-                    <td colSpan="6" className="px-6 py-12 text-center">
+                    <td colSpan="7" className="px-6 py-12 text-center">
                       <MessageSquare
                         className="mx-auto text-gray-400 mb-3"
                         size={32}
@@ -293,12 +406,31 @@ export default function ContactPage() {
                             {message.subject}
                           </div>
                           <div className="text-sm text-gray-500 dark:text-gray-400 truncate">
-                            {message.message?.substring(0, 50)}...
+                            {isFromLandingPage(message) ? (
+                              message.referral_id ? (
+                                <span className="text-purple-600 dark:text-purple-400">
+                                  Referral ID: {message.referral_id}
+                                </span>
+                              ) : (
+                                "Landing Page Submission"
+                              )
+                            ) : (
+                              `${message.message?.substring(0, 50)}...`
+                            )}
                           </div>
                         </div>
                       </td>
                       <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white hidden sm:table-cell">
                         {message.company_name || "-"}
+                      </td>
+                      <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 hidden md:table-cell">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                          message.source === 'landing page' 
+                            ? 'bg-purple-100 text-purple-800 border border-purple-200' 
+                            : 'bg-gray-100 text-gray-800 border border-gray-200'
+                        }`}>
+                          {message.source || 'website'}
+                        </span>
                       </td>
                       <td className="px-4 sm:px-6 py-4 whitespace-nowrap hidden md:table-cell">
                         <span
@@ -378,7 +510,7 @@ export default function ContactPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/50 z-[10005] flex items-center justify-center p-4"
               onClick={closeModal}
             >
               <motion.div
@@ -450,25 +582,63 @@ export default function ContactPage() {
                           {selectedMessage.company_name}
                         </p>
                       )}
-                      {selectedMessage.service && (
+                      {/* Show source when not from landing page */}
+                      {!isFromLandingPage(selectedMessage) && selectedMessage.source && (
+                        <p className="text-gray-600 dark:text-gray-400">
+                          <strong>Source:</strong>{" "}
+                          <span className="capitalize">{selectedMessage.source}</span>
+                        </p>
+                      )}
+                      {/* Conditionally show service only if not Landing Page */}
+                      {selectedMessage.service && !isFromLandingPage(selectedMessage) && (
                         <p className="text-gray-600 dark:text-gray-400">
                           <strong>Service:</strong> {selectedMessage.service}
+                        </p>
+                      )}
+                      {/* Show referral_id for Landing Page submissions */}
+                      {isFromLandingPage(selectedMessage) && selectedMessage.referral_id && (
+                        <p className="text-gray-600 dark:text-gray-400">
+                          <strong>Referral ID:</strong>{" "}
+                          <span className="text-purple-600 dark:text-purple-400 font-mono">
+                            {selectedMessage.referral_id}
+                          </span>
                         </p>
                       )}
                     </div>
                   </div>
 
-                  {/* Message Content */}
-                  <div>
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
-                      Message
-                    </h4>
-                    <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                      <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
-                        {selectedMessage.message}
-                      </p>
+                  {/* Message Content - Conditionally show */}
+                  {!isFromLandingPage(selectedMessage) && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
+                        Message
+                      </h4>
+                      <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                        <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+                          {selectedMessage.message}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  )}
+
+                  {/* Show special message for Landing Page submissions */}
+                  {isFromLandingPage(selectedMessage) && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
+                        Landing Page Submission
+                      </h4>
+                      <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p className="text-blue-700 dark:text-blue-300">
+                          This is a landing page submission. No detailed message content is available.
+                          {selectedMessage.referral_id && (
+                            <span className="block mt-2">
+                              Referral ID: <strong className="font-mono">{selectedMessage.referral_id}</strong>
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Attachment */}
                   {selectedMessage.file_url && (

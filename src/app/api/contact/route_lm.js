@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabaseClient";
 export async function POST(req) {
   try {
     const formData = await req.formData();
-
+    
     // Extract fields
     const full_name = formData.get("full_name");
     const email = formData.get("email");
@@ -15,7 +15,6 @@ export async function POST(req) {
     const message = formData.get("message");
     const source = formData.get("source") || "website";
     const file = formData.get("file");
-    const news_letter_accept = formData.get("subscribe") == "true";
 
     // ✅ Validation
     if (!full_name?.trim() || !email?.trim()) {
@@ -31,13 +30,14 @@ export async function POST(req) {
 
     let file_url = null;
 
-    // ✅ File upload (optional)
+    // ✅ File upload if exists
     if (file && file.name) {
       try {
         const fileExt = file.name.split(".").pop();
         const safeBaseName = file.name
           .replace(/\.[^/.]+$/, "")
           .replace(/[^a-zA-Z0-9-_]/g, "_");
+
         const fileName = `${Date.now()}_${safeBaseName}.${fileExt}`;
 
         const { error: uploadError } = await supabase.storage
@@ -48,7 +48,9 @@ export async function POST(req) {
             contentType: file.type || "application/octet-stream",
           });
 
-        if (uploadError) throw new Error(uploadError.message);
+        if (uploadError) {
+          throw new Error(uploadError.message || "File upload failed.");
+        }
 
         const { data: publicUrlData } = supabase.storage
           .from("inquiry_uploads")
@@ -68,7 +70,7 @@ export async function POST(req) {
       }
     }
 
-    // ✅ Insert into work_inquiries
+    // ✅ Insert into DB
     const { error: insertError } = await supabase
       .from("work_inquiries")
       .insert([
@@ -98,32 +100,7 @@ export async function POST(req) {
       );
     }
 
-    // ✅ Newsletter logic
-    if (news_letter_accept) {
-      const { data: existingSubscriber } = await supabase
-        .from("news_subscribers")
-        .select("id")
-        .eq("email", email)
-        .single();
-
-      if (!existingSubscriber) {
-        const { error: subscriberError } = await supabase
-          .from("news_subscribers")
-          .insert([
-            {
-              full_name,
-              email,
-              phone,
-            },
-          ]);
-
-        if (subscriberError) {
-          console.error("Subscriber Insert Error:", subscriberError);
-        }
-      }
-    }
-
-    // ✅ Success
+    // ✅ Success Response
     return new Response(
       JSON.stringify({
         success: true,

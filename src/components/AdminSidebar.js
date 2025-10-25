@@ -18,6 +18,7 @@ export default function AdminSidebar({ user, onLogout, logoutLoading }) {
     { href: '/admin/applications', label: 'Applications', icon: <Briefcase size={20} /> },
     { href: '/admin/contact-manager', label: 'Messages', icon: <MessageSquare size={20} /> },
     { href: '/admin/pay-what-you-can-applications', label: 'PWYC Applications', icon: <Briefcase size={20} /> },
+    { href: '/admin/subscribers', label: 'Subscribers', icon: <FileText size={20} /> },
   ]
 
   const handleLogout = async () => {

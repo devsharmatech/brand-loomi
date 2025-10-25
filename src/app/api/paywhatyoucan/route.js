@@ -9,12 +9,13 @@ export async function POST(req) {
     let video_url = null;
     const video = formData.get("video");
     if (video && video.name) {
-      const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
-        .from("videos")
-        .upload(`applications/${Date.now()}-${video.name}`, video, {
-          cacheControl: "3600",
-          upsert: false,
-        });
+      const { data: uploadData, error: uploadError } =
+        await supabaseAdmin.storage
+          .from("videos")
+          .upload(`applications/${Date.now()}-${video.name}`, video, {
+            cacheControl: "3600",
+            upsert: false,
+          });
       if (uploadError) throw uploadError;
 
       const { data: publicUrl } = supabaseAdmin.storage
@@ -22,6 +23,10 @@ export async function POST(req) {
         .getPublicUrl(uploadData.path);
       video_url = publicUrl.publicUrl;
     }
+    const full_name = formData.get("contactName");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const news_letter_accept = formData.get("subscribe") == "true";
 
     const payload = {
       business_name: formData.get("businessName"),
@@ -52,7 +57,7 @@ export async function POST(req) {
       pay_amount: formData.get("payAmount"),
       agree_pay_model: formData.get("agreePayModel") === "true",
       agree_privacy: formData.get("agreePrivacy") === "true",
-      subscribe: formData.get("subscribe") === "true",
+      subscribe: formData.get("subscribe") == "true",
       video_url,
     };
 
@@ -63,6 +68,30 @@ export async function POST(req) {
 
     if (error) throw error;
 
+    // ✅ Newsletter logic
+    if (news_letter_accept) {
+      const { data: existingSubscriber } = await supabaseAdmin
+        .from("news_subscribers")
+        .select("id")
+        .eq("email", email)
+        .single();
+
+      if (!existingSubscriber) {
+        const { error: subscriberError } = await supabaseAdmin
+          .from("news_subscribers")
+          .insert([
+            {
+              full_name,
+              email,
+              phone,
+            },
+          ]);
+
+        if (subscriberError) {
+          console.error("Subscriber Insert Error:", subscriberError);
+        }
+      }
+    }
     return NextResponse.json({ status: "success", data });
   } catch (err) {
     console.error("Error saving form:", err.message);
@@ -73,7 +102,6 @@ export async function POST(req) {
   }
 }
 
-// ✅ GET - Fetch all submissions
 export async function GET() {
   try {
     const { data, error } = await supabaseAdmin
@@ -86,12 +114,11 @@ export async function GET() {
   } catch (err) {
     return NextResponse.json(
       { status: "error", message: err.message },
-      { status: 500 } 
+      { status: 500 }
     );
   }
 }
 
-// ✅ PUT - Update status (approve/reject)
 export async function PUT(req) {
   try {
     const { ids, status } = await req.json();
@@ -110,7 +137,6 @@ export async function PUT(req) {
   }
 }
 
-// ✅ DELETE - Delete selected submissions
 export async function DELETE(req) {
   try {
     const { ids } = await req.json();
